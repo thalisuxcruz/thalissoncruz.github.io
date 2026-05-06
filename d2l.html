@@ -1,977 +1,4110 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D2L · Formatador de Questões com IA — Thalisson Cruz</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formatador D2L — CRUZ Learning Environment</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --bg: #0B0F1A;
-      --surface: #111827;
-      --surface-2: #151D2E;
-      --border: rgba(255,255,255,0.08);
-      --text: #FFFFFF;
-      --muted: #A1A1AA;
-      --blue: #3B82F6;
-      --blue-2: #60A5FA;
-      --purple: #6D5DF6;
-      --green: #22C55E;
-      --orange: #F59E0B;
-      --red: #EF4444;
-      --radius: 24px;
+      /* Colors */
+      --color-bg: #F7F6F2;
+      --color-surface: #FFFFFF;
+      --color-surface-soft: #ECEFF1;
+      --color-text-primary: #111827;
+      --color-text-secondary: #64707D;
+      --color-text-inverse: #FFFFFF;
+      --color-brand-primary: #1F3548;
+      --color-brand-primary-hover: #172838;
+      --color-brand-secondary: #4E6274;
+      --color-accent: #C8643B;
+      --color-accent-soft: #F4E5DC;
+      --color-border: rgba(17, 24, 39, .10);
+
+      /* Spacing - 8px grid */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+
+      /* Radius */
+      --radius-xs: 8px;
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 28px;
+      --radius-2xl: 32px;
+      --radius-pill: 999px;
+
+      /* Shadow */
+      --shadow-sm: 0 8px 20px rgba(31, 53, 72, .05);
+      --shadow-md: 0 16px 38px rgba(31, 53, 72, .08);
+      --shadow-lg: 0 24px 70px rgba(31, 53, 72, .10);
+
+      /* Motion */
+      --motion-fast: 150ms ease;
+      --motion-base: 220ms ease;
+      --motion-slow: 420ms cubic-bezier(.22, 1, .36, 1);
+      --bg: var(--color-bg);
+      --surface: var(--color-surface);
+      --surface-soft: var(--color-surface-soft);
+      --ink: var(--color-text-primary);
+      --muted: var(--color-text-secondary);
+      --line: var(--color-border);
+      --blue: var(--color-brand-primary);
+      --blue-2: var(--color-brand-secondary);
+      --terracotta: var(--color-accent);
+      --terracotta-soft: var(--color-accent-soft);
+      --sand: #D9D1C6;
+      --shadow: var(--shadow-lg);
+      --radius: var(--radius-xl);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 96px;
+    }
+
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      line-height: 1.45;
-    }
-    a { color: inherit; text-decoration: none; }
-    .page { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
-
-    .nav{
-      height:82px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid var(--border);
-      position:sticky;
-      top:0;
-      z-index:50;
-      width:100vw;
-      margin-left:calc(50% - 50vw);
-      padding-left:max(24px, calc((100vw - 1120px) / 2));
-      padding-right:max(24px, calc((100vw - 1120px) / 2));
-      background:rgba(11,15,26,.92);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 84% 8%, rgba(200, 100, 59, .08), transparent 28%),
+        radial-gradient(circle at 12% 4%, rgba(31, 53, 72, .08), transparent 26%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Manrope", system-ui, sans-serif;
+      line-height: 1.55;
     }
 
-    .brand{
-      letter-spacing:.2em;
-      font-weight:800;
-      font-size:18px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .nav-links{
-      display:flex;
-      gap:22px;
-      color:var(--muted);
-      font-size:14px;
+    img {
+      max-width: 100%;
+      height: auto;
     }
 
-    .nav-links a:hover{
-      color:white;
+    :where(a, button, [tabindex]):focus-visible {
+      outline: 3px solid rgba(200, 100, 59, .48);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
     }
 
-    h1, h2, h3, h4, p { margin-top: 0; }
-    h1 { font-size: clamp(48px, 7vw, 82px); line-height: .98; margin: 24px 0; letter-spacing: -0.06em; }
-    h2 { font-size: clamp(34px, 4vw, 56px); line-height: 1.04; margin: 0 0 18px; letter-spacing: -0.045em; }
-    h3 { margin: 0 0 10px; font-size: 22px; letter-spacing: -0.02em; }
-    p { color: var(--muted); font-size: 18px; }
-    .lead { font-size: 21px; max-width: 760px; }
+    .skip-link {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 10000;
+      transform: translateY(-140%);
+      padding: 10px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--blue);
+      color: var(--color-text-inverse);
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--motion-fast);
+    }
 
-    .eyebrow {
+    .skip-link:focus-visible {
+      transform: translateY(0);
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon--nav {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      stroke-width: 1.75;
+    }
+
+    .icon--action {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      stroke-width: 2;
+    }
+
+    .icon--card {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+    }
+
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: var(--radius-md);
+      background: rgba(31, 53, 72, .06);
+      color: var(--blue);
+    }
+
+    .card,
+    .info-card,
+    .impact-card,
+    .metric-card,
+    .comparison-card,
+    .method-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-6);
+    }
+
+    .card--interactive {
+      cursor: pointer;
+      transition: transform var(--motion-base), box-shadow var(--motion-base), border-color var(--motion-base);
+    }
+
+    .card--interactive:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card--interactive:active {
+      transform: translateY(0);
+    }
+
+    .card--highlight {
+      background: var(--color-brand-primary);
+      color: var(--color-text-inverse);
+    }
+
+    .btn,
+    .btn--primary,
+    .btn--secondary,
+    .btn--ghost,
+    .btn--text {
       display: inline-flex;
-      gap: 8px;
       align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      min-height: 44px;
+      padding: 0 var(--space-5);
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform var(--motion-base), background var(--motion-base), box-shadow var(--motion-base), border-color var(--motion-base);
+    }
+
+    .btn:hover,
+    .btn--primary:hover,
+    .btn--secondary:hover,
+    .btn--ghost:hover,
+    .btn--text:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active,
+    .btn--primary:active,
+    .btn--secondary:active,
+    .btn--ghost:active,
+    .btn--text:active {
+      transform: translateY(0);
+    }
+
+    .btn[disabled],
+    .btn.is-disabled,
+    .btn--primary[disabled],
+    .btn--secondary[disabled],
+    .btn--ghost[disabled],
+    .btn--text[disabled],
+    .btn--primary.is-disabled,
+    .btn--secondary.is-disabled,
+    .btn--ghost.is-disabled,
+    .btn--text.is-disabled {
+      opacity: .48;
+      cursor: not-allowed;
+      pointer-events: none;
+      transform: none;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 34px 24px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 255, 255, .62);
+      backdrop-filter: blur(18px);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      z-index: 30;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      min-width: 44px;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: #fff;
+      color: var(--blue);
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .menu-toggle .icon {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+
+    .brand-logo {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-width: 160px;
+      height: 40px;
+    }
+
+    .nav {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .nav a {
+      min-height: 46px;
+      padding: 0 14px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       color: var(--blue-2);
-      border: 1px solid rgba(59,130,246,0.22);
-      background: rgba(59,130,246,0.08);
-      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: color var(--motion-base), background var(--motion-base), box-shadow var(--motion-base);
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: #fff;
+      color: var(--terracotta);
+      box-shadow: 0 12px 28px rgba(31, 53, 72, .08);
+    }
+
+    .nav-icon {
+      display: block;
+      background: currentColor;
+      -webkit-mask: var(--nav-icon-url) center / contain no-repeat;
+      mask: var(--nav-icon-url) center / contain no-repeat;
+    }
+
+    .nav-icon--dashboard {
+      --nav-icon-url: url("assets/dashboard.svg");
+    }
+
+    .nav-icon--disciplines {
+      --nav-icon-url: url("assets/open-book.svg");
+    }
+
+    .sidebar-note {
+      margin-top: auto;
+      padding: 24px;
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      color: var(--blue);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .sidebar-note b,
+    .sidebar-note strong,
+    .sidebar-note-title {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--terracotta);
+      font-family: "Epilogue", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+    }
+
+    .sidebar-note p,
+    .sidebar-note span {
+      color: var(--blue);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .sidebar-note .signature,
+    .sidebar-note img.signature {
+      display: block;
+      width: 150px;
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    .main {
+      min-width: 0;
+      padding: 34px 44px 64px;
+    }
+
+    .container {
+      width: min(100% - 32px, 1440px);
+      max-width: none;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    @keyframes softEnter {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+        filter: blur(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      animation: softEnter .9s cubic-bezier(.22, 1, .36, 1) forwards;
+    }
+
+    .delay-1 {
+      animation-delay: .15s;
+    }
+
+    .delay-2 {
+      animation-delay: .35s;
+    }
+
+    .delay-3 {
+      animation-delay: .6s;
+    }
+
+    .delay-4 {
+      animation-delay: .85s;
+    }
+
+    .delay-4 {
+      animation-delay: .6s;
+    }
+
+    .delay-4 {
+      animation-delay: .6s;
+    }
+
+    .case-back-link,
+    .back-link {
+      display: inline-flex;
+      width: max-content;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--terracotta);
+      font-size: 14px;
+      font-weight: 900;
+      transition: color var(--motion-base), transform var(--motion-fast);
+    }
+
+    .case-back-link:hover,
+    .back-link:hover {
+      color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .case-back-link:active,
+    .back-link:active {
+      transform: scale(.98);
+    }
+
+    .course-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(380px, 520px);
+      gap: clamp(28px, 4vw, 64px);
+      align-items: center;
+      margin-bottom: 30px;
+      padding: 44px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(255, 255, 255, .7)),
+        radial-gradient(circle at 92% 18%, rgba(200, 100, 59, .13), transparent 34%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .course-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: 42%;
+      pointer-events: none;
+      opacity: .58;
+      background:
+        linear-gradient(122deg, transparent 0 38%, rgba(255, 255, 255, .72) 38% 48%, transparent 48%),
+        linear-gradient(145deg, rgba(217, 209, 198, .75), rgba(247, 246, 242, .24) 45%, rgba(200, 100, 59, .55) 46% 68%, rgba(31, 53, 72, .88) 68%);
+    }
+
+    .course-hero>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .course-hero>div:first-child,
+    .case-hero-left,
+    .case-hero-content {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .kicker,
+    .module-label {
+      display: inline-flex;
+      margin-bottom: 16px;
+      color: var(--terracotta);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .hero-kicker-row .kicker {
+      margin-bottom: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0 0 24px;
+      color: var(--ink);
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(42px, 5.6vw, 76px);
+      line-height: .98;
+      letter-spacing: -.06em;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    .course-hero h1,
+    .case-hero-title {
+      max-width: 980px;
+      font-size: clamp(42px, 4.2vw, 64px);
+      line-height: .92;
+      letter-spacing: -.06em;
+      overflow-wrap: normal;
+      word-break: normal;
+      text-wrap: balance;
+    }
+
+    .course-subtitle {
+      max-width: 700px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .tag {
+      display: inline-flex;
+      width: max-content;
+      min-height: 32px;
+      align-items: center;
+      border: 1px solid rgba(200, 100, 59, .16);
       border-radius: 999px;
+      background: rgba(200, 100, 59, .08);
+      color: var(--terracotta);
+      padding: 0 12px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .course-panel {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+      border: 1px solid rgba(31, 53, 72, .10);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .82);
+      padding: 26px;
+      box-shadow: 0 18px 42px rgba(31, 53, 72, .06);
+    }
+
+    .course-panel small {
+      display: block;
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .course-panel strong {
+      display: block;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 22px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .course-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .course-meta {
+      display: grid;
+      gap: 14px;
+    }
+
+    .course-meta div {
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .course-meta div:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .case-executive {
+      margin: 56px 0 32px;
+      padding: 42px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, .75);
+    }
+
+    .case-executive--compact {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .75fr);
+      gap: 32px;
+      align-items: start;
+      padding: 34px;
+    }
+
+    .case-executive .module-title {
+      max-width: 820px;
+      margin-bottom: 34px;
+    }
+
+    .case-executive--compact .module-title {
+      max-width: 720px;
+      margin-bottom: 22px;
+    }
+
+    .case-summary {
+      margin: 32px 0;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .case-summary h2 {
+      margin-bottom: 22px;
+    }
+
+    .case-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .case-summary .card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--terracotta);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .case-summary .card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .executive-copy {
+      display: grid;
+      gap: 18px;
+      max-width: 890px;
+    }
+
+    .case-executive--compact .executive-copy {
+      max-width: 760px;
+      gap: 14px;
+    }
+
+    .executive-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .case-executive--compact .executive-copy p {
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
+    .executive-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      align-self: stretch;
+    }
+
+    .executive-facts div {
+      min-width: 0;
+      padding: 16px;
+      border: 1px solid rgba(17, 24, 39, .08);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .executive-facts span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--terracotta);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .executive-facts strong {
+      display: block;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 16px;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+    }
+
+    .case-reading-guide {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 24px;
+      align-items: center;
+      margin: 32px 0;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .case-reading-guide-copy h2 {
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(24px, 2.4vw, 34px);
+      line-height: 1.12;
+    }
+
+    .case-reading-guide-copy p {
+      max-width: 560px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.62;
+    }
+
+    .case-reading-steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .case-reading-steps li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      min-height: 56px;
+      padding: 12px 14px;
+      border: 1px solid rgba(17, 24, 39, .08);
+      border-radius: 16px;
+      background: #fff;
+      color: var(--blue);
       font-size: 13px;
       font-weight: 800;
-      text-transform: uppercase;
+      line-height: 1.35;
+    }
+
+    .case-reading-steps span {
+      flex: 0 0 auto;
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 900;
       letter-spacing: .08em;
     }
 
-    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 34px; }
-    .tag { color: #D4D4D8; border: 1px solid var(--border); padding: 8px 12px; border-radius: 999px; font-size: 13px; background: rgba(255,255,255,0.03); }
+    .course-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: 0 -32px 42px;
+      padding: 14px 32px;
+      background: rgba(247, 246, 242, .9);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
 
-    section { padding: 92px 0; border-top: 1px solid var(--border); }
-    .section-head { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; margin-bottom: 34px; }
-    .section-head p { max-width: 680px; }
+    .course-nav::-webkit-scrollbar {
+      display: none;
+    }
 
-    .hero {
-      padding: 104px 0 84px;
-      display: grid;
-      grid-template-columns: 1fr .88fr;
-      gap: 56px;
+    .course-nav a {
+      display: inline-flex;
       align-items: center;
-    }
-
-    .hero-visual {
-      min-height: 500px;
-      border-radius: 32px;
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(circle at 25% 20%, rgba(96,165,250,.28), transparent 28%),
-        radial-gradient(circle at 80% 70%, rgba(109,93,246,.24), transparent 34%),
-        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      position: relative;
-      overflow: hidden;
-      padding: 28px;
-      box-shadow: 0 30px 90px rgba(0,0,0,.35);
-    }
-
-    .code-window {
-      position: absolute;
-      inset: 34px;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(2,6,23,.78);
-      box-shadow: 0 24px 80px rgba(0,0,0,.38);
-      overflow: hidden;
-    }
-    .code-top { height: 46px; border-bottom: 1px solid rgba(255,255,255,.08); display: flex; align-items: center; gap: 8px; padding: 0 18px; }
-    .dot { width: 10px; height: 10px; border-radius: 999px; background: rgba(255,255,255,.18); }
-    .dot:nth-child(1) { background: #EF4444; }
-    .dot:nth-child(2) { background: #F59E0B; }
-    .dot:nth-child(3) { background: #22C55E; }
-    .code-body { padding: 24px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 13px; color: #BFDBFE; line-height: 1.75; }
-    .code-body strong { color: #86EFAC; font-weight: 600; }
-    .code-body em { color: #A78BFA; font-style: normal; }
-    .agent-badge {
-      position: absolute;
-      right: 36px;
-      bottom: 36px;
-      width: 146px;
-      height: 146px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
+      justify-content: center;
+      flex: 1 0 auto;
+      min-width: max-content;
+      min-height: 44px;
+      white-space: nowrap;
       text-align: center;
+      padding: 10px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
       font-weight: 900;
-      letter-spacing: -.03em;
-      background: linear-gradient(135deg, var(--blue), var(--purple));
-      box-shadow: 0 0 80px rgba(96,165,250,.42);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--motion-base), background var(--motion-base);
     }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      background: rgba(17,24,39,.74);
-      padding: 26px;
-      min-height: 190px;
+    .course-nav a:hover,
+    .course-nav a.active {
+      background: var(--blue);
+      color: #fff;
     }
-    .card p, .small { font-size: 15px; color: var(--muted); }
-    .card strong { color: var(--blue-2); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
 
-    .quote {
-      background: linear-gradient(135deg, rgba(59,130,246,.14), rgba(109,93,246,.10));
-      border: 1px solid rgba(96,165,250,.18);
-      border-radius: 32px;
-      padding: 48px;
+    .module {
+      margin-top: 48px;
+      padding: 46px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .78);
+      box-shadow: 0 18px 54px rgba(31, 53, 72, .06);
+      scroll-margin-top: 92px;
     }
-    .quote h2 { color: white; }
-    .quote p { color: #D4D4D8; }
 
-    .flow-board {
-      border-radius: 30px;
-      padding: 26px;
-      border: 1px solid rgba(96,165,250,.16);
-      background:
-        radial-gradient(circle at 20% 0%, rgba(59,130,246,.14), transparent 28%),
-        rgba(17,24,39,.56);
-      overflow: hidden;
+    .case-executive,
+    .module {
+      padding-block: clamp(28px, 3vw, 38px);
     }
-    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-    .flow-step {
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(11,15,26,.65);
-      border-radius: 18px;
-      padding: 18px;
-      min-height: 142px;
+
+    .module {
+      margin-top: 40px;
+    }
+
+    .module.is-narrative {
+      padding-block: 52px;
+    }
+
+    .module.is-decision {
+      background: rgba(255, 255, 255, .9);
+    }
+
+    .module.is-highlight {
       position: relative;
+      overflow: hidden;
+      background: var(--blue);
+      color: #fff;
     }
-    .flow-step::after {
-      content: "→";
-      position: absolute;
-      right: -12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: rgba(255,255,255,.32);
-      font-weight: 800;
-    }
-    .flow-step:last-child::after { display: none; }
-    .flow-step span { color: var(--blue-2); font-weight: 800; font-size: 12px; }
-    .flow-step h4 { margin: 8px 0 6px; }
-    .flow-step p { font-size: 13px; margin: 0; }
 
-    .compare {
+    .module.is-highlight::after,
+    .reflection::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: 46%;
+      opacity: .18;
+      pointer-events: none;
+      background:
+        linear-gradient(122deg, transparent 0 38%, rgba(255, 255, 255, .72) 38% 40%, transparent 40%),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .36) 0 1px, transparent 1px 24px);
+    }
+
+    .module.is-highlight>*,
+    .reflection>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .module.is-highlight .module-label,
+    .reflection .module-label {
+      color: var(--terracotta);
+    }
+
+    .module.is-highlight h2,
+    .module.is-highlight p,
+    .reflection h2,
+    .reflection p {
+      color: #fff;
+    }
+
+    .module-head {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 380px);
+      gap: 56px;
+      align-items: start;
+      margin-bottom: 34px;
+    }
+
+    .module.is-narrative:not(.manual-flow-section) .module-head,
+    .module.is-decision:not(.manual-flow-section) .module-head {
+      display: block;
+      max-width: 1040px;
+      margin-bottom: 24px;
+    }
+
+    .module.is-narrative:not(.manual-flow-section) .module-head>div,
+    .module.is-decision:not(.manual-flow-section) .module-head>div {
+      max-width: 980px;
+    }
+
+    .module.is-narrative:not(.manual-flow-section) .module-head p,
+    .module.is-decision:not(.manual-flow-section) .module-head p {
+      max-width: 860px;
+      margin-top: 16px;
+      font-size: 16px;
+      line-height: 1.68;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(30px, 3.6vw, 48px);
+      line-height: 1.07;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    .module-head p,
+    .module>p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .module-copy {
+      display: grid;
       gap: 18px;
     }
-    .panel {
-      border-radius: 28px;
-      padding: 26px;
-      border: 1px solid var(--border);
-      background: rgba(17,24,39,.62);
-    }
-    .panel.before { border-color: rgba(239,68,68,.2); background: linear-gradient(145deg, rgba(127,29,29,.18), rgba(17,24,39,.7)); }
-    .panel.after { border-color: rgba(34,197,94,.22); background: linear-gradient(145deg, rgba(20,83,45,.18), rgba(17,24,39,.7)); }
-    .pill { display: inline-flex; margin-bottom: 18px; padding: 8px 12px; border-radius: 999px; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
-    .pill.red { background: rgba(239,68,68,.14); color: #FCA5A5; }
-    .pill.green { background: rgba(34,197,94,.14); color: #86EFAC; }
 
-    .logic-system {
-      border-radius: 34px;
-      padding: 32px;
-      border: 1px solid rgba(99,102,241,0.22);
-      background:
-        radial-gradient(circle at 12% 0%, rgba(99,102,241,0.18), transparent 30%),
-        radial-gradient(circle at 80% 20%, rgba(59,130,246,0.14), transparent 28%),
-        linear-gradient(145deg, rgba(15,23,42,0.92), rgba(2,6,23,0.96));
-      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+    .module-head--stacked {
+      display: block;
+      max-width: 980px;
     }
-    .logic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
-    .logic-card {
-      padding: 20px;
+
+    .module-head--stacked h2 {
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .module-head--stacked .module-copy,
+    .module-head--stacked p {
+      max-width: 760px;
+    }
+
+    #origem .module-head--stacked {
+      max-width: 1180px;
+    }
+
+    #origem .module-head--stacked h2 {
+      max-width: 1180px;
+    }
+
+    #origem .module-head--stacked .module-copy,
+    #origem .module-head--stacked p {
+      max-width: 1040px;
+    }
+
+    .executive-pills,
+    .problem-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .executive-pills {
+      margin-top: 24px;
+    }
+
+    .executive-pills span,
+    .problem-chips span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 12px;
+      border: 1px solid rgba(200, 100, 59, .18);
+      border-radius: 999px;
+      background: rgba(200, 100, 59, .08);
+      color: var(--terracotta);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .problem-chips {
+      margin-top: 16px;
+    }
+
+    .problem-chips span:nth-child(even) {
+      border-color: rgba(31, 53, 72, .14);
+      background: rgba(31, 53, 72, .06);
+      color: var(--blue);
+    }
+
+    .context-summary,
+    .problem-summary {
+      max-width: 860px;
+      margin: 20px 0 0;
+      padding: 16px 18px;
+      border-left: 3px solid var(--terracotta);
       border-radius: 16px;
-      background: linear-gradient(145deg, rgba(15,23,42,0.9), rgba(2,6,23,0.9));
-      border: 1px solid rgba(99,102,241,0.2);
-      min-height: 150px;
+      background: rgba(244, 229, 220, .32);
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.55;
     }
-    .logic-card strong { display: block; color: white; margin-bottom: 8px; }
-    .logic-card span { color: var(--muted); font-size: 13px; }
-    .template {
+
+    #contexto .grid-4,
+    #problema .grid-4,
+    #contexto .card-grid,
+    #problema .card-grid {
+      align-items: start;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    #contexto .info-card,
+    #problema .info-card {
+      min-height: 0;
+      padding: 22px;
+    }
+
+    #contexto .info-card h3,
+    #problema .info-card h3 {
+      margin-bottom: 8px;
+    }
+
+    #contexto .info-card p,
+    #problema .info-card p {
+      font-size: 14px;
+      line-height: 1.56;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
       margin-top: 28px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .info-card,
+    .impact-card,
+    .metric-card,
+    .comparison-card,
+    .method-card {
+      min-width: 0;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(31, 53, 72, .04);
+      overflow-wrap: break-word;
+    }
+
+    .info-card h3,
+    .method-card h3,
+    .comparison-card h3 {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 20px;
+      line-height: 1.18;
+      letter-spacing: -.025em;
+    }
+
+    .info-card p,
+    .impact-card p,
+    .method-card p,
+    .comparison-card p,
+    .metric-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .card-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      background: rgba(31, 53, 72, .06);
+      color: var(--blue);
+    }
+
+    .card-icon .icon {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+    }
+
+    .card-label {
+      display: inline-flex;
+      margin-bottom: 12px;
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .origin-bridge {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .origin-card {
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .origin-card strong {
+      display: block;
+      margin-bottom: 12px;
+      color: #fff;
+      font-family: "Epilogue", sans-serif;
+      font-size: 20px;
+    }
+
+    .origin-card span {
+      display: block;
+      color: rgba(255, 255, 255, .78);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .highlight-phrase {
+      margin: 28px 0 0;
+      padding: 22px 24px;
+      border-left: 4px solid var(--terracotta);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .09);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .manual-flow-section {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .manual-flow-artifact {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .96), rgba(255, 255, 255, .78)),
+        radial-gradient(circle at 88% 18%, rgba(200, 100, 59, .07), transparent 32%);
+      box-shadow: 0 24px 70px rgba(31, 53, 72, .08);
+    }
+
+    .manual-flow-artifact::after {
+      content: "";
+      position: absolute;
+      right: -6%;
+      bottom: -20%;
+      width: 26%;
+      height: 34%;
+      pointer-events: none;
+      opacity: .38;
+      background:
+        linear-gradient(135deg, transparent 0 28%, rgba(255, 255, 255, .65) 28% 38%, transparent 38%),
+        linear-gradient(135deg, rgba(200, 100, 59, .42) 0 46%, rgba(31, 53, 72, .42) 46% 100%);
+      clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .manual-flow-header {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 30px;
+    }
+
+    .manual-flow-heading .module-label {
+      margin-bottom: 16px;
+    }
+
+    .manual-flow-heading h2 {
+      max-width: 620px;
+      margin: 0;
+      color: var(--ink);
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(32px, 3.6vw, 48px);
+      line-height: 1.03;
+      letter-spacing: -.045em;
+    }
+
+    .manual-flow-intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .manual-flow-track {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(132px, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .manual-flow-track::before {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      top: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(200, 100, 59, .58);
+      transform: translateY(20px);
+      z-index: 0;
+    }
+
+    .manual-flow-step {
+      position: relative;
+      z-index: 1;
+      min-height: 236px;
+      padding: 44px 14px 16px;
+      border: 1px solid rgba(17, 24, 39, .10);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .9);
+      box-shadow: 0 10px 28px rgba(31, 53, 72, .045);
+      text-align: center;
+    }
+
+    .manual-flow-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: -9px;
+      right: -14px;
+      z-index: 3;
+      color: var(--terracotta);
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .manual-flow-number {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      z-index: 4;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      transform: translateX(-50%);
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 900;
+      box-shadow: 0 0 0 6px rgba(255, 255, 255, .92);
+    }
+
+    .manual-flow-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 16px;
+      border-radius: 999px;
+      background: rgba(244, 229, 220, .55);
+      color: var(--blue);
+    }
+
+    .manual-flow-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .manual-flow-icon--accent,
+    .manual-flow-icon--loop {
+      color: var(--terracotta);
+    }
+
+    .manual-flow-step h3 {
+      margin: 0 auto 10px;
+      max-width: 150px;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 16px;
+      line-height: 1.18;
+      letter-spacing: -.025em;
+    }
+
+    .manual-flow-divider {
+      display: block;
+      width: 28px;
+      height: 2px;
+      margin: 0 auto 10px;
+      border-radius: 999px;
+      background: var(--terracotta);
+    }
+
+    .manual-flow-step p {
+      margin: 0 auto;
+      max-width: 150px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.46;
+    }
+
+    .manual-flow-step.is-loop {
+      border-color: rgba(200, 100, 59, .50);
+      background:
+        linear-gradient(180deg, rgba(244, 229, 220, .52), rgba(255, 255, 255, .90));
+    }
+
+    .manual-flow-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      margin-top: 12px;
+      padding: 0 10px;
+      border: 1px solid rgba(200, 100, 59, .32);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .72);
+      color: var(--terracotta);
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .manual-flow-critical {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 68px 140px 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-top: 24px;
+      padding: 12px 20px 12px 12px;
+      border: 1px solid rgba(17, 24, 39, .08);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .86);
+      box-shadow: 0 12px 34px rgba(31, 53, 72, .05);
+    }
+
+    .manual-flow-critical-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--terracotta), #D97545);
+      color: #fff;
+    }
+
+    .manual-flow-critical-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .manual-flow-critical strong {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding-right: 18px;
+      border-right: 1px solid rgba(200, 100, 59, .22);
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .manual-flow-critical p {
+      margin: 0;
+      color: var(--blue);
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    .csv-preview {
+      margin-top: 30px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: #152737;
+      box-shadow: 0 22px 60px rgba(31, 53, 72, .18);
+    }
+
+    .csv-preview-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      color: rgba(255, 255, 255, .72);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .csv-preview pre {
+      margin: 0;
       padding: 24px;
-      border-radius: 20px;
-      background: rgba(2,6,23,.72);
-      border: 1px solid rgba(148,163,184,.16);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 13px;
-      color: #BFDBFE;
-      overflow: auto;
+      overflow-x: auto;
+      color: #F7F6F2;
+      font-size: 14px;
       line-height: 1.75;
-    }
-    .template strong { color: #86EFAC; font-weight: 600; }
-    .template em { color: #A78BFA; font-style: normal; }
-
-    .impact { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .number { font-size: 42px; line-height: 1; font-weight: 900; color: #86EFAC; margin-bottom: 14px; }
-
-    .role-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-
-    footer { padding: 44px 0; border-top: 1px solid var(--border); color: var(--muted); display: flex; justify-content: space-between; }
-
-    @media (max-width: 980px) {
-      .hero, .section-head, .grid-2, .grid-3, .grid-4, .flow, .compare, .logic-grid, .impact, .role-grid { grid-template-columns: 1fr; }
-      .flow-step::after { display: none; }
-      .nav-links { display: none; }
-      .hero-visual { min-height: 390px; }
-      .agent-badge { width: 112px; height: 112px; right: 24px; bottom: 24px; }
-      h1 { font-size: 48px; }
-    }
-    .contact-footer{
-      padding:56px 0 34px;
-      border-top:1px solid var(--border);
-      display:grid;
-      grid-template-columns:1fr 1.2fr;
-      gap:32px;
-      align-items:start;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
 
-    .contact-footer h2{
-      font-size:clamp(30px,4vw,46px);
-      margin:0 0 12px;
+    .csv-preview mark {
+      background: transparent;
+      color: #F2B38F;
     }
 
-    .contact-footer p{
-      font-size:16px;
-      max-width:480px;
+    .accordion {
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
     }
 
-    .contact-links{
-      display:grid;
-      gap:12px;
-      justify-content:end;
+    .accordion details {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #fff;
+      overflow: hidden;
     }
 
-    .contact-link{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-height:48px;
-      padding:12px 16px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      color:#D4D4D8;
-      font-size:14px;
-      font-weight:700;
-      transition:.2s ease;
+    .accordion summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 22px 24px;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      position: relative;
     }
 
-    .contact-link:hover{
-      border-color:rgba(96,165,250,.35);
-      color:white;
-      transform:translateY(-1px);
+    .accordion summary::-webkit-details-marker {
+      display: none;
     }
 
-    .contact-icon{
-      width:28px;
-      height:28px;
-      border-radius:999px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg,var(--blue),var(--purple));
-      color:white;
-      font-size:13px;
-      flex:0 0 28px;
+    .accordion summary::after {
+      content: "+";
+      position: absolute;
+      top: 19px;
+      right: 24px;
+      color: var(--terracotta);
+      font-family: "Manrope", sans-serif;
+      font-size: 24px;
+      line-height: 1;
     }
 
-    @media(max-width:980px){
-      .contact-footer{
-        grid-template-columns:1fr;
+    .accordion details[open] summary {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .accordion details[open] summary::after {
+      content: "−";
+    }
+
+    .accordion-body {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 18px;
+    }
+
+    .accordion-cell {
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(247, 246, 242, .72);
+    }
+
+    .accordion-cell strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .accordion-cell p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .agent-alert {
+      margin-top: 28px;
+      padding: 22px 24px;
+      border: 1px solid rgba(200, 100, 59, .26);
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(31, 53, 72, .96), rgba(31, 53, 72, .9)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .12) 0 1px, transparent 1px 20px);
+      color: #fff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .agent-alert span {
+      color: #F2B38F;
+      font-weight: 800;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .comparison-card.before {
+      border-color: rgba(200, 100, 59, .26);
+      background: linear-gradient(180deg, #fff, rgba(244, 229, 220, .44));
+    }
+
+    .comparison-card.after {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .comparison-card.after h3,
+    .comparison-card.after p,
+    .comparison-card.after li {
+      color: #fff;
+    }
+
+    .comparison-card ul {
+      margin: 20px 0 0;
+      padding-left: 20px;
+      color: var(--ink);
+      line-height: 1.75;
+      font-weight: 700;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .metric-card strong {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--terracotta);
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .metric-card:nth-child(even) strong {
+      color: var(--blue);
+    }
+
+    .reflection {
+      position: relative;
+      overflow: hidden;
+      margin-top: 48px;
+      padding: 48px;
+      border-radius: var(--radius);
+      background: var(--blue);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .reflection .module-copy {
+      max-width: 1040px;
+    }
+
+    .reflection h2 {
+      max-width: 1180px;
+    }
+
+    .reflection p {
+      max-width: 1040px;
+    }
+
+    .reflection .module-copy p+p {
+      margin-top: 4px;
+    }
+
+    .end-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .end-nav a {
+      flex: 1 1 220px;
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      border-radius: 22px;
+      font-weight: 900;
+      transition: transform var(--motion-base), box-shadow var(--motion-base), background var(--motion-base), color var(--motion-base);
+    }
+
+    .end-nav a:first-child {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--blue);
+    }
+
+    .end-nav a:last-child {
+      background: var(--terracotta);
+      color: #fff;
+    }
+
+    .end-nav a:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 34px rgba(31, 53, 72, .12);
+    }
+
+    .end-nav a:active {
+      transform: scale(.98);
+    }
+
+    .case-image-board {
+      position: relative;
+      margin-top: 30px;
+      padding: 14px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 54px rgba(31, 53, 72, .06);
+      overflow-x: auto;
+    }
+
+    .case-image-board img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 22px;
+      cursor: zoom-in;
+    }
+
+    .case-image-caption {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: rgba(17, 24, 39, .82);
+      backdrop-filter: blur(10px);
+    }
+
+    .image-modal.is-open {
+      display: flex;
+    }
+
+    .image-modal-img {
+      max-width: min(96vw, 1600px);
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .35);
+    }
+
+    .image-modal-close {
+      position: fixed;
+      top: 24px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .92);
+      color: var(--ink);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .image-modal-close:hover {
+      background: #fff;
+    }
+
+    @media (max-width: 1180px) {
+      .manual-flow-header {
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
-      .contact-links{
-        justify-content:stretch;
+
+      .manual-flow-intro {
+        max-width: 760px;
       }
-      footer{
-        flex-direction:column;
-        gap:10px;
+
+      .manual-flow-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        row-gap: 34px;
+      }
+
+      .manual-flow-track::before,
+      .manual-flow-step::after {
+        display: none;
       }
     }
 
-    @media(max-width:520px){
-      .page{
-        width:calc(100% - 28px);
+    @media (max-width: 1120px) {
+      .shell {
+        grid-template-columns: 1fr;
       }
-      .nav{
-        height:72px;
-        padding-left:20px;
-        padding-right:20px;
+
+      .sidebar {
+        position: static;
+        height: auto;
+        padding: 20px 24px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        min-width: 0;
+        overflow: hidden;
       }
-      .brand{
-        font-size:16px;
+
+      .sidebar>a {
+        flex: 0 0 auto;
       }
-      .nav-links{
-        gap:14px;
-        font-size:13px;
+
+      .brand-logo {
+        height: 40px;
       }
-      .contact-footer{
-        padding:44px 0 28px;
+
+      .nav {
+        grid-auto-flow: column;
+        overflow-x: auto;
+        max-width: 100%;
+        min-width: 0;
+        scrollbar-width: none;
       }
-      .contact-link{
-        border-radius:18px;
-        align-items:flex-start;
+
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .sidebar-note {
+        display: none;
+      }
+
+      .module-head {
+        grid-template-columns: 1fr;
+      }
+
+      .card-grid,
+      .grid-4,
+      .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .accordion-body {
+        grid-template-columns: 1fr;
       }
     }
-      .nav{
-        height:82px;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        border-bottom:1px solid var(--border);
-        position:sticky;
-        top:0;
-        z-index:50;
-        width:100vw;
-        margin-left:calc(50% - 50vw);
-        padding-left:max(24px, calc((100vw - 1120px) / 2));
-        padding-right:max(24px, calc((100vw - 1120px) / 2));
-        background:rgba(11,15,26,.92);
-        backdrop-filter:blur(18px);
-        -webkit-backdrop-filter:blur(18px);
+
+    @media (max-width: 760px) {
+      .main {
+        padding: 22px 0 48px;
       }
 
-      .brand{
-        letter-spacing:.2em;
-        font-weight:800;
-        font-size:18px;
+      .container {
+        width: min(100% - 24px, 1440px);
       }
 
-      .nav-links{
-        display:flex;
-        gap:22px;
-        color:var(--muted);
-        font-size:14px;
+      .sidebar {
+        padding: 16px 18px;
+        align-items: flex-start;
+        gap: 16px;
       }
 
-      .nav-links a:hover{
-        color:white;
+      .nav a {
+        min-height: 44px;
+        padding: 0 12px;
+        font-size: 13px;
       }
 
-      .back-nav{
-        margin:24px 0 8px;
+      .course-hero,
+      .case-executive,
+      .module,
+      .reflection {
+        padding: 28px;
+        border-radius: 24px;
       }
 
-      .back-nav a{
-        font-size:14px;
-        color:var(--muted);
-        text-decoration:none;
-        display:inline-flex;
-        align-items:center;
-        gap:6px;
-        transition:.2s ease;
+      .manual-flow-section {
+        padding: 0;
+        border-radius: 0;
       }
 
-      .back-nav a:hover{
-        color:white;
-        transform:translateX(-2px);
+      .manual-flow-artifact {
+        padding: 22px;
+        border-radius: 22px;
       }
 
-      .case-section .back-nav a{
-        color:#64748B;
+      .manual-flow-heading h2 {
+        font-size: clamp(30px, 9vw, 40px);
       }
 
-      .case-section .back-nav a:hover{
-        color:#0F172A;
+      .manual-flow-intro {
+        font-size: 16px;
       }
 
-      .case-summary{
-        padding:32px 0 72px;
-        border-top:0;
-        display:grid;
-        grid-template-columns:repeat(3,1fr);
-        gap:16px;
+      .manual-flow-track {
+        grid-template-columns: 1fr;
+        row-gap: 30px;
       }
 
-      .summary-card{
-        border:1px solid var(--border);
-        border-radius:22px;
-        background:rgba(255,255,255,.04);
-        padding:22px;
-        min-height:150px;
+      .manual-flow-step {
+        min-height: 0;
+        padding: 28px 20px 20px;
+        text-align: left;
       }
 
-      .summary-card span{
-        display:block;
-        color:var(--blue-2);
-        font-size:12px;
-        font-weight:800;
-        text-transform:uppercase;
-        letter-spacing:.08em;
-        margin-bottom:10px;
+      .manual-flow-number {
+        top: -18px;
+        left: 24px;
+        width: 38px;
+        height: 38px;
+        transform: none;
+        font-size: 18px;
       }
 
-      .summary-card p{
-        margin:0;
-        color:var(--muted);
-        font-size:15px;
-        line-height:1.55;
+      .manual-flow-icon {
+        width: 52px;
+        height: 52px;
+        margin: 4px 0 14px;
       }
 
-      .case-section .case-summary{
-        padding:32px 0 72px;
+      .manual-flow-step h3,
+      .manual-flow-step p {
+        max-width: none;
       }
 
-      .case-section .summary-card{
-        background:#FFFFFF;
-        border:1px solid rgba(11,15,26,.08);
-        box-shadow:0 14px 34px rgba(15,23,42,.05);
+      .manual-flow-divider {
+        margin-left: 0;
+        margin-right: 0;
       }
 
-      .case-section .summary-card span{
-        color:#2563EB;
+      .manual-flow-critical {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 16px;
       }
 
-      .case-section .summary-card p{
-        color:#64748B;
+      .manual-flow-critical strong {
+        min-height: 0;
+        padding: 0;
+        border-right: 0;
       }
 
-      .case-next-nav{
-        padding:56px 0;
-        border-top:1px solid var(--border);
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-        gap:16px;
+      .manual-flow-critical p {
+        font-size: 15px;
       }
 
-      .case-next-card{
-        border:1px solid var(--border);
-        border-radius:24px;
-        background:rgba(255,255,255,.04);
-        padding:24px;
-        min-height:120px;
-        display:flex;
-        flex-direction:column;
-        justify-content:space-between;
-        transition:.2s ease;
+      .manual-flow-artifact::after {
+        opacity: .24;
       }
 
-      .case-next-card:hover{
-        border-color:rgba(96,165,250,.35);
-        transform:translateY(-2px);
+      .course-hero::after,
+      .module.is-highlight::after,
+      .reflection::after {
+        width: 100%;
+        opacity: .12;
       }
 
-      .case-next-card span{
-        color:var(--muted);
-        font-size:13px;
-        font-weight:800;
-        text-transform:uppercase;
-        letter-spacing:.08em;
+      .reflection h2,
+      .reflection p,
+      .reflection .module-copy {
+        max-width: 100%;
       }
 
-      .case-next-card strong{
-        color:white;
-        font-size:22px;
-        letter-spacing:-.02em;
+      #origem .module-head--stacked,
+      #origem .module-head--stacked h2,
+      #origem .module-head--stacked .module-copy,
+      #origem .module-head--stacked p {
+        max-width: 100%;
       }
 
-      .case-section .case-next-card{
-        background:#FFFFFF;
-        border:1px solid rgba(11,15,26,.08);
-        box-shadow:0 14px 34px rgba(15,23,42,.05);
+      h1 {
+        font-size: clamp(38px, 12vw, 56px);
       }
 
-      .case-section .case-next-card strong{
-        color:#0F172A;
+      .course-subtitle {
+        font-size: 16px;
       }
 
-      .case-section .case-next-card span{
-        color:#64748B;
+      .course-nav {
+        margin: 0 -18px 32px;
+        padding: 12px 18px;
       }
 
-      .contact-footer{
-        padding:56px 0 34px;
-        border-top:1px solid var(--border);
-        display:grid;
-        grid-template-columns:1fr 1.2fr;
-        gap:32px;
-        align-items:start;
+      .card-grid,
+      .grid-4,
+      .metric-grid,
+      .comparison-grid,
+      .origin-bridge,
+      .end-nav {
+        flex-direction: column;
       }
 
-      .contact-footer h2{
-        font-size:clamp(30px,4vw,46px);
-        margin:0 0 12px;
+      .csv-preview pre {
+        font-size: 12px;
       }
 
-      .contact-footer p{
-        font-size:16px;
-        max-width:480px;
+      .image-modal {
+        padding: 16px;
       }
 
-      .contact-links{
-        display:grid;
-        gap:12px;
-        justify-content:end;
+      .image-modal-img {
+        max-width: 96vw;
+        max-height: 84vh;
+        border-radius: 12px;
       }
 
-      .contact-link{
-        display:flex;
-        align-items:center;
-        gap:12px;
-        min-height:48px;
-        padding:12px 16px;
-        border-radius:999px;
-        border:1px solid var(--border);
-        background:rgba(255,255,255,.04);
-        color:#D4D4D8;
-        font-size:14px;
-        font-weight:700;
-        transition:.2s ease;
+      .image-modal-close {
+        top: 14px;
+        right: 14px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .shell {
+        display: block;
       }
 
-      .contact-link:hover{
-        border-color:rgba(96,165,250,.35);
-        color:white;
-        transform:translateY(-1px);
+      .case-executive--compact {
+        grid-template-columns: 1fr;
       }
 
-      .contact-icon{
-        width:28px;
-        height:28px;
-        border-radius:999px;
-        display:grid;
-        place-items:center;
-        background:linear-gradient(135deg,var(--blue),var(--purple));
-        color:white;
-        font-size:13px;
-        flex:0 0 28px;
+      .executive-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .case-section .contact-footer{
-        border-top:1px solid rgba(11,15,26,.08);
+      .case-reading-guide {
+        grid-template-columns: 1fr;
       }
 
-      .case-section .contact-link{
-        background:#FFFFFF;
-        border:1px solid rgba(11,15,26,.08);
-        color:#334155;
-        box-shadow:0 14px 34px rgba(15,23,42,.05);
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: auto;
+        min-height: 64px;
+        padding: 12px 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        overflow: visible;
+        z-index: 80;
       }
 
-      .case-section .contact-link:hover{
-        color:#0F172A;
-        border-color:rgba(37,99,235,.25);
+      .brand-logo {
+        max-width: 128px;
+        height: 32px;
       }
 
-      footer{
-        padding:24px 0 44px;
-        color:var(--muted);
-        display:flex;
-        justify-content:space-between;
-        border-top:1px solid rgba(255,255,255,.04);
+      .menu-toggle {
+        display: inline-flex;
       }
 
-      .case-section + .page footer,
-      .case-section footer{
-        color:#64748B;
-        border-top:1px solid rgba(11,15,26,.08);
+      .sidebar .nav {
+        position: fixed;
+        top: 82px;
+        left: 16px;
+        right: 16px;
+        z-index: 90;
+        display: none;
+        min-width: 0;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, .96);
+        box-shadow: var(--shadow-lg);
+        backdrop-filter: blur(18px);
       }
 
-      @media(max-width:980px){
-        .case-summary{
-          grid-template-columns:1fr;
-          padding:28px 0 56px;
-        }
-
-        .case-next-nav{
-          grid-template-columns:1fr;
-          padding:48px 0;
-        }
-
-        .contact-footer{
-          grid-template-columns:1fr;
-        }
-
-        .contact-links{
-          justify-content:stretch;
-        }
-
-        footer{
-          flex-direction:column;
-          gap:10px;
-        }
+      .sidebar.is-open .nav {
+        display: grid;
       }
 
-      @media(max-width:520px){
-        .page{
-          width:calc(100% - 28px);
-        }
-
-        .nav{
-          height:72px;
-          padding-left:20px;
-          padding-right:20px;
-        }
-
-        .brand{
-          font-size:16px;
-        }
-
-        .nav-links{
-          gap:14px;
-          font-size:13px;
-        }
-
-        .back-nav{
-          margin:18px 0 4px;
-        }
-
-        .summary-card{
-          padding:20px;
-          min-height:auto;
-        }
-
-        .case-next-nav{
-          padding:44px 0;
-        }
-
-        .case-next-card{
-          min-height:100px;
-          padding:20px;
-        }
-
-        .case-next-card strong{
-          font-size:19px;
-        }
-
-        .contact-footer{
-          padding:44px 0 28px;
-        }
-
-        .contact-link{
-          border-radius:18px;
-          align-items:flex-start;
-        }
+      .sidebar .nav a {
+        min-height: 48px;
       }
+
+      .sidebar-note {
+        display: none;
+      }
+
+      body.nav-open {
+        overflow: hidden;
+      }
+    }
+
+    @media (max-width: 1024px) {
+
+      .card-grid,
+      .grid-4,
+      .metric-grid,
+      .case-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      .card-grid,
+      .grid-4,
+      .metric-grid,
+      .case-summary-grid,
+      .comparison-grid,
+      .origin-bridge,
+      .module-head,
+      .course-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .end-nav {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .case-executive--compact {
+        padding: 24px;
+      }
+
+      .executive-facts {
+        grid-template-columns: 1fr;
+      }
+
+      .case-reading-guide {
+        padding: 22px;
+        border-radius: 22px;
+      }
+
+      .case-reading-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-logo {
+        height: 30px;
+      }
+
+      h1 {
+        font-size: clamp(36px, 13vw, 48px);
+      }
+
+      .course-hero::after,
+      .module.is-highlight::after {
+        opacity: .12;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        animation: none !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /*
+      CASE HERO SYSTEM
+      Regra global para todas as heros de cases atuais e futuras.
+      O conteúdo do site é limitado a 1280px; por isso, heros de case não usam escala full-screen.
+      Não aumentar o h1 acima de 64px.
+    */
+    .container {
+      width: min(100%, 1280px);
+      max-width: 1280px;
+      margin-inline: auto;
+    }
+
+    .course-hero,
+    .case-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 440px);
+      gap: clamp(28px, 4vw, 48px);
+      align-items: start;
+      padding-block: clamp(24px, 3vw, 36px);
+      padding-inline: clamp(28px, 4vw, 48px);
+      margin-bottom: 28px;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .course-hero,
+    .case-hero,
+    .course-hero>*,
+    .case-hero>*,
+    .course-panel,
+    .case-hero-panel {
+      min-width: 0;
+    }
+
+    .course-hero h1,
+    .case-hero h1,
+    .case-hero-title {
+      max-width: 780px;
+      margin: 0 0 18px;
+      font-size: clamp(42px, 4.2vw, 64px);
+      line-height: .96;
+      letter-spacing: -.052em;
+      overflow-wrap: normal;
+      word-break: normal;
+      text-wrap: balance;
+    }
+
+    .course-subtitle,
+    .case-hero-subtitle {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(16px, 1.2vw, 18px);
+      line-height: 1.55;
+    }
+
+    .hero-actions,
+    .case-hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag,
+    .case-tag {
+      min-height: 28px;
+      padding-inline: 10px;
+      font-size: 12px;
+      white-space: normal;
+    }
+
+    .course-panel,
+    .case-hero-panel {
+      width: 100%;
+      max-width: 440px;
+      align-self: start;
+      gap: 14px;
+      padding: 20px 22px;
+      border-radius: 22px;
+    }
+
+    .course-meta {
+      gap: 8px;
+    }
+
+    .course-meta div {
+      padding-bottom: 8px;
+    }
+
+    .course-panel small,
+    .case-hero-panel small {
+      margin-bottom: 5px;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+
+    .course-panel strong,
+    .case-hero-panel strong {
+      margin-bottom: 4px;
+      font-size: 18px;
+      line-height: 1.15;
+    }
+
+    .course-panel p,
+    .case-hero-panel p {
+      font-size: 13px;
+      line-height: 1.42;
+    }
+
+    .course-panel p,
+    .course-panel strong,
+    .case-hero-panel p,
+    .case-hero-panel strong,
+    .course-subtitle,
+    .case-hero-subtitle,
+    .tag,
+    .case-tag {
+      overflow-wrap: break-word;
+    }
+
+    .case-title-line {
+      display: block;
+    }
+
+    .case-title-line-nowrap {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1320px) {
+      .container {
+        width: calc(100% - 32px);
+      }
+    }
+
+    @media (max-width: 1200px) {
+
+      .course-hero,
+      .case-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .course-panel,
+      .case-hero-panel {
+        max-width: 760px;
+      }
+    }
+
+    @media (max-width: 900px) {
+
+      .course-hero,
+      .case-hero {
+        padding: 26px;
+        border-radius: 24px;
+      }
+
+      .course-hero h1,
+      .case-hero h1,
+      .case-hero-title {
+        max-width: 100%;
+        font-size: clamp(36px, 8vw, 52px);
+        line-height: .98;
+        letter-spacing: -.048em;
+      }
+
+      .course-subtitle,
+      .case-hero-subtitle {
+        font-size: 16px;
+        line-height: 1.56;
+      }
+
+      .course-panel,
+      .case-hero-panel {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+
+      .course-hero,
+      .case-hero {
+        padding: 22px;
+        border-radius: 22px;
+      }
+
+      .course-hero h1,
+      .case-hero h1,
+      .case-hero-title {
+        font-size: clamp(32px, 10vw, 44px);
+        line-height: 1;
+      }
+
+      .course-subtitle,
+      .case-hero-subtitle {
+        font-size: 15px;
+        line-height: 1.52;
+      }
+
+      .course-panel,
+      .case-hero-panel {
+        padding: 18px;
+      }
+
+      .case-title-line-nowrap {
+        white-space: normal;
+      }
+    }
+
+    /* RESPONSIVE SAFETY LAYER
+   Camada defensiva para evitar overflow, cards quebrados e colisões em grids.
+*/
+
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
+    .shell,
+    .main,
+    .container,
+    section,
+    article,
+    .card,
+    .info-card,
+    .impact-card,
+    .metric-card,
+    .comparison-card,
+    .method-card,
+    .course-hero,
+    .case-hero,
+    .course-panel,
+    .module,
+    .about-hero,
+    .about-thinking,
+    .contact-panel,
+    .sidebar,
+    .nav,
+    .hero-actions,
+    .contact-links,
+    .end-nav {
+      min-width: 0;
+    }
+
+    img,
+    svg,
+    video,
+    canvas {
+      max-width: 100%;
+    }
+
+    p,
+    li,
+    a,
+    span,
+    strong,
+    small,
+    button {
+      overflow-wrap: break-word;
+    }
+
+    h1,
+    h2,
+    h3 {
+      overflow-wrap: normal;
+      word-break: normal;
+      text-wrap: balance;
+    }
+
+    .card-grid,
+    .metrics-grid,
+    .impact-grid,
+    .comparison-grid,
+    .method-grid,
+    .problem-grid,
+    .evidence-grid,
+    .solution-grid,
+    .discipline-grid,
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: clamp(14px, 2vw, 20px);
+    }
+
+    .card,
+    .info-card,
+    .impact-card,
+    .metric-card,
+    .comparison-card,
+    .method-card,
+    .timeline-item {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .end-nav,
+    .case-end-nav,
+    .course-end-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 16px;
+    }
+
+    .end-nav a,
+    .case-end-nav a,
+    .course-end-nav a {
+      min-width: 0;
+      white-space: normal;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+
+      .end-nav,
+      .case-end-nav,
+      .course-end-nav {
+        grid-template-columns: 1fr;
+      }
+
+      .main {
+        padding: 20px 16px 44px;
+      }
+    }
+
+    /* PHASE 2-5 OVERRIDE LAYER */
+
+    /* PARTE 1 - Sistema global de containers */
+    .container {
+      width: min(100%, 1280px);
+      max-width: 1280px;
+      margin-inline: auto;
+    }
+
+    .main {
+      min-width: 0;
+      padding: clamp(20px, 3vw, 36px);
+    }
+
+    /* PARTE 3 - Sidebar e menu mobile */
+    @media (max-width: 900px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: auto;
+        min-height: 64px;
+        padding: 12px 16px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        z-index: 100;
+      }
+
+      .sidebar-note {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .sidebar .nav {
+        position: fixed;
+        top: 82px;
+        left: 16px;
+        right: 16px;
+        display: none;
+        max-height: calc(100dvh - 110px);
+        overflow-y: auto;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, .96);
+        box-shadow: var(--shadow-lg);
+        backdrop-filter: blur(18px);
+      }
+
+      .sidebar.is-open .nav {
+        display: grid;
+      }
+
+      body.nav-open {
+        overflow: hidden;
+      }
+    }
+
+    /* PARTE 5 - Heros dos cases */
+    .course-hero,
+    .case-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 440px);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+      padding-block: clamp(24px, 3vw, 36px);
+      padding-inline: clamp(24px, 4vw, 44px);
+      margin-bottom: 28px;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .course-hero h1,
+    .case-hero h1,
+    .case-hero-title {
+      max-width: 780px;
+      font-size: clamp(38px, 4.2vw, 64px);
+      line-height: .96;
+      letter-spacing: -.052em;
+      margin: 0 0 18px;
+      overflow-wrap: normal;
+      word-break: normal;
+      text-wrap: balance;
+    }
+
+    .course-subtitle,
+    .case-hero-subtitle {
+      max-width: 760px;
+      font-size: clamp(16px, 1.2vw, 18px);
+      line-height: 1.55;
+    }
+
+    .course-panel,
+    .case-hero-panel {
+      width: 100%;
+      max-width: 440px;
+      min-width: 0;
+      align-self: start;
+    }
+
+    @media (max-width: 1100px) {
+
+      .course-hero,
+      .case-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .course-panel,
+      .case-hero-panel {
+        max-width: 760px;
+      }
+    }
+
+    @media (max-width: 640px) {
+
+      .course-hero,
+      .case-hero {
+        padding: 22px;
+        border-radius: 22px;
+      }
+
+      .course-hero h1,
+      .case-hero h1,
+      .case-hero-title {
+        font-size: clamp(32px, 10vw, 44px);
+        line-height: 1;
+      }
+    }
+
+    /* PARTE 6 - Infograficos e fluxos */
+    .flow-steps,
+    .manual-flow-steps,
+    .process-flow,
+    .steps-grid,
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+      gap: clamp(14px, 2vw, 20px);
+      min-width: 0;
+    }
+
+    .step-card,
+    .flow-card,
+    .process-card {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+
+      .flow-arrow,
+      .step-arrow,
+      .process-arrow {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+
+      .flow-steps,
+      .manual-flow-steps,
+      .process-flow,
+      .steps-grid,
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* PHASE 6 - Acessibilidade Estrutural e Movimento */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    /* PHASE ANIMATION STANDARDIZATION */
+    @keyframes softEnter {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+        filter: blur(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      animation: softEnter .9s cubic-bezier(.22, 1, .36, 1) forwards;
+    }
+
+    .reveal-delay-1,
+    .delay-1 {
+      animation-delay: .15s;
+    }
+
+    .reveal-delay-2,
+    .delay-2 {
+      animation-delay: .3s;
+    }
+
+    .reveal-delay-3,
+    .delay-3 {
+      animation-delay: .45s;
+    }
+
+    .reveal-delay-4,
+    .delay-4 {
+      animation-delay: .6s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .reveal,
+      .delay-1,
+      .delay-2,
+      .delay-3,
+      .delay-4,
+      .reveal-delay-1,
+      .reveal-delay-2,
+      .reveal-delay-3,
+      .reveal-delay-4 {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        animation: none !important;
+      }
+    }
+
+    /* INTERNAL SECTION SCALE — D2L
+   Seções internas não devem competir com a hero principal.
+*/
+    .module,
+    .case-executive,
+    .case-summary,
+    .reflection {
+      padding-block: clamp(28px, 3vw, 38px);
+      padding-inline: clamp(24px, 3vw, 38px);
+      margin-top: 40px;
+    }
+
+    .module h2,
+    .case-executive h2,
+    .case-summary h2,
+    .reflection h2 {
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1.08;
+      letter-spacing: -.042em;
+    }
+
+    .module:not(.manual-flow-section) .module-head {
+      display: block;
+      max-width: 1040px;
+      margin-bottom: 24px;
+    }
+
+    .module:not(.manual-flow-section) .module-head>div {
+      max-width: 980px;
+    }
+
+    .module:not(.manual-flow-section) .module-head p {
+      max-width: 820px;
+      margin-top: 14px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .manual-flow-artifact {
+      padding: 30px;
+      border-radius: 28px;
+    }
+
+    .manual-flow-artifact::after {
+      width: 26%;
+      height: 34%;
+      opacity: .38;
+    }
+
+    .manual-flow-header {
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+      gap: 32px;
+      margin-bottom: 30px;
+    }
+
+    .manual-flow-heading h2 {
+      max-width: 620px;
+      font-size: clamp(32px, 3.6vw, 48px);
+      line-height: 1.03;
+      letter-spacing: -.045em;
+    }
+
+    .manual-flow-intro {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .manual-flow-step {
+      min-height: 236px;
+      padding: 44px 14px 16px;
+      border-radius: 18px;
+    }
+
+    .manual-flow-number {
+      top: -22px;
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+      box-shadow: 0 0 0 6px rgba(255, 255, 255, .92);
+    }
+
+    .manual-flow-icon {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 16px;
+    }
+
+    .manual-flow-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .manual-flow-step h3 {
+      max-width: 150px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      line-height: 1.18;
+    }
+
+    .manual-flow-divider {
+      width: 28px;
+      margin-bottom: 10px;
+    }
+
+    .manual-flow-step p {
+      max-width: 150px;
+      font-size: 12px;
+      line-height: 1.46;
+    }
+
+    .manual-flow-badge {
+      min-height: 28px;
+      margin-top: 12px;
+      padding: 0 10px;
+      font-size: 9px;
+      letter-spacing: .07em;
+    }
+
+    .manual-flow-critical {
+      grid-template-columns: 68px 140px 1fr;
+      gap: 18px;
+      margin-top: 24px;
+      padding: 12px 20px 12px 12px;
+      border-radius: 18px;
+    }
+
+    .manual-flow-critical-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+    }
+
+    .manual-flow-critical-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .manual-flow-critical strong {
+      min-height: 48px;
+      padding-right: 18px;
+      font-size: 11px;
+    }
+
+    .manual-flow-critical p {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .csv-preview {
+      margin-top: 24px;
+      border-radius: 20px;
+    }
+
+    .csv-preview-header {
+      padding: 12px 16px;
+      font-size: 11px;
+    }
+
+    .csv-preview pre {
+      max-height: 360px;
+      padding: 18px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .accordion {
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .accordion summary {
+      min-height: 52px;
+      padding: 16px 20px;
+      font-size: 16px;
+    }
+
+    .accordion summary::after {
+      top: 14px;
+      right: 20px;
+      font-size: 22px;
+    }
+
+    .accordion-body {
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .accordion-cell {
+      padding: 16px;
+    }
+
+    .accordion-cell p {
+      font-size: 13px;
+      line-height: 1.58;
+    }
+
+    .card-grid,
+    .grid-4,
+    .metric-grid,
+    .comparison-grid,
+    .origin-bridge {
+      gap: 16px;
+      margin-top: 22px;
+      align-items: start;
+    }
+
+    .info-card,
+    .impact-card,
+    .metric-card,
+    .comparison-card,
+    .method-card {
+      padding: 22px;
+    }
+
+    .info-card h3,
+    .method-card h3,
+    .comparison-card h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .info-card p,
+    .impact-card p,
+    .method-card p,
+    .comparison-card p,
+    .metric-card p {
+      font-size: 13px;
+      line-height: 1.58;
+    }
+
+    .comparison-card {
+      padding: 24px;
+    }
+
+    .comparison-card ul {
+      margin-top: 14px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .metric-card strong {
+      margin-bottom: 8px;
+      font-size: clamp(22px, 2.4vw, 32px);
+    }
+
+    .reflection {
+      padding: clamp(30px, 3vw, 40px);
+      margin-top: 40px;
+    }
+
+    .reflection h2 {
+      max-width: 920px;
+      font-size: clamp(30px, 3vw, 42px);
+    }
+
+    .reflection .module-copy {
+      max-width: 860px;
+      gap: 14px;
+    }
+
+    .reflection p {
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 1180px) {
+      .manual-flow-header {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .manual-flow-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        row-gap: 34px;
+      }
+    }
+
+    @media (max-width: 760px) {
+
+      .module,
+      .case-executive,
+      .case-summary,
+      .reflection {
+        padding: 24px;
+        border-radius: 22px;
+      }
+
+      .module h2,
+      .case-executive h2,
+      .case-summary h2,
+      .reflection h2 {
+        font-size: clamp(28px, 8vw, 38px);
+      }
+
+      .manual-flow-artifact {
+        padding: 22px;
+        border-radius: 22px;
+      }
+
+      .manual-flow-heading h2 {
+        font-size: clamp(30px, 9vw, 40px);
+      }
+
+      .manual-flow-track {
+        grid-template-columns: 1fr;
+        row-gap: 30px;
+      }
+
+      .manual-flow-step {
+        min-height: 0;
+        padding: 28px 20px 20px;
+        text-align: left;
+      }
+
+      .manual-flow-number {
+        top: -18px;
+        left: 24px;
+        width: 38px;
+        height: 38px;
+        transform: none;
+        font-size: 18px;
+      }
+
+      .manual-flow-icon {
+        width: 52px;
+        height: 52px;
+        margin: 4px 0 14px;
+      }
+
+      .manual-flow-step h3,
+      .manual-flow-step p {
+        max-width: none;
+      }
+
+      .manual-flow-critical {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .manual-flow-critical strong {
+        min-height: 0;
+        padding: 0;
+        border-right: 0;
+      }
+
+      .manual-flow-critical p {
+        font-size: 15px;
+      }
+
+      .csv-preview pre {
+        max-height: 300px;
+        font-size: 11px;
+      }
+    }
+
+    /* TEXT FLOW COMPOSITION — D2L */
+    .text-flow-wide {
+      max-width: none;
+    }
+
+    .module-copy {
+      max-width: 980px;
+    }
+
+    .module-copy p {
+      max-width: 760px;
+    }
+
+    .reflection .module-copy {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 32px;
+      max-width: 1120px;
+    }
+
+    .reflection .module-copy p {
+      max-width: none;
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
+    .reflection h2 {
+      max-width: 980px;
+    }
+
+    .module.is-highlight .module-copy {
+      max-width: 1120px;
+    }
+
+    .module.is-highlight .module-copy p {
+      max-width: none;
+    }
+
+    .context-summary,
+    .problem-summary,
+    .research-synthesis,
+    .highlight-phrase,
+    .manual-flow-critical {
+      max-width: 100%;
+    }
+
+    .manual-flow-critical {
+      grid-template-columns: minmax(68px, 88px) minmax(140px, 220px) minmax(0, 1fr);
+    }
+
+    .card p,
+    .info-card p,
+    .impact-card p,
+    .metric-card p,
+    .comparison-card p,
+    .method-card p,
+    .executive-copy p,
+    .module-copy p,
+    .reflection p,
+    .context-summary,
+    .problem-summary,
+    .research-synthesis,
+    .highlight-phrase {
+      max-width: none;
+    }
+
+    @media (max-width: 820px) {
+      .reflection .module-copy {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .manual-flow-critical {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
+
+
+
+
 </head>
+
 <body>
-  <div class="page">
-    <nav class="nav">
-      <a href="index.html" class="brand">CRUZ</a>
-      <div class="nav-links">
-        <a href="index.html">Início</a>
-        <a href="index.html#cases">Cases</a>
-        <a href="sobre.html">Sobre</a>
-      </div>
-    </nav>
-
-    <div class="back-nav">
-      <a href="index.html#cases">← Voltar para cases</a>
-    </div>
-
-    <header class="hero">
-      <div>
-        <span class="eyebrow">Case 03 · IA aplicada · Universidade Católica de Brasília (UCB)</span>
-        <h1>Formatador D2L: de gargalo manual a agente especialista</h1>
-        <p class="lead">Criação colaborativa de um agente de IA para automatizar a formatação de bancos de questões da plataforma D2L Brightspace, reduzindo uma operação crítica de semanas para minutos.</p>
-        <div class="tags">
-          <span class="tag">IA aplicada</span>
-          <span class="tag">Prompt Engineering</span>
-          <span class="tag">DesignOps</span>
-          <span class="tag">D2L Brightspace</span>
-          <span class="tag">Automação acadêmica</span>
-        </div>
-      </div>
-      <div class="hero-visual" aria-label="Representação conceitual do agente Formatador D2L">
-        <div class="code-window">
-          <div class="code-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="code-body">
-            NewQuestion,<em>MC</em>,,,<br>
-            ID,<strong>GE-[Sigla]-UN-[##]-A[##]-QME-[##]</strong>,,,<br>
-            Difficulty,<em>[1-10]</em>,,,<br>
-            QuestionText,"<strong>[ID]</strong> [Enunciado completo]",,,<br>
-            Option,<em>100</em>,"[Alternativa correta]",,[Feedback]<br>
-            Option,<em>0</em>,"[Alternativa incorreta]",,[Feedback]<br>
-            Feedback,"[Explicação geral]",,,
-          </div>
-        </div>
-        <div class="agent-badge">D2L<br>Agent</div>
-      </div>
-    </header>
-
-    <section class="case-summary">
-      <div class="summary-card">
-        <span>Problema</span>
-        <p>Processo de cadastro de questões inteiramente manual, lento e suscetível a erros.</p>
-      </div>
-      <div class="summary-card">
-        <span>Solução</span>
-        <p>Projetei e validei um agente no GPT-4 para conversão de texto bruto em lotes de CSV padronizados.</p>
-      </div>
-      <div class="summary-card">
-        <span>Impacto</span>
-        <p>Escala operacional imediata, reduzindo semanas de esforço manual para instantes.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">01 · Contexto</span>
-          <h2>Uma operação acadêmica manual e crítica</h2>
-        </div>
-        <p>Na Universidade Católica de Brasília (UCB), a criação de questionários no D2L Brightspace era processo inteiramente manual. A equipe recebia bancos de questões em arquivos Word ou PDF e precisava acessar cada sala virtual para cadastrar questão por questão dentro da plataforma: enunciado, alternativas, gabarito, feedbacks e configurações.</p>
-      </div>
-      <div class="grid-4">
-        <div class="card"><strong>Escala</strong><h3>+150 salas virtuais</h3><p>O processo precisava atender múltiplas disciplinas, turmas e ofertas simultâneas.</p></div>
-        <div class="card"><strong>Volume</strong><h3>40 a 80 questões</h3><p>Cada banco exigia leitura, interpretação e cadastro individual dentro da plataforma.</p></div>
-        <div class="card"><strong>Risco</strong><h3>Erro manual em escala</h3><p>Falhas de cópia, marcação de alternativa, feedback ou configuração podiam comprometer a qualidade do questionário.</p></div>
-        <div class="card"><strong>Operação</strong><h3>1 a 2 meses</h3><p>O ciclo completo consumia semanas de trabalho manual da equipe.</p></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">02 · Problema</span>
-          <h2>Um fluxo 100% manual, repetitivo e não escalável</h2>
-        </div>
-        <p>O fluxo exigia abrir sala por sala no Brightspace, copiar o enunciado do Word/PDF, criar alternativas, marcar o gabarito, inserir feedbacks e revisar configurações manualmente. Esse processo precisava ser repetido dezenas de vezes por disciplina, tornando a operação lenta, cansativa e altamente propensa a erro humano.</p>
-      </div>
-      <div class="grid-3">
-        <div class="card"><strong>Dor do time</strong><h3>Carga cognitiva alta</h3><p>A equipe precisava manter atenção constante em detalhes de sintaxe, pontuação e regras de negócio.</p></div>
-        <div class="card"><strong>Erro crítico</strong><h3>Falha de cadastro</h3><p>Um pequeno descuido ao copiar textos ou marcar opções comprometia a qualidade e gerava revisão manual frustrante.</p></div>
-        <div class="card"><strong>Escala</strong><h3>Baixa sustentabilidade</h3><p>Novas disciplinas e atualizações aumentavam o volume sem aumentar a capacidade operacional.</p></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="quote">
-        <span class="eyebrow">03 · Origem da solução</span>
-        <h2>A inovação começou em uma conversa na copa.</h2>
-        <p>A solução não nasceu de um briefing formal. Ela surgiu no cotidiano da Coordenação de Ensino a Distância da UCB, em uma conversa informal com uma colega da equipe de TI sobre uma dor compartilhada: uma tarefa crítica, repetitiva e sensível a erro consumia semanas de trabalho.</p>
-        <p>As primeiras tentativas com IA eram promissoras, mas limitadas. Funcionavam para uma questão por vez, com inconsistência e baixa capacidade de escala. A virada aconteceu quando o problema deixou de ser visto como uma tarefa a automatizar e passou a ser entendido como um sistema de regras a estruturar.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">04 · Diagnóstico</span>
-          <h2>Do documento bruto ao cadastro manual</h2>
-        </div>
-        <p>Os questionários chegavam em formatos não estruturados. Cada questão continha enunciado, alternativas, gabarito e feedback — mas sem padronização técnica. A equipe precisava interpretar esse conteúdo e reconstruí-lo manualmente dentro do D2L.</p>
-      </div>
-      <div class="card">
-        <strong>Exemplo real de entrada</strong>
-        <p class="small">Arquivo recebido em Word/PDF com estrutura narrativa (enunciado, alternativas, gabarito e feedback), sem formatação compatível com o sistema.</p>
-      </div>
-      <div class="flow-board">
-        <div class="flow">
-          <div class="flow-step"><span>01</span><h4>Recebimento</h4><p>Questões chegavam em Word ou PDF.</p></div>
-          <div class="flow-step"><span>02</span><h4>Interpretação</h4><p>Equipe identificava enunciado, alternativas, gabarito e feedback.</p></div>
-          <div class="flow-step"><span>03</span><h4>Acesso à sala</h4><p>Cada disciplina precisava ser acessada individualmente no Brightspace.</p></div>
-          <div class="flow-step"><span>04</span><h4>Cadastro manual</h4><p>A questão era criada dentro da plataforma, campo por campo.</p></div>
-          <div class="flow-step"><span>05</span><h4>Repetição</h4><p>Processo repetido dezenas de vezes por banco e por sala.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">05 · Estratégia</span>
-          <h2>Transformar prompt em agente especialista.</h2>
-        </div>
-        <p>A virada foi perceber que o problema não era apenas “cadastrar mais rápido”, mas transformar documentos não estruturados em uma base padronizada. A partir disso, o agente passou a interpretar os bancos recebidos em Word/PDF e gerar uma estrutura compatível com importação no D2L, reduzindo a dependência do cadastro manual no Brightspace.</p>
-      </div>
-      <div class="logic-system">
-        <div class="logic-grid">
-          <div class="logic-card"><strong>Estrutura inflexível</strong><span>O agente gera um arquivo CSV formatado estritamente linha por linha, sem margem para variações.</span></div>
-          <div class="logic-card"><strong>Regra de negócio embutida</strong><span>IDs dinâmicos, siglas, unidades, aulas, tipo de questão e contadores sequenciais.</span></div>
-          <div class="logic-card"><strong>Processamento em lote</strong><span>Capacidade de receber dezenas de questões e formatar o banco inteiro de uma vez.</span></div>
-        </div>
-        <div class="template">
-          NewQuestion,<em>MC</em>,,,<br>
-          ID,<strong>GE-[Sigla]-UN-[##]-A[##]-QME-[##]</strong>,,,<br>
-          Difficulty,<em>[1-10]</em>,,,<br>
-          QuestionText,"<strong>[ID]</strong> [Enunciado completo]",,,<br>
-          Option,<em>100</em>,"[Alternativa correta]",,[Feedback específico]<br>
-          Option,<em>0</em>,"[Alternativa incorreta]",,[Feedback específico]<br>
-          Feedback,"[Feedback geral da questão]",,,
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">06 · Antes vs Depois</span>
-          <h2>De fluxo manual frágil para sistema automatizado.</h2>
-        </div>
-        <p>A principal mudança não foi apenas acelerar a tarefa. Foi tornar o processo previsível, escalável e menos dependente de atenção manual extrema.</p>
-      </div>
-      <div class="compare">
-        <div class="panel before">
-          <span class="pill red">Antes</span>
-          <h3>Cadastro manual no Brightspace</h3>
-          <p>A equipe acessava cada sala, criava questões individualmente e replicava manualmente o conteúdo vindo do Word/PDF dentro da plataforma.</p>
-          <div class="grid-2">
-            <div class="card"><strong>Processo</strong><h3>Manual</h3><p>Criação direta na plataforma, sem automação.</p></div>
-            <div class="card"><strong>Escala</strong><h3>Baixa</h3><p>Dependência total de esforço humano.</p></div>
-          </div>
-        </div>
-        <div class="panel after">
-          <span class="pill green">Depois</span>
-          <h3>Agente estruturando o banco para importação</h3>
-          <p>O agente interpreta as questões recebidas, aplica regras de estruturação e gera uma base padronizada para reduzir o cadastro manual.</p>
-          <div class="grid-2">
-            <div class="card"><strong>Tempo</strong><h3>Minutos</h3><p>Bancos inteiros formatados rapidamente.</p></div>
-            <div class="card"><strong>Precisão</strong><h3>100%</h3><p>Erros de sintaxe manual eliminados.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">07 · Inteligência condicional</span>
-          <h2>O agente passou a reconhecer inconsistências.</h2>
-        </div>
-        <p>A robustez apareceu quando o agente deixou de apenas executar comandos e passou a interpretar o contexto: identificar inconsistências na instrução, alertar sobre conflitos entre unidade e arquivo, e sugerir correções antes da formatação.</p>
-      </div>
-      <div class="quote">
-        <h2>O objetivo não era fazer a IA responder. Era fazer a IA operar com critério.</h2>
-        <p>Para Provas (PR) e Recuperações (REC), por exemplo, o agente aplica regras específicas de sincronização entre aula e numeração final, demonstrando adaptação às regras de negócio da D2L.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">08 · Impacto</span>
-          <h2>Meses para minutos. Erro manual para consistência.</h2>
-        </div>
-        <p>A solução gerou impacto imediato no fluxo de trabalho da equipe, liberando tempo para atividades de maior valor pedagógico e reduzindo a fragilidade operacional da importação de questões.</p>
-      </div>
-      <div class="impact">
-        <div class="card"><div class="number">&gt;95%</div><h3>Eficiência</h3><p>Ganho estimado de produtividade na tarefa específica.</p></div>
-        <div class="card"><div class="number">0%</div><h3>Retrabalho no cadastro</h3><p>A importação em lote promovida pelo agente eliminou os erros do antigo registro manual.</p></div>
-        <div class="card"><div class="number">&lt;5min</div><h3>40 questões</h3><p>Banco formatado em minutos, antes uma rotina de horas.</p></div>
-        <div class="card"><div class="number">+150</div><h3>Salas virtuais</h3><p>Operação preparada para escalar sem sobrecarga proporcional.</p></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">09 · Meu papel</span>
-          <h2>Da observação da dor à estruturação do agente.</h2>
-        </div>
-        <p>Minha contribuição esteve na leitura do problema como sistema, na engenharia de prompt avançada, na modelagem das regras, nos testes iterativos e na transformação da tentativa inicial em uma solução robusta e integrada ao fluxo da equipe.</p>
-      </div>
-      <div class="role-grid">
-        <div class="card"><strong>Diagnóstico</strong><h3>Mapeei a lógica</h3><p>Transformei regras implícitas em instruções explícitas para o agente.</p></div>
-        <div class="card"><strong>Construção</strong><h3>Iterei o prompt</h3><p>Testei, refinei e ampliei a capacidade do agente até alcançar consistência.</p></div>
-        <div class="card"><strong>Escala</strong><h3>Levei para lote</h3><p>O diferencial foi deixar de formatar uma questão por vez e processar bancos inteiros.</p></div>
-      </div>
-    </section>
-
-    <section>
-      <div class="quote">
-        <span class="eyebrow">Aprendizado-chave</span>
-        <h2>IA só gera valor quando entende o sistema que precisa operar.</h2>
-        <p>O maior aprendizado foi que automação não começa pela ferramenta. Começa pela leitura precisa da dor, pela colaboração entre áreas e pela transformação de regras de negócio em uma estrutura clara, testável e escalável.</p>
-      </div>
-    </section>
-
-    <section class="case-next-nav" style="padding: 40px 0;">
-      <a class="case-next-card" href="fiocruz.html" style="grid-column: 1 / -1; max-width: 540px;">
-        <span>Anterior</span>
-        <strong>← Como estruturei o sistema da Fiocruz</strong>
+  <a class="skip-link" href="#main-content">Pular para conteúdo principal</a>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <a href="dashboard.html" aria-label="CRUZ Learning Environment">
+        <img class="brand-logo" src="assets/logo-cruz-L_E.svg" alt="CRUZ Learning Environment">
       </a>
-    </section>
-
-    <section class="contact-footer" id="contato">
-      <div>
-        <span class="eyebrow">Contato</span>
-        <h2>Disponível para oportunidades em UX/Product Design e sistemas com IA.</h2>
-        <p>Atuo em produtos digitais, educação e automação de processos complexos.</p>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="primary-nav"
+        aria-expanded="false">
+        <svg class="icon icon--action" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h16" />
+          <path d="M4 12h16" />
+          <path d="M4 17h16" />
+        </svg>
+        Menu
+      </button>
+      <nav class="nav" id="primary-nav" aria-label="Navegação principal">
+        <a href="dashboard.html">
+          <span class="icon icon--nav nav-icon nav-icon--dashboard" aria-hidden="true"></span>
+          Dashboard
+        </a>
+        <a href="dashboard.html#disciplinas" class="active" aria-current="page">
+          <span class="icon icon--nav nav-icon nav-icon--disciplines" aria-hidden="true"></span>
+          Disciplinas
+        </a>
+        <a href="sobre.html">
+          <svg class="icon icon--nav" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M5.5 20c1.2-4.2 4-6 6.5-6s5.3 1.8 6.5 6" />
+          </svg>
+          Sobre
+        </a>
+        <a href="dashboard.html#contato">
+          <svg class="icon icon--nav" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.5 6.5h15v11h-15z" />
+            <path d="m5 7 7 6 7-6" />
+            <path d="m9.5 12-4.5 5" />
+            <path d="m14.5 12 4.5 5" />
+          </svg>
+          Contato
+        </a>
+      </nav>
+      <div class="sidebar-note">
+        <b>D2L</b>
+        Agente especialista para transformar regra operacional em escala acadêmica.
+        <img class="signature" src="assets/assinatura-thalisson-cruz.svg" alt="Assinatura Thalisson Cruz">
       </div>
+    </aside>
 
-      <div class="contact-links">
-        <a class="contact-link" href="https://www.linkedin.com/in/thalisxcruz" target="_blank" rel="noopener noreferrer">
-          <span class="contact-icon">in</span>
-          LinkedIn · thalisxcruz
-        </a>
+    <main class="main" id="main-content">
+      <div class="container">
+        <a class="case-back-link reveal delay-1" href="dashboard.html#disciplinas">← Voltar para disciplinas</a>
 
-        <a class="contact-link" href="tel:+5561983226212">
-          <span class="contact-icon">☎</span>
-          +55 61 9 8322-6212
-        </a>
+        <header class="course-hero reveal delay-2">
+          <div>
+            <div class="hero-kicker-row">
+              <span class="kicker">Case de automação acadêmica</span>
+            </div>
+            <h1>Formatador D2L: de cadastro manual a agente de formatação</h1>
+            <p class="course-subtitle">Como modelei um agente de IA para converter bancos de questões em arquivos
+              compatíveis com o D2L Brightspace — reduzindo uma rotina de meses para minutos.</p>
+            <div class="hero-actions" aria-label="Competências aplicadas">
+              <span class="tag">IA aplicada</span>
+              <span class="tag">Prompt Engineering</span>
+              <span class="tag">DesignOps</span>
+              <span class="tag">Automação acadêmica</span>
+              <span class="tag">Design Instrucional</span>
+              <span class="tag">D2L Brightspace</span>
+            </div>
+          </div>
 
-        <a class="contact-link" href="mailto:thalisxcruz@gmail.com">
-          <span class="contact-icon">@</span>
-          thalisxcruz@gmail.com
-        </a>
+          <aside class="course-panel" aria-label="Resumo do case">
+            <div class="course-meta">
+              <div>
+                <small>Meu papel</small>
+                <strong>IA aplicada e Design Instrucional</strong>
+                <p>Diagnóstico do fluxo, modelagem das regras, engenharia de prompt, testes e validação da automação.
+                </p>
+              </div>
+              <div>
+                <small>Ferramenta principal</small>
+                <strong>Google AI Studio / Gemini</strong>
+                <p>Agente configurado para interpretar bancos de questões e gerar estrutura compatível com importação no
+                  D2L.</p>
+              </div>
+              <div>
+                <small>Escala</small>
+                <strong>+150 salas virtuais</strong>
+                <p>Operação acadêmica envolvendo múltiplas disciplinas, turmas e modalidades.</p>
+              </div>
+              <div>
+                <small>Impacto</small>
+                <strong>&gt;95% de eficiência</strong>
+                <p>Redução drástica do tempo de formatação e eliminação de erros manuais de sintaxe na tarefa validada.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </header>
+
+        <section class="case-executive case-executive--compact reveal delay-3" aria-labelledby="executive-title">
+          <div class="executive-main">
+            <span class="module-label">Resumo executivo</span>
+            <h2 class="module-title" id="executive-title">Visão geral do projeto</h2>
+            <div class="executive-copy">
+              <p>A equipe acadêmica precisava preparar bancos de questões para importação no D2L Brightspace. Cada banco
+                podia ter de 40 a 80 questões, com enunciado, alternativas, gabarito e feedback.</p>
+              <p>A tarefa exigia atenção a vírgulas, aspas, IDs, feedbacks e regras de pontuação. Um erro pequeno podia
+                impedir a importação ou gerar retrabalho.</p>
+              <p>Modelei um agente de IA para interpretar questões em lote, aplicar regras de negócio e gerar uma
+                estrutura
+                CSV compatível com o D2L.</p>
+            </div>
+          </div>
+          <aside class="executive-facts" aria-label="Síntese do projeto">
+            <div>
+              <span>Problema</span>
+              <strong>Formatação manual</strong>
+            </div>
+            <div>
+              <span>Escala</span>
+              <strong>+150 salas virtuais</strong>
+            </div>
+            <div>
+              <span>Solução</span>
+              <strong>Agente especialista</strong>
+            </div>
+            <div>
+              <span>Resultado</span>
+              <strong>&gt;95% de eficiência</strong>
+            </div>
+            <div>
+              <span>Tempo</span>
+              <strong>Menos de 5 min por banco</strong>
+            </div>
+            <div>
+              <span>Precisão</span>
+              <strong>Erro manual eliminado</strong>
+            </div>
+          </aside>
+        </section>
+
+        <section class="case-summary reveal delay-3" aria-labelledby="case-summary-title">
+
+          <div class="case-summary-grid">
+            <article class="card">
+              <strong>Problema</strong>
+              <p>Formatação manual gerava retrabalho e risco de erro.</p>
+            </article>
+            <article class="card">
+              <strong>Decisão</strong>
+              <p>Criar fluxo padronizado de automação/formatação.</p>
+            </article>
+            <article class="card">
+              <strong>Resultado esperado</strong>
+              <p>Mais consistência, velocidade e escala operacional.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="case-reading-guide reveal delay-3" aria-labelledby="case-reading-guide-title">
+          <div class="case-reading-guide-copy">
+            <span class="module-label">Guia de leitura</span>
+            <h2 id="case-reading-guide-title">Como ler este case</h2>
+            <p>Este case mostra como transformei a formatação manual de bancos de questões em um fluxo assistido por IA,
+              com regras explícitas, validação e saída compatível com o D2L.</p>
+          </div>
+          <ol class="case-reading-steps">
+            <li><span>01</span> Qual tarefa consumia tempo da equipe</li>
+            <li><span>02</span> Onde os erros apareciam na formatação</li>
+            <li><span>03</span> Como as regras foram modeladas no agente</li>
+            <li><span>04</span> Como a saída passou a ser validada para importação</li>
+          </ol>
+        </section>
+
+        <nav class="course-nav reveal delay-3" aria-label="Módulos da disciplina">
+          <a href="#contexto" class="active" aria-current="true">Contexto</a>
+          <a href="#problema">Problema</a>
+          <a href="#origem">Origem</a>
+          <a href="#fluxo-manual">Fluxo manual</a>
+          <a href="#insight">Insight</a>
+          <a href="#estrategia">Estratégia</a>
+          <a href="#arquitetura">Arquitetura</a>
+          <a href="#validacao">Validação</a>
+          <a href="#comparativo">Comparativo</a>
+          <a href="#impacto">Impacto</a>
+          <a href="#meu-papel">Meu papel</a>
+        </nav>
+
+        <section class="module is-narrative reveal delay-4" id="contexto">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Contexto operacional</span>
+              <h2>Uma operação acadêmica crítica, repetitiva e difícil de escalar</h2>
+            </div>
+            <p>A Coordenação Geral Acadêmica de EAD precisava preparar bancos de questões para várias salas no D2L
+              Brightspace. Os materiais chegavam em Word ou PDF e precisavam virar uma estrutura aceita pela plataforma.
+            </p>
+          </div>
+          <div class="grid-4">
+            <article class="info-card">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m12 3 8 4-8 4-8-4 8-4Z" />
+                  <path d="m4 12 8 4 8-4" />
+                  <path d="m4 17 8 4 8-4" />
+                </svg>
+              </span>
+              <h3>Escala</h3>
+              <p>Mais de 150 salas virtuais em diferentes disciplinas, turmas e modalidades.</p>
+            </article>
+            <article class="info-card">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 2h9l5 5v15H6z" />
+                  <path d="M14 2v6h6" />
+                  <path d="M9 13h6" />
+                  <path d="M9 17h5" />
+                </svg>
+              </span>
+              <h3>Volume</h3>
+              <p>Cada banco podia ter de 40 a 80 questões, com enunciado, alternativas, gabarito e feedback.</p>
+            </article>
+            <article class="info-card">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3 2 21h20L12 3Z" />
+                  <path d="M12 9v5" />
+                  <path d="M12 18h.01" />
+                </svg>
+              </span>
+              <h3>Formato</h3>
+              <p>O conteúdo precisava sair de Word ou PDF e entrar em um CSV compatível com o D2L.</p>
+            </article>
+            <article class="info-card">
+              <span class="card-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3 2" />
+                </svg>
+              </span>
+              <h3>Precisão</h3>
+              <p>Vírgulas, aspas, IDs e feedbacks precisavam seguir a regra esperada pela plataforma.</p>
+            </article>
+          </div>
+          <p class="context-summary">O trabalho não era só copiar conteúdo. Era converter perguntas em uma estrutura
+            técnica aceita pelo D2L.</p>
+        </section>
+
+        <section class="module is-narrative reveal delay-4" id="problema">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Problema</span>
+              <h2>O problema estava na conversão manual para um formato técnico.</h2>
+            </div>
+            <p>A equipe precisava interpretar cada questão, separar seus campos, aplicar regras de pontuação e revisar a
+              sintaxe. Quando algo saía fora do padrão, a importação falhava ou exigia correção manual.</p>
+          </div>
+          <div class="problem-chips" aria-label="Características do problema">
+            <span>Cópia manual</span>
+            <span>Campos sensíveis</span>
+            <span>Revisão repetida</span>
+            <span>Erro de sintaxe</span>
+            <span>Importação bloqueada</span>
+          </div>
+          <div class="grid-4">
+            <article class="info-card">
+              <h3>Interpretação questão a questão</h3>
+              <p>A equipe separava enunciado, alternativas, gabarito e feedback manualmente.</p>
+            </article>
+            <article class="info-card">
+              <h3>Campos dependentes de regra</h3>
+              <p>IDs, pontuação e feedback precisavam seguir o padrão esperado pelo D2L.</p>
+            </article>
+            <article class="info-card">
+              <h3>Correção demorada</h3>
+              <p>Um erro pequeno podia exigir nova revisão do arquivo.</p>
+            </article>
+            <article class="info-card">
+              <h3>Volume acumulado</h3>
+              <p>A mesma rotina se repetia em bancos, disciplinas e salas virtuais.</p>
+            </article>
+          </div>
+          <p class="problem-summary">A automação precisava preservar regra, ordem e sintaxe — não apenas acelerar a
+            cópia.</p>
+        </section>
+
+        <section class="module is-highlight reveal delay-4" id="origem">
+          <div class="module-head module-head--stacked">
+            <div>
+              <span class="module-label">Origem da demanda</span>
+              <h2>De uma tentativa pontual a um agente especialista</h2>
+            </div>
+            <div class="module-copy">
+              <p>A demanda chegou a mim a partir de uma colega da equipe de T.I., que já havia iniciado uma tentativa de
+                automação usando ChatGPT para formatar questões individualmente.</p>
+              <p>A ideia era promissora, mas ainda limitada: funcionava em casos pontuais, exigia muita correção manual
+                e não sustentava o volume necessário para a operação acadêmica.</p>
+              <p>Como eu já tinha maior familiaridade com Google AI Studio/Gemini e vinha explorando engenharia de
+                prompt aplicada a fluxos educacionais, assumi a evolução da solução. Migrei a abordagem para um ambiente
+                onde seria possível estruturar melhor as regras, testar variações, processar lotes maiores e transformar
+                o prompt em um agente especialista na lógica de formatação do D2L.</p>
+            </div>
+          </div>
+          <div class="origin-bridge" aria-label="Evolução da abordagem">
+            <div class="origin-card">
+              <strong>Tentativa inicial</strong>
+              <span>ChatGPT / questão por questão / baixa escala.</span>
+            </div>
+            <div class="origin-card">
+              <strong>Solução evoluída</strong>
+              <span>Gemini / regras persistentes / processamento em lote.</span>
+            </div>
+          </div>
+          <p class="highlight-phrase">A primeira tentativa provou que a IA podia ajudar. Minha contribuição foi
+            transformar essa hipótese em um agente confiável, escalável e integrado ao fluxo real da equipe.</p>
+        </section>
+
+        <section class="module manual-flow-section reveal delay-4" id="fluxo-manual">
+          <div class="manual-flow-artifact" aria-labelledby="manual-flow-title">
+            <div class="manual-flow-header">
+              <div class="manual-flow-heading">
+                <span class="module-label">FLUXO MANUAL</span>
+                <h2 id="manual-flow-title">Do documento bruto ao cadastro manual</h2>
+              </div>
+              <p class="manual-flow-intro">O fluxo antigo dependia de atenção humana constante. A equipe precisava
+                transformar manualmente conteúdo não estruturado em uma estrutura técnica rígida, repetindo o processo
+                questão por questão.</p>
+            </div>
+
+            <div class="manual-flow-track" aria-label="Etapas do fluxo manual">
+              <article class="manual-flow-step">
+                <span class="manual-flow-number">1</span>
+                <div class="manual-flow-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 3.5h8l4 4V20.5H6z" />
+                    <path d="M14 3.5v4h4" />
+                    <path d="M9 12h6" />
+                    <path d="M9 15h4" />
+                  </svg>
+                </div>
+                <h3>Receber arquivo</h3>
+                <span class="manual-flow-divider" aria-hidden="true"></span>
+                <p>Questões chegavam em Word ou PDF.</p>
+              </article>
+
+              <article class="manual-flow-step">
+                <span class="manual-flow-number">2</span>
+                <div class="manual-flow-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="10.5" cy="10.5" r="5.8" />
+                    <path d="m15.2 15.2 4.3 4.3" />
+                  </svg>
+                </div>
+                <h3>Interpretar conteúdo</h3>
+                <span class="manual-flow-divider" aria-hidden="true"></span>
+                <p>Equipe identificava enunciado, alternativas, gabarito e feedback.</p>
+              </article>
+
+              <article class="manual-flow-step">
+                <span class="manual-flow-number">3</span>
+                <div class="manual-flow-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5.5h8" />
+                    <path d="M9 3.5h6v4H9z" />
+                    <path d="M6.5 6.5h-1v15h13v-15h-1" />
+                    <path d="M9 12h6" />
+                    <path d="M9 16h5" />
+                  </svg>
+                </div>
+                <h3>Copiar campos</h3>
+                <span class="manual-flow-divider" aria-hidden="true"></span>
+                <p>Cada parte da questão precisava ser transferida manualmente.</p>
+              </article>
+
+              <article class="manual-flow-step">
+                <span class="manual-flow-number">4</span>
+                <div class="manual-flow-icon manual-flow-icon--accent" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 7h16" />
+                    <circle cx="9" cy="7" r="2" />
+                    <path d="M4 12h16" />
+                    <circle cx="15" cy="12" r="2" />
+                    <path d="M4 17h16" />
+                    <circle cx="11" cy="17" r="2" />
+                  </svg>
+                </div>
+                <h3>Ajustar estrutura</h3>
+                <span class="manual-flow-divider" aria-hidden="true"></span>
+                <p>Aspas, vírgulas, pontuação e IDs eram revisados manualmente.</p>
+              </article>
+
+              <article class="manual-flow-step">
+                <span class="manual-flow-number">5</span>
+                <div class="manual-flow-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3.5 19 6v5.2c0 4.3-2.8 7.8-7 9.3-4.2-1.5-7-5-7-9.3V6z" />
+                    <path d="m9 12.2 2 2 4-4.4" />
+                  </svg>
+                </div>
+                <h3>Validar importação</h3>
+                <span class="manual-flow-divider" aria-hidden="true"></span>
+                <p>Qualquer erro exigia depuração e retrabalho.</p>
+              </article>
+
+              <article class="manual-flow-step is-loop">
+                <span class="manual-flow-number">6</span>
+                <div class="manual-flow-icon manual-flow-icon--loop" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17.5 7.5A6.5 6.5 0 0 0 6 10" />
+                    <path d="M17.5 7.5V4.5h3" />
+                    <path d="M6.5 16.5A6.5 6.5 0 0 0 18 14" />
+                    <path d="M6.5 16.5v3h-3" />
+                  </svg>
+                </div>
+                <h3>Repetir em escala</h3>
+                <span class="manual-flow-divider" aria-hidden="true"></span>
+                <p>O processo se repetia em dezenas de questões, disciplinas e salas.</p>
+                <span class="manual-flow-badge">Retrabalho acumulado</span>
+              </article>
+            </div>
+
+            <aside class="manual-flow-critical" aria-label="Ponto crítico do fluxo manual">
+              <div class="manual-flow-critical-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 4 21 20H3z" />
+                  <path d="M12 9v5" />
+                  <path d="M12 17.5h.01" />
+                </svg>
+              </div>
+              <strong>Ponto crítico</strong>
+              <p>Cada questão exigia interpretação, cópia, ajuste e validação manual antes de ser importada.</p>
+            </aside>
+          </div>
+        </section>
+
+        <section class="module is-highlight reveal delay-4" id="insight">
+          <span class="module-label">Insight central</span>
+          <h2>O problema não era apenas automatizar uma tarefa. Era ensinar a IA a operar um sistema de regras</h2>
+          <div class="module-copy" style="max-width: 880px; margin-top: 24px;">
+            <p>As primeiras tentativas com IA conseguiam formatar uma questão por vez, mas não sustentavam escala nem
+              consistência. A virada foi entender que o agente precisava aprender a lógica completa do processo:
+              estrutura CSV, regras de ID, tipos de questão, feedbacks, pontuação, contagem sequencial e exceções para
+              provas e recuperações.</p>
+            <p>A automação não começou pela ferramenta. Começou pela modelagem precisa das regras que a ferramenta
+              precisaria seguir.</p>
+          </div>
+        </section>
+
+        <section class="module is-narrative reveal delay-4" id="estrategia">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Estratégia</span>
+              <h2>De pedido solto a regra operacional</h2>
+            </div>
+            <p>A solução começou quando o prompt deixou de pedir “formate esta questão” e passou a descrever, passo a
+              passo, a lógica de importação do D2L: estrutura CSV, IDs, pontuação, feedbacks e exceções.</p>
+          </div>
+          <div class="grid-4">
+            <article class="method-card">
+              <span class="card-label">Estrutura</span>
+              <h3>Estrutura inflexível</h3>
+              <p>O agente precisava gerar uma estrutura CSV exata, linha por linha, sem variações que quebrassem a
+                importação.</p>
+            </article>
+            <article class="method-card">
+              <span class="card-label">Regras</span>
+              <h3>Regras de negócio embutidas</h3>
+              <p>IDs, siglas, unidades, aulas, tipos de questão e contadores precisavam seguir padrões específicos da
+                operação acadêmica.</p>
+            </article>
+            <article class="method-card">
+              <span class="card-label">Lote</span>
+              <h3>Processamento em lote</h3>
+              <p>A solução deixou de formatar uma questão por vez e passou a processar bancos inteiros de questões.</p>
+            </article>
+            <article class="method-card">
+              <span class="card-label">Validação</span>
+              <h3>Validação de consistência</h3>
+              <p>O agente passou a apontar conflitos e inconsistências antes de gerar a estrutura final.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="module is-decision reveal delay-4" id="arquitetura">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Arquitetura lógica</span>
+              <h2>Como transformei regras de negócio em instruções operacionais para a IA</h2>
+            </div>
+            <p>Para transformar a IA em um especialista, foi necessário criar uma estrutura lógica que combinasse
+              template rígido, regras condicionais, campos obrigatórios, pontuação, feedbacks e geração dinâmica de IDs.
+            </p>
+          </div>
+          <div class="csv-preview" aria-label="Prévia de estrutura CSV">
+            <div class="csv-preview-header">
+              <span>Prévia CSV</span>
+              <span>D2L Brightspace</span>
+            </div>
+            <pre><code><mark>NewQuestion</mark>,MC,,,
+<mark>ID</mark>,GE-[Sigla]-UN-[##]-A[##]-QME-[##],,,
+<mark>Difficulty</mark>,[1-10],,,
+<mark>QuestionText</mark>,"[ID] [Enunciado completo]",,,
+<mark>Option</mark>,100,"[Alternativa correta]",,[Feedback]
+<mark>Option</mark>,0,"[Alternativa incorreta]",,[Feedback]
+<mark>Feedback</mark>,"[Explicação geral]",,,</code></pre>
+          </div>
+          <div class="accordion">
+            <details open>
+              <summary>Template mestre</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Função</strong>
+                  <p>Define o formato esperado pelo D2L, incluindo NewQuestion, ID, Difficulty, QuestionText, Options e
+                    Feedback.</p>
+                </div>
+                <div class="accordion-cell"><strong>Lógica do agente</strong>
+                  <p>Preserva a ordem dos campos e evita variações que poderiam quebrar a importação.</p>
+                </div>
+                <div class="accordion-cell"><strong>Resultado</strong>
+                  <p>Saída mais previsível, testável e compatível com o ambiente de importação.</p>
+                </div>
+              </div>
+            </details>
+            <details>
+              <summary>Geração de ID</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Função</strong>
+                  <p>Cria identificadores únicos no padrão exigido pela operação acadêmica.</p>
+                </div>
+                <div class="accordion-cell"><strong>Lógica do agente</strong>
+                  <p>Combina sigla, unidade, aula, tipo de questão e numeração.</p>
+                </div>
+                <div class="accordion-cell"><strong>Resultado</strong>
+                  <p>Menos retrabalho e maior consistência entre bancos, disciplinas e salas.</p>
+                </div>
+              </div>
+            </details>
+            <details>
+              <summary>Alternativas e pesos</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Função</strong>
+                  <p>Configura pontuação para alternativas corretas e incorretas.</p>
+                </div>
+                <div class="accordion-cell"><strong>Lógica do agente</strong>
+                  <p>A alternativa correta recebe peso 100, enquanto alternativas incorretas recebem peso 0.</p>
+                </div>
+                <div class="accordion-cell"><strong>Resultado</strong>
+                  <p>Feedbacks específicos são mantidos quando disponíveis, sem perder a relação com o gabarito.</p>
+                </div>
+              </div>
+            </details>
+            <details>
+              <summary>Feedback geral</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Função</strong>
+                  <p>Preserva a explicação pedagógica vinculada à questão.</p>
+                </div>
+                <div class="accordion-cell"><strong>Lógica do agente</strong>
+                  <p>Associa a explicação geral ao campo correto da estrutura CSV.</p>
+                </div>
+                <div class="accordion-cell"><strong>Resultado</strong>
+                  <p>A importação mantém a relação entre questão, gabarito e aprendizagem.</p>
+                </div>
+              </div>
+            </details>
+            <details>
+              <summary>Regras condicionais</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Função</strong>
+                  <p>Adapta a lógica para cenários que não seguem contagem sequencial simples.</p>
+                </div>
+                <div class="accordion-cell"><strong>Lógica do agente</strong>
+                  <p>Para PR e REC, sincroniza numeração com a aula/tema.</p>
+                </div>
+                <div class="accordion-cell"><strong>Resultado</strong>
+                  <p>A estrutura responde a exceções reais do fluxo acadêmico.</p>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="module is-narrative reveal delay-4" id="validacao">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Validação</span>
+              <h2>O agente passou a identificar inconsistências antes de executar</h2>
+            </div>
+            <p>Durante os testes, o agente passou a reconhecer conflitos entre a instrução e o arquivo enviado,
+              alertando sobre inconsistências e sugerindo correções antes de iniciar a formatação. Isso mostrou que a
+              solução não apenas executava comandos, mas operava com compreensão das regras configuradas.</p>
+          </div>
+          <div class="grid-4">
+            <article class="info-card">
+              <h3>Reconhece contexto</h3>
+              <p>Interpreta tipo de questão, unidade, sigla e padrão do material.</p>
+            </article>
+            <article class="info-card">
+              <h3>Aponta conflito</h3>
+              <p>Identifica inconsistências entre instrução e documento recebido.</p>
+            </article>
+            <article class="info-card">
+              <h3>Sugere correção</h3>
+              <p>Recomenda ajuste antes de gerar o arquivo.</p>
+            </article>
+            <article class="info-card">
+              <h3>Evita retrabalho</h3>
+              <p>Reduz risco de erro antes da importação no D2L.</p>
+            </article>
+          </div>
+          <div class="agent-alert" role="note">
+            <span>Sistema:</span> Inconsistência detectada: unidade informada não corresponde ao arquivo enviado.
+          </div>
+        </section>
+
+        <section class="module is-decision reveal delay-4" id="comparativo">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Antes vs Depois</span>
+              <h2>De fluxo manual frágil para sistema automatizado</h2>
+            </div>
+            <p>A principal mudança não foi apenas acelerar a tarefa. Foi tornar o processo previsível, escalável e menos
+              dependente de atenção manual extrema.</p>
+          </div>
+          <div class="comparison-grid">
+            <article class="comparison-card before">
+              <span class="card-label">Antes</span>
+              <h3>Cadastro manual no Brightspace</h3>
+              <p>A equipe acessava cada sala, criava questões individualmente e replicava manualmente o conteúdo vindo
+                do Word/PDF dentro da plataforma.</p>
+              <ul>
+                <li>Questão por questão</li>
+                <li>Muitos cliques</li>
+                <li>Dependência de atenção contínua</li>
+                <li>Alto risco de erro</li>
+                <li>Ciclo de semanas</li>
+              </ul>
+            </article>
+            <article class="comparison-card after">
+              <span class="card-label">Depois</span>
+              <h3>Agente estruturando banco para importação</h3>
+              <p>O agente interpreta as questões recebidas, aplica regras de estruturação e gera uma base padronizada
+                para reduzir o cadastro manual.</p>
+              <ul>
+                <li>Processamento em lote</li>
+                <li>CSV padronizado</li>
+                <li>Regras embutidas</li>
+                <li>Validação de inconsistências</li>
+                <li>Banco formatado em minutos</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="module is-narrative reveal delay-4" id="impacto">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Resultado e impacto</span>
+              <h2>Meses para minutos. Erro manual para consistência</h2>
+            </div>
+            <p>A solução gerou impacto imediato no fluxo de trabalho da equipe, liberando tempo para atividades de maior
+              valor pedagógico e reduzindo a fragilidade operacional da importação de questões.</p>
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card">
+              <strong>&gt;95% de eficiência</strong>
+              <p>Ganho estimado de produtividade na tarefa específica de formatação.</p>
+            </article>
+            <article class="metric-card">
+              <strong>Menos de 5 minutos</strong>
+              <p>Banco de 40 questões formatado em minutos, antes uma rotina de horas.</p>
+            </article>
+            <article class="metric-card">
+              <strong>Erro manual eliminado</strong>
+              <p>Nos testes realizados, a automação eliminou erros de sintaxe manual na estrutura de importação.</p>
+            </article>
+            <article class="metric-card">
+              <strong>+150 salas virtuais</strong>
+              <p>Operação preparada para escalar sem sobrecarga proporcional.</p>
+            </article>
+            <article class="metric-card">
+              <strong>Meses para dias</strong>
+              <p>O ciclo completo deixou de depender de 1 a 2 meses de trabalho manual contínuo.</p>
+            </article>
+            <article class="metric-card">
+              <strong>Mais foco pedagógico</strong>
+              <p>Tempo antes gasto em tarefa operacional pôde ser redirecionado para design instrucional e melhoria da
+                aprendizagem.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="module is-narrative reveal delay-4" id="meu-papel">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Meu papel</span>
+              <h2>Da dor operacional à modelagem do agente</h2>
+            </div>
+            <p>Minha contribuição esteve na leitura do problema como sistema, na engenharia de prompt avançada, na
+              modelagem das regras, nos testes iterativos e na transformação da tentativa inicial em uma solução robusta
+              e integrada ao fluxo da equipe.</p>
+          </div>
+          <div class="card-grid">
+            <article class="info-card">
+              <h3>Diagnóstico do fluxo</h3>
+              <p>Analisei a tarefa manual, identifiquei etapas repetitivas, pontos de erro e regras implícitas.</p>
+            </article>
+            <article class="info-card">
+              <h3>Modelagem das regras</h3>
+              <p>Transformei requisitos técnicos e regras de negócio em instruções explícitas para a IA.</p>
+            </article>
+            <article class="info-card">
+              <h3>Engenharia de prompt</h3>
+              <p>Iterei o prompt até alcançar consistência, capacidade de lote e adaptação a diferentes tipos de
+                questão.</p>
+            </article>
+            <article class="info-card">
+              <h3>Validação</h3>
+              <p>Testei saídas, identifiquei falhas, ajustei regras e validei a estrutura gerada para importação.</p>
+            </article>
+            <article class="info-card">
+              <h3>Integração ao fluxo</h3>
+              <p>A solução passou a apoiar o processo oficial da equipe, reduzindo esforço operacional.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="reflection reveal delay-4" id="aprendizado">
+          <span class="module-label">Aprendizado-chave</span>
+          <h2>A IA funcionou porque o processo foi bem explicado antes</h2>
+          <div class="module-copy" style="margin-top: 24px;">
+            <p>O maior aprendizado foi que automação não começa pela ferramenta. Começa pela leitura precisa da dor,
+              pela colaboração entre áreas e pela transformação de regras de negócio em instruções claras, testáveis e
+              repetíveis.</p>
+            <p>Neste projeto, a IA não substituiu o entendimento humano. Ela acelerou uma operação que já tinha sido
+              mapeada, instruída e validada com cuidado.</p>
+          </div>
+        </section>
+
+        <nav class="end-nav reveal delay-4" aria-label="Navegação final da disciplina">
+          <a href="fiocruz.html">← Disciplina anterior: Fiocruz</a>
+          <a href="dashboard.html#disciplinas">Ver todas as disciplinas</a>
+          <a href="sobre.html">Sobre mim</a>
+        </nav>
       </div>
-    </section>
-
-    <footer>
-      <span>Thalisson Cruz · UX/Product Designer</span>
-      <span>© 2026</span>
-    </footer>
+    </main>
   </div>
+
+  <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Imagem ampliada do artefato"
+    aria-hidden="true">
+    <button class="image-modal-close" type="button" aria-label="Fechar imagem ampliada">×</button>
+    <img class="image-modal-img" id="imageModalImg" src="" alt="">
+  </div>
+
+  <script>
+    const sidebar = document.querySelector(".sidebar");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const primaryNav = document.getElementById("primary-nav");
+
+    function closeMenu({ restoreFocus = false } = {}) {
+      if (!sidebar || !menuToggle) return;
+      sidebar.classList.remove("is-open");
+      document.body.classList.remove("nav-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Abrir menu");
+      if (restoreFocus) menuToggle.focus();
+    }
+
+    function openMenu() {
+      if (!sidebar || !menuToggle) return;
+      sidebar.classList.add("is-open");
+      document.body.classList.add("nav-open");
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "Fechar menu");
+    }
+
+    menuToggle?.addEventListener("click", () => {
+      const isOpen = sidebar?.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    primaryNav?.addEventListener("click", (event) => {
+      if (event.target.closest("a")) closeMenu();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && sidebar?.classList.contains("is-open")) {
+        closeMenu({ restoreFocus: true });
+      }
+    });
+
+    const sections = Array.from(document.querySelectorAll('[id]')).filter(section => document.querySelector(`.course-nav a[href="#${section.id}"]`));
+    const links = Array.from(document.querySelectorAll('.course-nav a'));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(link => {
+            const isActive = link.getAttribute('href') === `#${entry.target.id}`;
+            link.classList.toggle('active', isActive);
+            if (isActive) link.setAttribute("aria-current", "true");
+            else link.removeAttribute("aria-current");
+          });
+        }
+      });
+    }, {
+      rootMargin: '-35% 0px -55% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(section => observer.observe(section));
+
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("imageModalImg");
+    const modalClose = document.querySelector(".image-modal-close");
+    let lastFocusedElement = null;
+
+    function openImageModal(img) {
+      lastFocusedElement = document.activeElement;
+      modalImg.src = img.dataset.full || img.src;
+      modalImg.alt = img.alt || "";
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      modalClose.focus();
+    }
+
+    document.querySelectorAll(".case-image-board img").forEach((img) => {
+      img.setAttribute("role", "button");
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("aria-label", `${img.alt || "Imagem do artefato"} — ampliar imagem`);
+
+      img.addEventListener("click", () => openImageModal(img));
+
+      img.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          img.click();
+        }
+      });
+    });
+
+    function closeImageModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      modalImg.src = "";
+      document.body.style.overflow = "";
+      lastFocusedElement?.focus?.();
+      lastFocusedElement = null;
+    }
+
+    modalClose.addEventListener("click", closeImageModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeImageModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!modal.classList.contains("is-open")) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeImageModal();
+      }
+
+      if (event.key === "Tab") {
+        const focusable = Array.from(modal.querySelectorAll('button, [href], img[tabindex], [tabindex]:not([tabindex="-1"])')).filter((element) => !element.disabled);
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  </script>
 </body>
+
 </html>
