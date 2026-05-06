@@ -18,7 +18,7 @@
       --color-text-primary: #111827;
       --color-text-secondary: #64707D;
       --color-text-inverse: #FFFFFF;
-      --color-brand-primary: #1F3548;
+      --color-brand-primary: #1F3548; 
       --color-brand-primary-hover: #172838;
       --color-brand-secondary: #4E6274;
       --color-accent: #C8643B;
@@ -2511,6 +2511,615 @@ h3 {
     grid-template-columns: 1fr;
   }
 }
+
+/* MOBILE FIRST FIX — CRUZ */
+@media (max-width: 900px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    min-width: 0;
+  }
+
+  .shell {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .main {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 18px 14px 44px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  section,
+  article,
+  aside,
+  header,
+  footer,
+  div {
+    min-width: 0;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    z-index: 80;
+    width: 100%;
+    height: auto;
+    min-height: 64px;
+    padding: 10px 14px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, .86);
+    backdrop-filter: blur(18px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .brand,
+  .sidebar > a:first-child {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .brand-logo {
+    height: 30px;
+    max-width: 120px;
+    width: auto;
+  }
+
+  .sidebar-note,
+  .topbar {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  .nav {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    top: calc(100% + 8px);
+    display: none;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .96);
+    box-shadow: var(--shadow);
+  }
+
+  .sidebar.is-open .nav,
+  body.nav-open .sidebar .nav,
+  .nav.is-open {
+    display: grid;
+    gap: 6px;
+  }
+
+  .nav a {
+    min-height: 44px;
+    width: 100%;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .course-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: start;
+    margin: 18px 0 28px;
+  }
+
+  .course-hero h1,
+  .case-hero-title {
+    max-width: 100%;
+    font-size: clamp(34px, 11vw, 48px);
+    line-height: .98;
+    letter-spacing: -.055em;
+    text-wrap: balance;
+  }
+
+  .course-subtitle,
+  .course-hero p {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.58;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 18px;
+  }
+
+  .hero-actions a,
+  .hero-actions .btn,
+  .hero-actions .btn--primary,
+  .hero-actions .btn--secondary {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .course-panel {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .discipline-grid,
+  .course-grid,
+  .card-grid,
+  .grid-4,
+  .content-grid,
+  .workflow-grid,
+  .ai-workflow-grid,
+  .thinking-system,
+  .process-flow,
+  .metric-grid,
+  .impact-grid,
+  .comparison-grid,
+  .method-grid,
+  .persona-grid,
+  .csd-grid,
+  .research-grid,
+  .journey-diagnosis-flow,
+  .manual-flow-track,
+  .redesign-matrix,
+  .tabs-shell {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .card,
+  .info-card,
+  .impact-card,
+  .metric-card,
+  .comparison-card,
+  .method-card,
+  .course-card,
+  .discipline-card {
+    width: 100%;
+    min-width: 0;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .panel,
+  .module,
+  .case-executive,
+  .case-summary,
+  .about-hero,
+  .about-thinking,
+  .contact-panel,
+  .reflection,
+  .case-reading-guide,
+  .journey-diagnosis,
+  .manual-flow-artifact {
+    padding: 20px;
+    border-radius: 22px;
+    margin-top: 22px;
+  }
+
+  .section-title,
+  .module-head,
+  .thinking-header,
+  .process-header,
+  .manual-flow-header,
+  .journey-diagnosis-head {
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .section-title p,
+  .module-head p,
+  .thinking-header p,
+  .process-header p,
+  .manual-flow-intro,
+  .journey-diagnosis-head p {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: clamp(34px, 11vw, 48px);
+    line-height: .98;
+  }
+
+  h2,
+  .module h2,
+  .panel h2,
+  .section-title h2,
+  .case-executive h2,
+  .reflection h2 {
+    font-size: clamp(26px, 8vw, 36px);
+    line-height: 1.06;
+    letter-spacing: -.045em;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 1.18;
+  }
+
+  p,
+  li {
+    font-size: 14px;
+    line-height: 1.58;
+  }
+
+  .module-label,
+  .kicker {
+    font-size: 10px;
+    letter-spacing: .12em;
+    margin-bottom: 10px;
+  }
+
+  .manual-flow-step,
+  .journey-diagnosis-step,
+  .redesign-decision-card {
+    width: 100%;
+    min-height: 0;
+  }
+
+  .manual-flow-step::after,
+  .journey-diagnosis-step::after,
+  .redesign-flow-arrow {
+    display: none;
+  }
+
+  [class*="grid"],
+  [class*="hero"],
+  [class*="panel"],
+  [class*="card"] {
+    min-width: 0;
+  }
+
+  .case-title-line-nowrap,
+  .nowrap {
+    white-space: normal;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  .case-image,
+  .case-image-frame,
+  .solution-artifact,
+  .image-panel {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+}
+
+/* MOBILE JOURNEY FIX — FIOCRUZ */
+@media (max-width: 760px) {
+  #jornada-colaborador,
+  #jornada-colaborador * {
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: none;
+  }
+
+  #jornada-colaborador .tabs-shell {
+    display: block;
+    overflow: hidden;
+  }
+
+  #jornada-colaborador .tab-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    overflow: visible;
+    padding: 12px;
+  }
+
+  #jornada-colaborador .tab-list::before,
+  #jornada-colaborador .tab-button::after,
+  #jornada-colaborador .tab-button:not(:last-child)::after {
+    display: none;
+  }
+
+  #jornada-colaborador .tab-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--blue);
+    text-align: left;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+    line-height: 1.25;
+  }
+
+  #jornada-colaborador .tab-button.is-active {
+    background: var(--blue);
+    color: #fff;
+  }
+
+  #jornada-colaborador .tab-panel {
+    padding: 16px;
+  }
+
+  #jornada-colaborador .tab-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  #jornada-colaborador .tab-panel-item {
+    padding: 16px;
+  }
+}
+
+/* MOBILE BLUEPRINT FIX — FIOCRUZ */
+.blueprint-preview-head,
+.blueprint-expand-button {
+  display: none;
+}
+
+.blueprint-modal[hidden] {
+  display: none;
+}
+
+.blueprint-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: stretch;
+  background: rgba(17, 24, 39, .78);
+  backdrop-filter: blur(10px);
+}
+
+.blueprint-modal-panel {
+  width: min(100vw, 1440px);
+  height: 100dvh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.blueprint-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.94);
+}
+
+.blueprint-modal-header h2 {
+  margin: 0;
+  color: var(--blue);
+  font-size: clamp(24px, 5vw, 36px);
+  line-height: 1.08;
+}
+
+.blueprint-modal-close {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--blue);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.blueprint-modal-hint {
+  margin: 0;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(244, 229, 220, .32);
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.blueprint-modal-content {
+  overflow: auto;
+  padding: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.blueprint-board--modal {
+  width: max-content;
+  min-width: 980px;
+  margin: 0;
+}
+
+.blueprint-board--modal .blueprint-row {
+  min-width: 980px;
+}
+
+@media (max-width: 760px) {
+  .blueprint-preview-shell {
+    position: relative;
+  }
+
+  .blueprint-preview-head {
+    display: grid;
+    gap: 12px;
+    margin: 0 0 12px;
+    padding: 14px;
+    border: 1px solid rgba(200, 100, 59, .18);
+    border-radius: 16px;
+    background: rgba(244, 229, 220, .32);
+  }
+
+  .blueprint-preview-head p {
+    margin: 0;
+    color: var(--blue);
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 800;
+  }
+
+  .blueprint-expand-button {
+    min-height: 44px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 14px;
+    background: var(--blue);
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  #blueprint .blueprint-preview-shell > .blueprint-scroll {
+    max-height: 260px;
+    overflow: hidden;
+    position: relative;
+    pointer-events: none;
+  }
+
+  #blueprint .blueprint-preview-shell > .blueprint-scroll::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 96px;
+    background: linear-gradient(180deg, transparent, rgba(255,255,255,.96));
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  #blueprint .blueprint-preview-shell .blueprint-board {
+    display: block;
+    width: max-content;
+    min-width: 920px;
+    margin-top: 0;
+    border-radius: 20px;
+  }
+
+  #blueprint .blueprint-preview-shell .blueprint-row {
+    display: grid;
+    min-width: 920px;
+    grid-template-columns: 140px repeat(5, 160px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  #blueprint .blueprint-preview-shell .blueprint-row:last-child {
+    border-bottom: 0;
+  }
+
+  #blueprint .blueprint-head,
+  #blueprint .blueprint-cell,
+  .blueprint-board--modal .blueprint-head,
+  .blueprint-board--modal .blueprint-cell {
+    min-height: 88px;
+    padding: 14px;
+    font-size: 12.5px;
+    line-height: 1.48;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  #blueprint .blueprint-head,
+  .blueprint-board--modal .blueprint-head {
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  #blueprint .blueprint-head:first-child,
+  #blueprint .blueprint-cell:first-child,
+  #blueprint .blueprint-row-label,
+  .blueprint-board--modal .blueprint-head:first-child,
+  .blueprint-board--modal .blueprint-cell:first-child,
+  .blueprint-board--modal .blueprint-row-label {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    box-shadow: 8px 0 18px rgba(31, 53, 72, .08);
+  }
+
+  #blueprint .blueprint-head:first-child,
+  .blueprint-board--modal .blueprint-head:first-child {
+    z-index: 4;
+    background: var(--blue);
+    color: #fff;
+  }
+
+  #blueprint .blueprint-cell:first-child,
+  #blueprint .blueprint-row-label,
+  .blueprint-board--modal .blueprint-cell:first-child,
+  .blueprint-board--modal .blueprint-row-label {
+    background: rgba(244, 229, 220, .96);
+    color: var(--blue);
+    font-weight: 900;
+  }
+
+  .blueprint-modal-panel {
+    width: 100vw;
+    height: 100dvh;
+  }
+
+  .blueprint-modal-content {
+    padding: 12px;
+  }
+
+  .blueprint-board--modal {
+    min-width: 980px;
+  }
+
+  body.blueprint-modal-open {
+    overflow: hidden;
+  }
+}
 </style>
 
 
@@ -2999,47 +3608,55 @@ h3 {
             </div>
             <p>O blueprint conecta ações visíveis, processos internos, sistemas utilizados e gargalos estruturais da operação.</p>
           </div>
-          <div class="blueprint-scroll">
-            <div class="blueprint-board" role="table" aria-label="Service Blueprint da produção EAD">
-              <div class="blueprint-row" role="row">
-                <div class="blueprint-head" role="columnheader">Camada</div>
-                <div class="blueprint-head" role="columnheader">Receber demanda</div>
-                <div class="blueprint-head" role="columnheader">Alinhar briefing</div>
-                <div class="blueprint-head" role="columnheader">Produzir conteúdo</div>
-                <div class="blueprint-head" role="columnheader">Validar entregas</div>
-                <div class="blueprint-head" role="columnheader">Finalizar curso</div>
-              </div>
-              <div class="blueprint-row" role="row">
-                <div class="blueprint-cell blueprint-row-label" role="rowheader">Frontstage</div>
-                <div class="blueprint-cell">Entrada da demanda e primeiras conversas.</div>
-                <div class="blueprint-cell">Reuniões e alinhamentos com demandante.</div>
-                <div class="blueprint-cell">Apresentações de protótipos e entregas.</div>
-                <div class="blueprint-cell">Rodadas de revisão e aprovação.</div>
-                <div class="blueprint-cell">Publicação e comunicação de entrega.</div>
-              </div>
-              <div class="blueprint-row" role="row">
-                <div class="blueprint-cell blueprint-row-label" role="rowheader">Backstage</div>
-                <div class="blueprint-cell">Triagem, interpretação inicial e busca de contexto.</div>
-                <div class="blueprint-cell">Design Instrucional e definição de escopo.</div>
-                <div class="blueprint-cell">Design Visual, Desenvolvimento, Multimídia e ajustes.</div>
-                <div class="blueprint-cell">Revisão técnica, retrabalho e validações recorrentes.</div>
-                <div class="blueprint-cell">Fechamento operacional e registros finais.</div>
-              </div>
-              <div class="blueprint-row" role="row">
-                <div class="blueprint-cell blueprint-row-label" role="rowheader">Sistemas</div>
-                <div class="blueprint-cell">Documentos e canais de comunicação.</div>
-                <div class="blueprint-cell">Planilhas, registros e ferramentas de gestão.</div>
-                <div class="blueprint-cell">Moodle, ferramentas de design e desenvolvimento.</div>
-                <div class="blueprint-cell">Arquivos, comentários e documentos de revisão.</div>
-                <div class="blueprint-cell">AVA Moodle, BI, suporte e certificação.</div>
-              </div>
-              <div class="blueprint-row" role="row">
-                <div class="blueprint-cell blueprint-row-label" role="rowheader">Gargalos</div>
-                <div class="blueprint-cell">Falta de contexto.</div>
-                <div class="blueprint-cell">Briefing incompleto.</div>
-                <div class="blueprint-cell">Escopo instável.</div>
-                <div class="blueprint-cell">Mudanças tardias.</div>
-                <div class="blueprint-cell">Aprendizados pouco sistematizados.</div>
+          <div class="blueprint-preview-shell">
+            <div class="blueprint-preview-head">
+              <p>O blueprint é uma matriz detalhada. No celular, abra em tela cheia para ler as camadas e etapas.</p>
+              <button class="blueprint-expand-button" type="button" aria-haspopup="dialog" aria-controls="blueprint-modal">
+                Ampliar blueprint
+              </button>
+            </div>
+            <div class="blueprint-scroll">
+              <div class="blueprint-board" role="table" aria-label="Prévia do service blueprint">
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-head" role="columnheader">Camada</div>
+                  <div class="blueprint-head" role="columnheader">Receber demanda</div>
+                  <div class="blueprint-head" role="columnheader">Alinhar briefing</div>
+                  <div class="blueprint-head" role="columnheader">Produzir conteúdo</div>
+                  <div class="blueprint-head" role="columnheader">Validar entregas</div>
+                  <div class="blueprint-head" role="columnheader">Finalizar curso</div>
+                </div>
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-cell blueprint-row-label" role="rowheader">Frontstage</div>
+                  <div class="blueprint-cell">Entrada da demanda e primeiras conversas.</div>
+                  <div class="blueprint-cell">Reuniões e alinhamentos com demandante.</div>
+                  <div class="blueprint-cell">Apresentações de protótipos e entregas.</div>
+                  <div class="blueprint-cell">Rodadas de revisão e aprovação.</div>
+                  <div class="blueprint-cell">Publicação e comunicação de entrega.</div>
+                </div>
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-cell blueprint-row-label" role="rowheader">Backstage</div>
+                  <div class="blueprint-cell">Triagem, interpretação inicial e busca de contexto.</div>
+                  <div class="blueprint-cell">Design Instrucional e definição de escopo.</div>
+                  <div class="blueprint-cell">Design Visual, Desenvolvimento, Multimídia e ajustes.</div>
+                  <div class="blueprint-cell">Revisão técnica, retrabalho e validações recorrentes.</div>
+                  <div class="blueprint-cell">Fechamento operacional e registros finais.</div>
+                </div>
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-cell blueprint-row-label" role="rowheader">Sistemas</div>
+                  <div class="blueprint-cell">Documentos e canais de comunicação.</div>
+                  <div class="blueprint-cell">Planilhas, registros e ferramentas de gestão.</div>
+                  <div class="blueprint-cell">Moodle, ferramentas de design e desenvolvimento.</div>
+                  <div class="blueprint-cell">Arquivos, comentários e documentos de revisão.</div>
+                  <div class="blueprint-cell">AVA Moodle, BI, suporte e certificação.</div>
+                </div>
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-cell blueprint-row-label" role="rowheader">Gargalos</div>
+                  <div class="blueprint-cell">Falta de contexto.</div>
+                  <div class="blueprint-cell">Briefing incompleto.</div>
+                  <div class="blueprint-cell">Escopo instável.</div>
+                  <div class="blueprint-cell">Mudanças tardias.</div>
+                  <div class="blueprint-cell">Aprendizados pouco sistematizados.</div>
+                </div>
               </div>
             </div>
           </div>
@@ -3052,6 +3669,65 @@ h3 {
             </ul>
           </div>
         </section>
+
+        <div class="blueprint-modal" id="blueprint-modal" role="dialog" aria-modal="true" aria-labelledby="blueprint-modal-title" hidden>
+          <div class="blueprint-modal-panel">
+            <div class="blueprint-modal-header">
+              <div>
+                <span class="module-label">Service Blueprint</span>
+                <h2 id="blueprint-modal-title">O que acontece por trás do fluxo</h2>
+              </div>
+              <button class="blueprint-modal-close" type="button" aria-label="Fechar blueprint ampliado">
+                ×
+              </button>
+            </div>
+            <p class="blueprint-modal-hint">Arraste para navegar pelas colunas e linhas do blueprint.</p>
+            <div class="blueprint-modal-content">
+              <div class="blueprint-board blueprint-board--modal" role="table" aria-label="Service blueprint ampliado">
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-head" role="columnheader">Camada</div>
+                  <div class="blueprint-head" role="columnheader">Receber demanda</div>
+                  <div class="blueprint-head" role="columnheader">Alinhar briefing</div>
+                  <div class="blueprint-head" role="columnheader">Produzir conteúdo</div>
+                  <div class="blueprint-head" role="columnheader">Validar entregas</div>
+                  <div class="blueprint-head" role="columnheader">Finalizar curso</div>
+                </div>
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-cell blueprint-row-label" role="rowheader">Frontstage</div>
+                  <div class="blueprint-cell">Entrada da demanda e primeiras conversas.</div>
+                  <div class="blueprint-cell">Reuniões e alinhamentos com demandante.</div>
+                  <div class="blueprint-cell">Apresentações de protótipos e entregas.</div>
+                  <div class="blueprint-cell">Rodadas de revisão e aprovação.</div>
+                  <div class="blueprint-cell">Publicação e comunicação de entrega.</div>
+                </div>
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-cell blueprint-row-label" role="rowheader">Backstage</div>
+                  <div class="blueprint-cell">Triagem, interpretação inicial e busca de contexto.</div>
+                  <div class="blueprint-cell">Design Instrucional e definição de escopo.</div>
+                  <div class="blueprint-cell">Design Visual, Desenvolvimento, Multimídia e ajustes.</div>
+                  <div class="blueprint-cell">Revisão técnica, retrabalho e validações recorrentes.</div>
+                  <div class="blueprint-cell">Fechamento operacional e registros finais.</div>
+                </div>
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-cell blueprint-row-label" role="rowheader">Sistemas</div>
+                  <div class="blueprint-cell">Documentos e canais de comunicação.</div>
+                  <div class="blueprint-cell">Planilhas, registros e ferramentas de gestão.</div>
+                  <div class="blueprint-cell">Moodle, ferramentas de design e desenvolvimento.</div>
+                  <div class="blueprint-cell">Arquivos, comentários e documentos de revisão.</div>
+                  <div class="blueprint-cell">AVA Moodle, BI, suporte e certificação.</div>
+                </div>
+                <div class="blueprint-row" role="row">
+                  <div class="blueprint-cell blueprint-row-label" role="rowheader">Gargalos</div>
+                  <div class="blueprint-cell">Falta de contexto.</div>
+                  <div class="blueprint-cell">Briefing incompleto.</div>
+                  <div class="blueprint-cell">Escopo instável.</div>
+                  <div class="blueprint-cell">Mudanças tardias.</div>
+                  <div class="blueprint-cell">Aprendizados pouco sistematizados.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <section class="module is-decision reveal reveal-delay-4" id="csd">
           <div class="module-head">
@@ -3364,6 +4040,45 @@ h3 {
 
     modal?.addEventListener("click", (event) => {
       if (event.target === modal) closeImageModal();
+    });
+
+    const blueprintModal = document.getElementById("blueprint-modal");
+    const blueprintOpenButton = document.querySelector(".blueprint-expand-button");
+    const blueprintCloseButton = document.querySelector(".blueprint-modal-close");
+    let lastBlueprintTrigger = null;
+
+    function openBlueprintModal() {
+      if (!blueprintModal || !blueprintOpenButton) return;
+      lastBlueprintTrigger = document.activeElement;
+      blueprintModal.hidden = false;
+      document.body.classList.add("blueprint-modal-open");
+      requestAnimationFrame(() => {
+        blueprintCloseButton?.focus();
+      });
+    }
+
+    function closeBlueprintModal() {
+      if (!blueprintModal) return;
+      blueprintModal.hidden = true;
+      document.body.classList.remove("blueprint-modal-open");
+      if (lastBlueprintTrigger && typeof lastBlueprintTrigger.focus === "function") {
+        lastBlueprintTrigger.focus();
+      }
+      lastBlueprintTrigger = null;
+    }
+
+    blueprintOpenButton?.addEventListener("click", openBlueprintModal);
+    blueprintCloseButton?.addEventListener("click", closeBlueprintModal);
+
+    blueprintModal?.addEventListener("click", (event) => {
+      if (event.target === blueprintModal) closeBlueprintModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && blueprintModal && !blueprintModal.hidden) {
+        event.preventDefault();
+        closeBlueprintModal();
+      }
     });
 
     const sections = Array.from(document.querySelectorAll("section[id]")).filter(section => document.querySelector(`.course-nav a[href="#${section.id}"]`));
