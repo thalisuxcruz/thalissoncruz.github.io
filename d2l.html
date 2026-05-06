@@ -1354,6 +1354,17 @@
       stroke-linejoin: round;
     }
 
+    .manual-flow-icon img {
+      width: 28px;
+      height: 28px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .manual-flow-icon--loop img {
+      filter: invert(49%) sepia(32%) saturate(1268%) hue-rotate(335deg) brightness(87%) contrast(86%);
+    }
+
     .manual-flow-icon--accent,
     .manual-flow-icon--loop {
       color: var(--terracotta);
@@ -3214,6 +3225,178 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* MANUAL FLOW READABILITY PASS */
+    .manual-flow-artifact {
+      padding: 26px 30px;
+    }
+
+    .manual-flow-header {
+      gap: 28px;
+      margin-bottom: 22px;
+    }
+
+    .manual-flow-track {
+      grid-template-columns: repeat(6, minmax(150px, 1fr));
+      gap: clamp(14px, 1.2vw, 20px);
+    }
+
+    .manual-flow-track::before {
+      display: none;
+    }
+
+    .manual-flow-step {
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      min-height: 206px;
+      padding: 38px 14px 14px;
+      border-radius: 18px;
+    }
+
+    .manual-flow-step.is-loop {
+      min-height: 218px;
+    }
+
+    .manual-flow-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 16px;
+      right: -18px;
+      z-index: 3;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--terracotta);
+      font-size: 20px;
+      line-height: 1;
+      font-weight: 900;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, .84);
+    }
+
+    .manual-flow-number {
+      top: -20px;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      box-shadow: 0 0 0 6px rgba(255, 255, 255, .94);
+    }
+
+    .manual-flow-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 12px;
+    }
+
+    .manual-flow-icon svg,
+    .manual-flow-icon img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .manual-flow-step h3 {
+      max-width: 150px;
+      margin-bottom: 7px;
+      font-size: 15px;
+      line-height: 1.12;
+    }
+
+    .manual-flow-divider {
+      width: 24px;
+      height: 2px;
+      margin-bottom: 7px;
+    }
+
+    .manual-flow-step p {
+      max-width: 150px;
+      font-size: 11.5px;
+      line-height: 1.42;
+    }
+
+    .manual-flow-badge {
+      min-height: 24px;
+      margin-top: 10px;
+      padding: 0 9px;
+      font-size: 8.5px;
+      line-height: 1.05;
+    }
+
+    .manual-flow-critical {
+      grid-template-columns: 60px 130px 1fr;
+      gap: 16px;
+      margin-top: 18px;
+      padding: 10px 18px 10px 10px;
+      border-radius: 16px;
+    }
+
+    .manual-flow-critical-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+    }
+
+    .manual-flow-critical-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .manual-flow-critical strong {
+      min-height: 42px;
+      padding-right: 16px;
+      font-size: 10px;
+    }
+
+    .manual-flow-critical p {
+      font-size: 14.5px;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 1280px) {
+      .manual-flow-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        row-gap: 34px;
+      }
+
+      .manual-flow-track::before,
+      .manual-flow-step::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .manual-flow-artifact {
+        padding: 22px;
+      }
+
+      .manual-flow-track {
+        gap: 30px;
+      }
+
+      .manual-flow-step {
+        min-height: 0;
+        padding: 28px 18px 18px;
+      }
+
+      .manual-flow-icon {
+        width: 48px;
+        height: 48px;
+        margin: 4px 0 12px;
+      }
+
+      .manual-flow-critical {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+
+      .manual-flow-critical strong {
+        min-height: 0;
+        padding: 0;
+        border-right: 0;
+      }
+    }
   </style>
 
 
@@ -3629,12 +3812,7 @@
               <article class="manual-flow-step is-loop">
                 <span class="manual-flow-number">6</span>
                 <div class="manual-flow-icon manual-flow-icon--loop" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M17.5 7.5A6.5 6.5 0 0 0 6 10" />
-                    <path d="M17.5 7.5V4.5h3" />
-                    <path d="M6.5 16.5A6.5 6.5 0 0 0 18 14" />
-                    <path d="M6.5 16.5v3h-3" />
-                  </svg>
+                  <img src="assets/d2l/fluxo-repetir-em-escala.svg" alt="">
                 </div>
                 <h3>Repetir em escala</h3>
                 <span class="manual-flow-divider" aria-hidden="true"></span>
