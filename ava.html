@@ -3341,6 +3341,321 @@ h3 {
     grid-template-columns: 1fr;
   }
 }
+
+/* MOBILE FIRST FIX — CRUZ */
+@media (max-width: 900px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  body {
+    min-width: 0;
+  }
+
+  .shell {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .main {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 18px 14px 44px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  section,
+  article,
+  aside,
+  header,
+  footer,
+  div {
+    min-width: 0;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    z-index: 80;
+    width: 100%;
+    height: auto;
+    min-height: 64px;
+    padding: 10px 14px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, .86);
+    backdrop-filter: blur(18px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .brand,
+  .sidebar > a:first-child {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .brand-logo {
+    height: 30px;
+    max-width: 120px;
+    width: auto;
+  }
+
+  .sidebar-note,
+  .topbar {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  .nav {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    top: calc(100% + 8px);
+    display: none;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .96);
+    box-shadow: var(--shadow);
+  }
+
+  .sidebar.is-open .nav,
+  body.nav-open .sidebar .nav,
+  .nav.is-open {
+    display: grid;
+    gap: 6px;
+  }
+
+  .nav a {
+    min-height: 44px;
+    width: 100%;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .course-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: start;
+    margin: 18px 0 28px;
+  }
+
+  .course-hero h1,
+  .case-hero-title {
+    max-width: 100%;
+    font-size: clamp(34px, 11vw, 48px);
+    line-height: .98;
+    letter-spacing: -.055em;
+    text-wrap: balance;
+  }
+
+  .course-subtitle,
+  .course-hero p {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.58;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 18px;
+  }
+
+  .hero-actions a,
+  .hero-actions .btn,
+  .hero-actions .btn--primary,
+  .hero-actions .btn--secondary {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .course-panel {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .discipline-grid,
+  .course-grid,
+  .card-grid,
+  .grid-4,
+  .content-grid,
+  .workflow-grid,
+  .ai-workflow-grid,
+  .thinking-system,
+  .process-flow,
+  .metric-grid,
+  .impact-grid,
+  .comparison-grid,
+  .method-grid,
+  .persona-grid,
+  .csd-grid,
+  .research-grid,
+  .journey-diagnosis-flow,
+  .manual-flow-track,
+  .redesign-matrix,
+  .tabs-shell {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .card,
+  .info-card,
+  .impact-card,
+  .metric-card,
+  .comparison-card,
+  .method-card,
+  .course-card,
+  .discipline-card {
+    width: 100%;
+    min-width: 0;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .panel,
+  .module,
+  .case-executive,
+  .case-summary,
+  .about-hero,
+  .about-thinking,
+  .contact-panel,
+  .reflection,
+  .case-reading-guide,
+  .journey-diagnosis,
+  .manual-flow-artifact {
+    padding: 20px;
+    border-radius: 22px;
+    margin-top: 22px;
+  }
+
+  .section-title,
+  .module-head,
+  .thinking-header,
+  .process-header,
+  .manual-flow-header,
+  .journey-diagnosis-head {
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .section-title p,
+  .module-head p,
+  .thinking-header p,
+  .process-header p,
+  .manual-flow-intro,
+  .journey-diagnosis-head p {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: clamp(34px, 11vw, 48px);
+    line-height: .98;
+  }
+
+  h2,
+  .module h2,
+  .panel h2,
+  .section-title h2,
+  .case-executive h2,
+  .reflection h2 {
+    font-size: clamp(26px, 8vw, 36px);
+    line-height: 1.06;
+    letter-spacing: -.045em;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 1.18;
+  }
+
+  p,
+  li {
+    font-size: 14px;
+    line-height: 1.58;
+  }
+
+  .module-label,
+  .kicker {
+    font-size: 10px;
+    letter-spacing: .12em;
+    margin-bottom: 10px;
+  }
+
+  .manual-flow-step,
+  .journey-diagnosis-step,
+  .redesign-decision-card {
+    width: 100%;
+    min-height: 0;
+  }
+
+  .manual-flow-step::after,
+  .journey-diagnosis-step::after,
+  .redesign-flow-arrow {
+    display: none;
+  }
+
+  [class*="grid"],
+  [class*="hero"],
+  [class*="panel"],
+  [class*="card"] {
+    min-width: 0;
+  }
+
+  .case-title-line-nowrap,
+  .nowrap {
+    white-space: normal;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  .case-image,
+  .case-image-frame,
+  .solution-artifact,
+  .image-panel {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+}
 </style>
 
 
