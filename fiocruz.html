@@ -1,697 +1,3439 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fiocruz · ADDIE-UX — Thalisson Cruz</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiocruz · ADDIE-UX — CRUZ Learning Environment</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <style>
-    :root{--bg:#0B0F1A;--surface:#111827;--border:rgba(255,255,255,.08);--text:#fff;--muted:#A1A1AA;--blue:#3B82F6;--blue-2:#60A5FA;--purple:#6D5DF6;--green:#22C55E;--red:#EF4444}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 18% 8%,rgba(59,130,246,.12),transparent 28%),radial-gradient(circle at 82% 4%,rgba(109,93,246,.10),transparent 24%),var(--bg);color:var(--text);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.45}a{color:inherit;text-decoration:none}.page{width:min(1120px,calc(100% - 40px));margin:0 auto}.nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;width:100vw;margin-left:calc(50% - 50vw);padding:0 max(20px,calc((100vw - 1120px)/2));background:rgba(11,15,26,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.brand{letter-spacing:.2em;font-weight:800;font-size:18px}.nav-links{display:flex;gap:22px;color:var(--muted);font-size:14px}.nav-links a:hover{color:white}h1,h2,h3,h4,p{margin-top:0}h1{font-size:clamp(48px,7vw,82px);line-height:.98;margin:24px 0;letter-spacing:-.06em}h2{font-size:clamp(34px,4vw,56px);line-height:1.04;margin:0 0 18px;letter-spacing:-.045em}h3{margin:0 0 10px;font-size:22px;letter-spacing:-.02em}p{color:var(--muted);font-size:18px}.lead{font-size:21px;max-width:760px}.eyebrow{display:inline-flex;color:var(--blue-2);border:1px solid rgba(59,130,246,.22);background:rgba(59,130,246,.08);padding:8px 12px;border-radius:999px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.tags{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}.tag{color:#D4D4D8;border:1px solid var(--border);padding:8px 12px;border-radius:999px;font-size:13px;background:rgba(255,255,255,.03)}section{padding:92px 0;border-top:1px solid var(--border)}.section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;margin-bottom:34px}.hero{padding:104px 0 84px;display:grid;grid-template-columns:1fr .88fr;gap:56px;align-items:center}.hero-visual{min-height:500px;border-radius:32px;border:1px solid var(--border);background:radial-gradient(circle at 25% 20%,rgba(96,165,250,.28),transparent 28%),radial-gradient(circle at 80% 70%,rgba(109,93,246,.24),transparent 34%),linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));position:relative;overflow:hidden;padding:28px;box-shadow:0 30px 90px rgba(0,0,0,.35)}.system-orbit{position:absolute;inset:48px;border-radius:28px;border:1px dashed rgba(96,165,250,.24)}.pulse-core{position:absolute;width:132px;height:132px;border-radius:999px;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;color:white;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 0 80px rgba(96,165,250,.45)}.system-card{position:absolute;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(11,15,26,.72);backdrop-filter:blur(14px);padding:18px;box-shadow:0 24px 60px rgba(0,0,0,.28)}.card-a{top:46px;left:42px;width:190px}.card-b{top:150px;right:36px;width:220px}.card-c{bottom:46px;left:70px;width:240px}.system-card strong{display:block;font-size:14px;margin-bottom:8px}.system-card span{color:var(--muted);font-size:12px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{border:1px solid var(--border);border-radius:22px;background:rgba(17,24,39,.74);padding:26px;min-height:190px}.card p,.small{font-size:15px;color:var(--muted)}.card strong{color:var(--blue-2);font-size:13px;text-transform:uppercase;letter-spacing:.08em}.process-map,.blueprint,.addie-system{border-radius:30px;padding:26px;border:1px solid rgba(96,165,250,.16);background:radial-gradient(circle at 20% 0%,rgba(59,130,246,.14),transparent 28%),rgba(17,24,39,.56);overflow:hidden}.macro-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.flow-step{border:1px solid rgba(255,255,255,.10);background:rgba(11,15,26,.65);border-radius:18px;padding:18px;min-height:126px;position:relative}.flow-step span{color:var(--blue-2);font-weight:800;font-size:12px}.flow-step h4{margin:8px 0 6px}.flow-step p{font-size:13px;margin:0}.parallel-flows{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}.parallel-flows div{border-radius:16px;padding:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:14px;color:#D4D4D8}.journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.bp-row{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:stretch;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}.bp-row:last-child{border-bottom:0}.bp-row>strong{display:flex;align-items:center;justify-content:center;border-radius:16px;background:rgba(11,15,26,.72);border:1px solid rgba(255,255,255,.1);color:var(--blue-2);font-size:13px;text-transform:uppercase;letter-spacing:.08em}.bp-items{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.bp-items span{min-height:62px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;border-radius:16px;background:rgba(15,23,42,.78);border:1px solid rgba(148,163,184,.14);color:#D4D4D8;font-size:13px;line-height:1.25}.bp-row.highlight>strong{color:#FCA5A5;border-color:rgba(239,68,68,.24);background:rgba(127,29,29,.18)}.bp-row.highlight .bp-items span{background:linear-gradient(145deg,rgba(127,29,29,.22),rgba(15,23,42,.86));border-color:rgba(239,68,68,.22);color:#FECACA}.layers{display:flex;flex-direction:column-reverse;gap:12px;margin:40px 0}.layer{padding:18px 24px;border-radius:16px;font-weight:800;background:linear-gradient(135deg,rgba(30,41,59,.6),rgba(15,23,42,.9));border:1px solid rgba(99,102,241,.2);display:flex;justify-content:space-between;gap:18px;align-items:center}.layer small{color:var(--muted);font-weight:500}.addie-flow{display:flex;justify-content:space-between;gap:12px;margin:42px 0}.addie-flow div{flex:1;text-align:center;padding:16px;border-radius:14px;background:rgba(15,23,42,.8);border:1px solid rgba(148,163,184,.15);font-size:14px;font-weight:800}.components{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}.component-card{padding:20px;border-radius:16px;background:linear-gradient(145deg,rgba(15,23,42,.9),rgba(2,6,23,.9));border:1px solid rgba(99,102,241,.2);min-height:130px}.component-card span{color:var(--muted);font-size:13px}.agent-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.agent{border:1px solid var(--border);background:rgba(17,24,39,.74);border-radius:20px;padding:20px;min-height:210px}.agent p{font-size:14px}.quote{background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(109,93,246,.10));border:1px solid rgba(96,165,250,.18);border-radius:32px;padding:48px}.quote h2{color:white}footer{padding:44px 0;border-top:1px solid var(--border);color:var(--muted);display:flex;justify-content:space-between}@media(max-width:980px){.hero,.section-head,.grid-3,.grid-4,.macro-flow,.parallel-flows,.journey-grid,.components,.agent-grid,.bp-row,.bp-items{grid-template-columns:1fr}.addie-flow{flex-direction:column}.nav-links{display:none}h1{font-size:48px}}
-    .nav{
-      height:82px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid var(--border);
-      position:sticky;
-      top:0;
-      z-index:50;
-      width:100vw;
-      margin-left:calc(50% - 50vw);
-      padding-left:max(24px, calc((100vw - 1120px) / 2));
-      padding-right:max(24px, calc((100vw - 1120px) / 2));
-      background:rgba(11,15,26,.92);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
+    :root {
+      --color-bg: #F7F6F2;
+      --color-surface: #FFFFFF;
+      --color-surface-soft: #ECEFF1;
+      --color-text-primary: #111827;
+      --color-text-secondary: #64707D;
+      --color-text-inverse: #FFFFFF;
+      --color-brand-primary: #1F3548;
+      --color-brand-primary-hover: #172838;
+      --color-brand-secondary: #4E6274;
+      --color-accent: #C8643B;
+      --color-accent-soft: #F4E5DC;
+      --color-border: rgba(17, 24, 39, .10);
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      --radius-xs: 8px;
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 28px;
+      --radius-2xl: 32px;
+      --radius-pill: 999px;
+      --shadow-sm: 0 8px 20px rgba(31, 53, 72, .05);
+      --shadow-md: 0 16px 38px rgba(31, 53, 72, .08);
+      --shadow-lg: 0 24px 70px rgba(31, 53, 72, .10);
+      --motion-fast: 150ms ease;
+      --motion-base: 220ms ease;
+      --motion-slow: 420ms cubic-bezier(.22, 1, .36, 1);
+      --bg: var(--color-bg);
+      --surface: var(--color-surface);
+      --surface-soft: var(--color-surface-soft);
+      --ink: var(--color-text-primary);
+      --muted: var(--color-text-secondary);
+      --line: var(--color-border);
+      --blue: var(--color-brand-primary);
+      --blue-2: var(--color-brand-secondary);
+      --terracotta: var(--color-accent);
+      --terracotta-soft: var(--color-accent-soft);
+      --sand: #D9D1C6;
+      --shadow: var(--shadow-lg);
+      --radius: var(--radius-xl);
     }
 
-    .brand{
-      letter-spacing:.2em;
-      font-weight:800;
-      font-size:18px;
+    * {
+      box-sizing: border-box;
     }
 
-    .nav-links{
-      display:flex;
-      gap:22px;
-      color:var(--muted);
-      font-size:14px;
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 96px;
     }
 
-    .nav-links a:hover{
-      color:white;
-    }
-
-    .contact-footer{
-      padding:56px 0 34px;
-      border-top:1px solid var(--border);
-      display:grid;
-      grid-template-columns:1fr 1.2fr;
-      gap:32px;
-      align-items:start;
-    }
-
-    .contact-footer h2{
-      font-size:clamp(30px,4vw,46px);
-      margin:0 0 12px;
-    }
-
-    .contact-footer p{
-      font-size:16px;
-      max-width:480px;
-    }
-
-    .contact-links{
-      display:grid;
-      gap:12px;
-      justify-content:end;
-    }
-
-    .contact-link{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-height:48px;
-      padding:12px 16px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      color:#D4D4D8;
-      font-size:14px;
-      font-weight:700;
-      transition:.2s ease;
-    }
-
-    .contact-link:hover{
-      border-color:rgba(96,165,250,.35);
-      color:white;
-      transform:translateY(-1px);
-    }
-
-    .contact-icon{
-      width:28px;
-      height:28px;
-      border-radius:999px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg,var(--blue),var(--purple));
-      color:white;
-      font-size:13px;
-      flex:0 0 28px;
-    }
-
-    @media(max-width:980px){
-      .contact-footer{
-        grid-template-columns:1fr;
-      }
-      .contact-links{
-        justify-content:stretch;
-      }
-      footer{
-        flex-direction:column;
-        gap:10px;
-      }
-    }
-
-    @media(max-width:520px){
-      .page{
-        width:calc(100% - 28px);
-      }
-      .nav{
-        height:72px;
-        padding-left:20px;
-        padding-right:20px;
-      }
-      .brand{
-        font-size:16px;
-      }
-      .nav-links{
-        gap:14px;
-        font-size:13px;
-      }
-      .contact-footer{
-        padding:44px 0 28px;
-      }
-      .contact-link{
-        border-radius:18px;
-        align-items:flex-start;
-      }
-    }
-    .hero-visual {
-      min-height: 500px;
-      border-radius: 32px;
-      border: 1px solid var(--border);
+    body {
+      margin: 0;
+      overflow-x: hidden;
       background:
-        radial-gradient(circle at 25% 20%, rgba(96,165,250,.28), transparent 28%),
-        radial-gradient(circle at 80% 70%, rgba(109,93,246,.24), transparent 34%),
-        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+        radial-gradient(circle at 84% 8%, rgba(200, 100, 59, .08), transparent 28%),
+        radial-gradient(circle at 12% 4%, rgba(31, 53, 72, .08), transparent 26%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Manrope", system-ui, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    :where(a, button, [tabindex]):focus-visible {
+      outline: 3px solid rgba(200, 100, 59, .48);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 10000;
+      transform: translateY(-140%);
+      padding: 10px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--blue);
+      color: var(--color-text-inverse);
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--motion-fast);
+    }
+
+    .skip-link:focus-visible {
+      transform: translateY(0);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon--nav {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      stroke-width: 1.75;
+    }
+
+    .icon--action {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      stroke-width: 2;
+    }
+
+    .icon-box,
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border: 1px solid rgba(200, 100, 59, .18);
+      border-radius: var(--radius-md);
+      background: rgba(200, 100, 59, .08);
+      color: var(--terracotta);
+    }
+
+    .icon-box svg,
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .btn,
+    .end-nav a,
+    .case-back-link,
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      min-height: 44px;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform var(--motion-base), background var(--motion-base), box-shadow var(--motion-base);
+    }
+
+    .btn:hover,
+    .end-nav a:hover,
+    .case-back-link:hover,
+    .back-link:hover {
+      transform: translateY(-1px);
+    }
+
+    .case-back-link:active,
+    .back-link:active,
+    .end-nav a:active {
+      transform: scale(.98);
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      height: 100vh;
+      padding: 34px 24px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 255, 255, .62);
+      backdrop-filter: blur(18px);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .brand-logo {
+      display: block;
+      width: auto;
+      max-width: 160px;
+      height: 40px;
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      min-width: 44px;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: #fff;
+      color: var(--blue);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav a {
+      min-height: 46px;
+      padding: 0 14px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue-2);
+      font-size: 14px;
+      font-weight: 700;
+      transition: color var(--motion-base), background var(--motion-base), box-shadow var(--motion-base);
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: #fff;
+      color: var(--terracotta);
+      box-shadow: 0 12px 28px rgba(31, 53, 72, .08);
+    }
+
+    .nav-icon {
+      display: block;
+      background: currentColor;
+      -webkit-mask: var(--nav-icon-url) center / contain no-repeat;
+      mask: var(--nav-icon-url) center / contain no-repeat;
+    }
+
+    .nav-icon--dashboard {
+      --nav-icon-url: url("assets/dashboard.svg");
+    }
+
+    .nav-icon--disciplines {
+      --nav-icon-url: url("assets/open-book.svg");
+    }
+
+    .sidebar-note {
+      margin-top: auto;
+      padding: 24px;
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      color: var(--blue);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .sidebar-note b,
+    .sidebar-note strong,
+    .sidebar-note-title {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--terracotta);
+      font-family: "Epilogue", sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+    }
+
+    .sidebar-note p,
+    .sidebar-note span {
+      color: var(--blue);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .sidebar-note .signature,
+    .sidebar-note img.signature {
+      display: block;
+      width: 150px;
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    .main {
+      min-width: 0;
+      padding: 32px;
+    }
+
+    .container {
+      width: min(100% - 32px, 1440px);
+      margin: 0 auto;
+    }
+
+    .case-back-link,
+    .back-link {
+      width: max-content;
+      margin-bottom: 16px;
+      color: var(--terracotta);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .course-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(380px, 520px);
+      gap: clamp(28px, 4vw, 64px);
+      align-items: center;
+      margin-bottom: 28px;
+      padding: 34px 38px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .92), rgba(255, 255, 255, .68)),
+        radial-gradient(circle at 92% 18%, rgba(200, 100, 59, .13), transparent 34%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .course-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: 42%;
+      pointer-events: none;
+      opacity: .58;
+      background:
+        linear-gradient(122deg, transparent 0 38%, rgba(255, 255, 255, .72) 38% 48%, transparent 48%),
+        linear-gradient(145deg, rgba(217, 209, 198, .75), rgba(247, 246, 242, .24) 45%, rgba(200, 100, 59, .55) 46% 68%, rgba(31, 53, 72, .88) 68%);
+    }
+
+    .course-hero>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .course-hero>div:first-child {
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    .kicker,
+    .module-label {
+      display: inline-flex;
+      margin-bottom: 14px;
+      color: var(--terracotta);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 700px;
+      margin: 0 0 18px;
+      color: var(--ink);
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(42px, 5.4vw, 68px);
+      line-height: .98;
+      letter-spacing: -.06em;
+    }
+
+    .course-hero h1,
+    .case-hero-title {
+      max-width: 980px;
+      font-size: clamp(42px, 4.2vw, 64px);
+      line-height: .92;
+      letter-spacing: -.06em;
+      overflow-wrap: normal;
+      word-break: normal;
+      text-wrap: balance;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(30px, 3.6vw, 48px);
+      line-height: 1.07;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    .course-subtitle {
+      max-width: 640px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.62;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 640px;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .tag,
+    .executive-pills span,
+    .problem-chips span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 11px;
+      border: 1px solid rgba(200, 100, 59, .16);
+      border-radius: 999px;
+      background: rgba(200, 100, 59, .08);
+      color: var(--terracotta);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .course-panel {
+      min-width: 0;
+      width: 100%;
+      align-self: start;
+      border: 1px solid rgba(31, 53, 72, .10);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .82);
+      padding: 22px;
+      box-shadow: 0 18px 42px rgba(31, 53, 72, .06);
+    }
+
+    .course-meta {
+      display: grid;
+      gap: 10px;
+    }
+
+    .course-meta div {
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .course-meta div:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .course-panel small {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .course-panel strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 19px;
+      line-height: 1.1;
+    }
+
+    .course-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .case-executive,
+    .module,
+    .reflection {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .78);
+      box-shadow: 0 18px 54px rgba(31, 53, 72, .06);
+    }
+
+    .case-executive {
+      margin: 48px 0 32px;
+      padding: 42px;
+    }
+
+    .module-title {
+      max-width: 1180px;
+      margin-bottom: 30px;
+    }
+
+    .executive-copy {
+      display: grid;
+      gap: 18px;
+      max-width: 1040px;
+    }
+
+    .executive-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .case-reading-guide {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 24px;
+      align-items: center;
+      margin: 32px 0;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .case-reading-guide-copy h2 {
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(24px, 2.4vw, 34px);
+      line-height: 1.12;
+    }
+
+    .case-reading-guide-copy p {
+      max-width: 560px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.62;
+    }
+
+    .case-reading-steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .case-reading-steps li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      min-height: 56px;
+      padding: 12px 14px;
+      border: 1px solid rgba(17, 24, 39, .08);
+      border-radius: 16px;
+      background: #fff;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .case-reading-steps span {
+      flex: 0 0 auto;
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .executive-pills,
+    .problem-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .context-summary,
+    .problem-summary {
+      margin: 20px 0 0;
+      padding: 16px 18px;
+      border-left: 3px solid var(--terracotta);
+      border-radius: 16px;
+      background: rgba(244, 229, 220, .32);
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    .course-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: 0 -32px 42px;
+      padding: 14px 32px;
+      background: rgba(247, 246, 242, .9);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .course-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .course-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 0 auto;
+      min-width: max-content;
+      min-height: 44px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color var(--motion-base), background var(--motion-base);
+    }
+
+    .course-nav a:hover,
+    .course-nav a.active {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .module {
+      margin-top: 48px;
+      padding: 46px;
+      scroll-margin-top: 92px;
+    }
+
+    .module.is-narrative {
+      padding-block: 52px;
+    }
+
+    .module.is-artifact {
+      padding: 38px;
+    }
+
+    .module.is-decision {
+      background: rgba(255, 255, 255, .9);
+    }
+
+    .module.is-highlight {
       position: relative;
       overflow: hidden;
-      padding: 34px;
-      box-shadow: 0 30px 90px rgba(0,0,0,.35);
+      background: var(--blue);
+      color: #fff;
     }
 
-    .system-diagram {
-      height: 100%;
-      min-height: 430px;
-      border: 1px dashed rgba(96,165,250,.24);
-      border-radius: 28px;
-      padding: 28px;
+    .module.is-highlight::after,
+    .reflection::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: 46%;
+      opacity: .18;
+      pointer-events: none;
+      background:
+        linear-gradient(122deg, transparent 0 38%, rgba(255, 255, 255, .72) 38% 40%, transparent 40%),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .36) 0 1px, transparent 1px 24px);
+    }
+
+    .module.is-highlight>*,
+    .reflection>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .module.is-highlight .module-label,
+    .reflection .module-label {
+      color: var(--terracotta);
+    }
+
+    .module.is-highlight h2,
+    .module.is-highlight p,
+    .reflection h2,
+    .reflection p {
+      color: #fff;
+    }
+
+    .module-head {
+      display: block;
+      max-width: 1180px;
+      margin-bottom: 28px;
+    }
+
+    .module-head>div {
+      max-width: 1180px;
+    }
+
+    .module-head p {
+      max-width: 1040px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.72;
+    }
+
+    #insight .module-head {
+      display: block;
+      max-width: 1180px;
+      margin-bottom: 0;
+    }
+
+    #insight .module-copy {
+      max-width: 1040px;
+      margin-top: 24px;
+    }
+
+    .module-copy {
       display: grid;
-      grid-template-rows: auto 1fr;
-      gap: 26px;
+      gap: 18px;
+    }
+
+    .module-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.72;
+    }
+
+    .module.is-highlight .module-copy p {
+      color: #fff;
+    }
+
+    .reflection .module-copy p {
+      color: #ffffff;
+    }
+
+    .card-grid,
+    .grid-4,
+    .research-grid,
+    .persona-grid,
+    .impact-grid,
+    .csd-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card-grid,
+    .research-grid,
+    .impact-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .persona-grid,
+    .csd-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .info-card,
+    .impact-card,
+    .research-context,
+    .research-method-card,
+    .addie-layer-card {
+      min-width: 0;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      overflow-wrap: break-word;
+    }
+
+    .info-card h3,
+    .impact-card strong,
+    .research-method-card strong,
+    .addie-layer-card h3 {
+      display: block;
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 19px;
+      line-height: 1.18;
+      letter-spacing: -.025em;
+    }
+
+    .info-card p,
+    .impact-card p,
+    .research-method-card p,
+    .addie-layer-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .research-context {
+      max-width: 1040px;
+      margin-top: 26px;
+    }
+
+    .research-context h3 {
+      margin: 0 0 8px;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 22px;
+      letter-spacing: -.025em;
+    }
+
+    .research-stats {
+      display: grid;
+      grid-template-columns: minmax(220px, .35fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 30px;
+    }
+
+    .sample-highlight {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 260px;
+      padding: 28px;
+      border: 1px solid rgba(200, 100, 59, .22);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .95), rgba(244, 229, 220, .72)),
+        repeating-linear-gradient(135deg, rgba(200, 100, 59, .12) 0 1px, transparent 1px 22px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sample-highlight strong {
+      display: block;
+      color: var(--terracotta);
+      font-family: "Epilogue", sans-serif;
+      font-size: clamp(46px, 7vw, 78px);
+      line-height: .92;
+      letter-spacing: -.06em;
+    }
+
+    .sample-highlight span {
+      margin-top: 8px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .sample-highlight p {
+      margin: 18px 0 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .bar-chart {
+      display: grid;
+      gap: 14px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 12px;
       align-items: center;
     }
 
-    .system-core {
-      width: 156px;
-      height: 156px;
-      margin: 0 auto;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      color: white;
-      font-weight: 900;
-      font-size: 16px;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--blue), var(--purple));
-      box-shadow: 0 0 80px rgba(96,165,250,.45);
+    .bar-value {
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      text-align: right;
     }
 
-    .system-diagram-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+    .bar-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 14px;
-    }
-
-    .system-info-card {
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(11,15,26,.78);
-      backdrop-filter: blur(14px);
-      padding: 18px;
-      box-shadow: 0 24px 60px rgba(0,0,0,.24);
-    }
-
-    .system-info-card strong {
-      display: block;
+      margin-bottom: 7px;
+      color: var(--ink);
       font-size: 14px;
-      margin-bottom: 8px;
-      color: white;
+      font-weight: 800;
+      line-height: 1.35;
     }
 
-    .system-info-card span {
+    .bar-track {
+      height: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(31, 53, 72, .08);
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), rgba(31, 53, 72, .72));
+    }
+
+    .bar-row:first-child .bar-value {
+      color: var(--terracotta);
+    }
+
+    .bar-row:first-child .bar-fill {
+      background: linear-gradient(90deg, var(--terracotta), rgba(200, 100, 59, .62));
+    }
+
+    .chart-caption,
+    .research-synthesis {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .research-synthesis {
+      padding: 16px 18px;
+      border: 1px solid rgba(200, 100, 59, .18);
+      border-radius: 18px;
+      background: rgba(200, 100, 59, .07);
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .persona-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: 16px;
+      padding: 0 26px 26px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .persona-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--terracotta), rgba(31, 53, 72, .72));
+    }
+
+    .persona-image {
+      position: relative;
+      margin: -1px -27px 6px;
+      aspect-ratio: 4 / 3;
+      border-radius: 26px 26px 0 0;
+      overflow: hidden;
+      background: var(--sand);
+    }
+
+    .persona-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 28%;
+    }
+
+    .persona-image::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 42%;
+      background: linear-gradient(180deg, transparent, rgba(17, 24, 39, .38));
+      pointer-events: none;
+    }
+
+    .persona-top {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .persona-card h3 {
+      margin: 0;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 24px;
+      letter-spacing: -.035em;
+    }
+
+    .persona-role {
+      display: inline-flex;
+      width: max-content;
+      min-height: 28px;
+      align-items: center;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(31, 53, 72, .07);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .persona-meta {
+      margin: -6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .persona-section {
+      display: grid;
+      gap: 6px;
+    }
+
+    .persona-section strong {
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .persona-section p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .persona-quote {
+      margin: 0;
+      padding: 18px;
+      border-left: 3px solid var(--terracotta);
+      border-radius: 16px;
+      background: rgba(244, 229, 220, .5);
+      color: var(--ink);
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    .pipeline-artifact {
+      margin: 24px 0 0;
+    }
+
+    .pipeline-artifact img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      cursor: zoom-in;
+    }
+
+    .pipeline-artifact figcaption {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.5;
+    }
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: rgba(17, 24, 39, .82);
+      backdrop-filter: blur(10px);
+    }
+
+    .image-modal.is-open {
+      display: flex;
+    }
+
+    .image-modal-img {
+      max-width: min(96vw, 1600px);
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .35);
+    }
+
+    .image-modal-close {
+      position: fixed;
+      top: 24px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .92);
+      color: var(--ink);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .tabs-shell {
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .tab-list {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 229, 220, .32);
+    }
+
+    .tab-list::before {
+      content: "";
+      position: absolute;
+      left: 32px;
+      right: 32px;
+      top: 50%;
+      height: 1px;
+      background: var(--line);
+      transform: translateY(-50%);
+    }
+
+    .tab-button {
+      position: relative;
+      z-index: 1;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--blue-2);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: color var(--motion-base), background var(--motion-base), box-shadow var(--motion-base);
+    }
+
+    .tab-button.is-active {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(31, 53, 72, .12);
+    }
+
+    .tab-button:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -16px;
+      color: var(--muted);
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    .tab-panel {
+      padding: 28px;
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    .tab-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .tab-panel-item {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(247, 246, 242, .58);
+    }
+
+    .tab-panel-item strong,
+    .accordion-cell strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--terracotta);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .tab-panel-item p,
+    .accordion-cell p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .blueprint-board {
+      min-width: 940px;
+      margin-top: 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .blueprint-scroll {
+      overflow-x: auto;
+    }
+
+    .blueprint-row {
+      display: grid;
+      grid-template-columns: 150px repeat(5, minmax(150px, 1fr));
+      border-bottom: 1px solid var(--line);
+    }
+
+    .blueprint-row:last-child {
+      border-bottom: 0;
+    }
+
+    .blueprint-cell,
+    .blueprint-head {
+      min-height: 92px;
+      padding: 16px;
+      border-right: 1px solid var(--line);
       color: var(--muted);
       font-size: 13px;
       line-height: 1.55;
     }
 
-    @media (min-width: 981px) {
-      .system-diagram-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .blueprint-cell:last-child,
+    .blueprint-head:last-child {
+      border-right: 0;
+    }
+
+    .blueprint-head {
+      min-height: auto;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .blueprint-row-label {
+      background: rgba(244, 229, 220, .42);
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .blueprint-findings {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .blueprint-findings li,
+    .csd-list li {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .blueprint-findings li {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .blueprint-findings ul {
+      display: contents;
+      margin: 0;
+      padding: 0;
+    }
+
+    .csd-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .csd-card h3 {
+      margin: 0 0 16px;
+      color: var(--blue);
+      font-family: "Epilogue", sans-serif;
+      font-size: 24px;
+      letter-spacing: -.035em;
+    }
+
+    .csd-card:nth-child(1) {
+      border-top: 4px solid var(--terracotta);
+    }
+
+    .csd-card:nth-child(2) {
+      border-top: 4px solid var(--blue);
+    }
+
+    .csd-card:nth-child(3) {
+      border-top: 4px solid var(--blue-2);
+    }
+
+    .csd-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+    }
+
+    .accordion {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    summary {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 22px;
+      color: var(--blue);
+      cursor: pointer;
+      font-family: "Epilogue", sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.025em;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      color: var(--terracotta);
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    details[open] summary::after {
+      content: "–";
+    }
+
+    .accordion-body {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 0 22px 22px;
+    }
+
+    .accordion-cell {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(247, 246, 242, .6);
+    }
+
+    .reflection {
+      position: relative;
+      overflow: hidden;
+      margin-top: 48px;
+      padding: 52px;
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .reflection .module-copy {
+      max-width: 1040px;
+      margin-top: 24px;
+    }
+
+    .reflection h2 {
+      max-width: 1180px;
+    }
+
+    .reflection p {
+      max-width: 1040px;
+    }
+
+    .end-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .end-nav a {
+      flex: 1 1 220px;
+      min-height: 58px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--blue);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .end-nav a:last-child {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width: 1120px) {
+      .shell {
+        grid-template-columns: 1fr;
       }
 
-      .system-info-card {
-        min-height: 128px;
+      .sidebar {
+        position: static;
+        height: auto;
+        padding: 20px 24px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .sidebar>a {
+        flex: 0 0 auto;
+      }
+
+      .nav {
+        grid-auto-flow: column;
+        overflow-x: auto;
+        max-width: 100%;
+        min-width: 0;
+        scrollbar-width: none;
+      }
+
+      .sidebar-note {
+        display: none;
+      }
+
+      #insight .module-head {
+        grid-template-columns: 1fr;
+      }
+
+      .course-hero>div:first-child,
+      h1,
+      .course-subtitle,
+      .hero-actions {
+        max-width: 100%;
+      }
+
+      .module-title,
+      .executive-copy,
+      .module-head,
+      .module-head>div,
+      .module-head p,
+      #insight .module-head,
+      #insight .module-copy,
+      .reflection h2,
+      .reflection p,
+      .reflection .module-copy {
+        max-width: 100%;
+      }
+
+      .grid-4,
+      .card-grid,
+      .research-grid,
+      .impact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .persona-grid,
+      .csd-grid,
+      .tab-panel-grid,
+      .accordion-body {
+        grid-template-columns: 1fr;
+      }
+
+      .research-stats {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 980px) {
-      .hero-visual {
-        min-height: auto;
+    @media (max-width: 900px) {
+      .shell {
+        display: block;
+      }
+
+      .case-reading-guide {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: auto;
+        min-height: 64px;
+        padding: 12px 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        overflow: visible;
+        z-index: 80;
+      }
+
+      .brand-logo {
+        max-width: 128px;
+        height: 32px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .sidebar .nav {
+        position: fixed;
+        top: 74px;
+        left: 16px;
+        right: 16px;
+        z-index: 90;
+        display: none;
+        grid-auto-flow: row;
+        min-width: 0;
+        max-height: calc(100vh - 104px);
+        overflow-y: auto;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, .96);
+        box-shadow: var(--shadow-lg);
+        backdrop-filter: blur(18px);
+      }
+
+      .sidebar.is-open .nav {
+        display: grid;
+      }
+
+      .sidebar .nav a {
+        min-height: 48px;
+      }
+
+      body.nav-open {
+        overflow: hidden;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        padding: 22px 16px 44px;
+      }
+
+      .container {
+        width: min(100% - 24px, 1440px);
+      }
+
+      .course-hero {
         padding: 28px;
+        border-radius: 26px;
       }
 
-      .system-diagram {
-        min-height: auto;
+      .course-hero::after,
+      .module.is-highlight::after,
+      .reflection::after {
+        opacity: .16;
       }
 
-      .system-core {
-        width: 100%;
-        height: 88px;
+      h1 {
+        font-size: 42px;
+        letter-spacing: -.04em;
+      }
+
+      .course-subtitle {
+        font-size: 16px;
+      }
+
+      .case-executive,
+      .module,
+      .reflection {
+        padding: 26px;
+      }
+
+      .grid-4,
+      .card-grid,
+      .research-grid,
+      .impact-grid,
+      .persona-grid,
+      .csd-grid,
+      .blueprint-findings {
+        grid-template-columns: 1fr;
+      }
+
+      .end-nav {
+        flex-direction: column;
+      }
+
+      .course-nav {
+        margin: 0 0 32px;
+        padding: 12px 0;
+      }
+
+      .tab-list {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+
+      .tab-list::before,
+      .tab-button:not(:last-child)::after {
+        display: none;
+      }
+
+      .bar-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .bar-value {
+        text-align: left;
+      }
+
+      .image-modal {
+        padding: 16px;
+      }
+
+      .image-modal-img {
+        max-width: 96vw;
+        max-height: 84vh;
+        border-radius: 12px;
+      }
+
+      .image-modal-close {
+        top: 14px;
+        right: 14px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .case-reading-guide {
+        padding: 22px;
         border-radius: 22px;
       }
+
+      .case-reading-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-4,
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    @media (max-width: 520px) {
-      .hero-visual {
-        padding: 20px;
+    @media (max-width: 480px) {
+      .brand-logo {
+        height: 30px;
+      }
+
+      h1 {
+        font-size: clamp(36px, 13vw, 48px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+    /*
+      CASE HERO SYSTEM
+      Regra global para todas as heros de cases atuais e futuras.
+      O conteúdo do site é limitado a 1280px; por isso, heros de case não usam escala full-screen.
+      Não aumentar o h1 acima de 64px.
+    */
+    .container {
+      width: min(100%, 1280px);
+      max-width: 1280px;
+      margin-inline: auto;
+    }
+
+    .course-hero,
+    .case-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 440px);
+      gap: clamp(28px, 4vw, 48px);
+      align-items: start;
+      padding-block: clamp(24px, 3vw, 36px);
+      padding-inline: clamp(28px, 4vw, 48px);
+      margin-bottom: 28px;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .course-hero,
+    .case-hero,
+    .course-hero > *,
+    .case-hero > *,
+    .course-panel,
+    .case-hero-panel {
+      min-width: 0;
+    }
+
+    .course-hero h1,
+    .case-hero h1,
+    .case-hero-title {
+      max-width: 780px;
+      margin: 0 0 18px;
+      font-size: clamp(42px, 4.2vw, 64px);
+      line-height: .96;
+      letter-spacing: -.052em;
+      overflow-wrap: normal;
+      word-break: normal;
+      text-wrap: balance;
+    }
+
+    .course-subtitle,
+    .case-hero-subtitle {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(16px, 1.2vw, 18px);
+      line-height: 1.55;
+    }
+
+    .hero-actions,
+    .case-hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag,
+    .case-tag {
+      min-height: 28px;
+      padding-inline: 10px;
+      font-size: 12px;
+      white-space: normal;
+    }
+
+    .course-panel,
+    .case-hero-panel {
+      width: 100%;
+      max-width: 440px;
+      align-self: start;
+      gap: 14px;
+      padding: 20px 22px;
+      border-radius: 22px;
+    }
+
+    .course-meta {
+      gap: 8px;
+    }
+
+    .course-meta div {
+      padding-bottom: 8px;
+    }
+
+    .course-panel small,
+    .case-hero-panel small {
+      margin-bottom: 5px;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+
+    .course-panel strong,
+    .case-hero-panel strong {
+      margin-bottom: 4px;
+      font-size: 18px;
+      line-height: 1.15;
+    }
+
+    .course-panel p,
+    .case-hero-panel p {
+      font-size: 13px;
+      line-height: 1.42;
+    }
+
+    .course-panel p,
+    .course-panel strong,
+    .case-hero-panel p,
+    .case-hero-panel strong,
+    .course-subtitle,
+    .case-hero-subtitle,
+    .tag,
+    .case-tag {
+      overflow-wrap: break-word;
+    }
+
+    .case-title-line {
+      display: block;
+    }
+
+    .case-title-line-nowrap {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1320px) {
+      .container {
+        width: calc(100% - 32px);
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .course-hero,
+      .case-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .course-panel,
+      .case-hero-panel {
+        max-width: 760px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .course-hero,
+      .case-hero {
+        padding: 26px;
         border-radius: 24px;
       }
 
-      .system-diagram {
-        padding: 18px;
+      .course-hero h1,
+      .case-hero h1,
+      .case-hero-title {
+        max-width: 100%;
+        font-size: clamp(36px, 8vw, 52px);
+        line-height: .98;
+        letter-spacing: -.048em;
+      }
+
+      .course-subtitle,
+      .case-hero-subtitle {
+        font-size: 16px;
+        line-height: 1.56;
+      }
+
+      .course-panel,
+      .case-hero-panel {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .course-hero,
+      .case-hero {
+        padding: 22px;
         border-radius: 22px;
       }
 
-      .system-core {
-        height: 76px;
-        font-size: 14px;
+      .course-hero h1,
+      .case-hero h1,
+      .case-hero-title {
+        font-size: clamp(32px, 10vw, 44px);
+        line-height: 1;
       }
 
-      .system-info-card {
-        padding: 16px;
-        border-radius: 18px;
+      .course-subtitle,
+      .case-hero-subtitle {
+        font-size: 15px;
+        line-height: 1.52;
+      }
+
+      .course-panel,
+      .case-hero-panel {
+        padding: 18px;
+      }
+
+      .case-title-line-nowrap {
+        white-space: normal;
       }
     }
-      .nav{
-        height:82px;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        border-bottom:1px solid var(--border);
-        position:sticky;
-        top:0;
-        z-index:50;
-        width:100vw;
-        margin-left:calc(50% - 50vw);
-        padding-left:max(24px, calc((100vw - 1120px) / 2));
-        padding-right:max(24px, calc((100vw - 1120px) / 2));
-        background:rgba(11,15,26,.92);
-        backdrop-filter:blur(18px);
-        -webkit-backdrop-filter:blur(18px);
-      }
+  
+/* RESPONSIVE SAFETY LAYER
+   Camada defensiva para evitar overflow, cards quebrados e colisões em grids.
+*/
 
-      .brand{
-        letter-spacing:.2em;
-        font-weight:800;
-        font-size:18px;
-      }
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
 
-      .nav-links{
-        display:flex;
-        gap:22px;
-        color:var(--muted);
-        font-size:14px;
-      }
+.shell,
+.main,
+.container,
+section,
+article,
+.card,
+.info-card,
+.impact-card,
+.metric-card,
+.comparison-card,
+.method-card,
+.course-hero,
+.case-hero,
+.course-panel,
+.module,
+.about-hero,
+.about-thinking,
+.contact-panel,
+.sidebar,
+.nav,
+.hero-actions,
+.contact-links,
+.end-nav {
+  min-width: 0;
+}
 
-      .nav-links a:hover{
-        color:white;
-      }
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
 
-      .back-nav{
-        margin:24px 0 8px;
-      }
+p,
+li,
+a,
+span,
+strong,
+small,
+button {
+  overflow-wrap: break-word;
+}
 
-      .back-nav a{
-        font-size:14px;
-        color:var(--muted);
-        text-decoration:none;
-        display:inline-flex;
-        align-items:center;
-        gap:6px;
-        transition:.2s ease;
-      }
+h1,
+h2,
+h3 {
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
+}
 
-      .back-nav a:hover{
-        color:white;
-        transform:translateX(-2px);
-      }
+.card-grid,
+.metrics-grid,
+.impact-grid,
+.comparison-grid,
+.method-grid,
+.problem-grid,
+.evidence-grid,
+.solution-grid,
+.discipline-grid,
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: clamp(14px, 2vw, 20px);
+}
 
-      .case-section .back-nav a{
-        color:#64748B;
-      }
+.card,
+.info-card,
+.impact-card,
+.metric-card,
+.comparison-card,
+.method-card,
+.timeline-item {
+  min-width: 0;
+  overflow: hidden;
+}
 
-      .case-section .back-nav a:hover{
-        color:#0F172A;
-      }
+.end-nav,
+.case-end-nav,
+.course-end-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
+}
 
-      .case-summary{
-        padding:32px 0 72px;
-        border-top:0;
-        display:grid;
-        grid-template-columns:repeat(3,1fr);
-        gap:16px;
-      }
+.end-nav a,
+.case-end-nav a,
+.course-end-nav a {
+  min-width: 0;
+  white-space: normal;
+  text-align: center;
+}
 
-      .summary-card{
-        border:1px solid var(--border);
-        border-radius:22px;
-        background:rgba(255,255,255,.04);
-        padding:22px;
-        min-height:150px;
-      }
+@media (max-width: 640px) {
+  .end-nav,
+  .case-end-nav,
+  .course-end-nav {
+    grid-template-columns: 1fr;
+  }
 
-      .summary-card span{
-        display:block;
-        color:var(--blue-2);
-        font-size:12px;
-        font-weight:800;
-        text-transform:uppercase;
-        letter-spacing:.08em;
-        margin-bottom:10px;
-      }
+  .main {
+    padding: 20px 16px 44px;
+  }
+}
 
-      .summary-card p{
-        margin:0;
-        color:var(--muted);
-        font-size:15px;
-        line-height:1.55;
-      }
+/* PHASE 2-5 OVERRIDE LAYER */
 
-      .case-section .case-summary{
-        padding:32px 0 72px;
-      }
+/* PARTE 1 - Sistema global de containers */
+.container {
+  width: min(100%, 1280px);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+.main {
+  min-width: 0;
+  padding: clamp(20px, 3vw, 36px);
+}
 
-      .case-section .summary-card{
-        background:#FFFFFF;
-        border:1px solid rgba(11,15,26,.08);
-        box-shadow:0 14px 34px rgba(15,23,42,.05);
-      }
+/* PARTE 3 - Sidebar e menu mobile */
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: auto;
+    min-height: 64px;
+    padding: 12px 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    z-index: 100;
+  }
+  .sidebar-note {
+    display: none;
+  }
+  .menu-toggle {
+    display: inline-flex;
+  }
+  .sidebar .nav {
+    position: fixed;
+    top: 82px;
+    left: 16px;
+    right: 16px;
+    display: none;
+    max-height: calc(100dvh - 110px);
+    overflow-y: auto;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, .96);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(18px);
+  }
+  .sidebar.is-open .nav {
+    display: grid;
+  }
+  body.nav-open {
+    overflow: hidden;
+  }
+}
 
-      .case-section .summary-card span{
-        color:#2563EB;
-      }
+/* PARTE 5 - Heros dos cases */
+.course-hero,
+.case-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 440px);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+  padding-block: clamp(24px, 3vw, 36px);
+  padding-inline: clamp(24px, 4vw, 44px);
+  margin-bottom: 28px;
+  border-radius: 28px;
+  overflow: hidden;
+}
+.course-hero h1,
+.case-hero h1,
+.case-hero-title {
+  max-width: 780px;
+  font-size: clamp(38px, 4.2vw, 64px);
+  line-height: .96;
+  letter-spacing: -.052em;
+  margin: 0 0 18px;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
+}
+.course-subtitle,
+.case-hero-subtitle {
+  max-width: 760px;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+}
+.course-panel,
+.case-hero-panel {
+  width: 100%;
+  max-width: 440px;
+  min-width: 0;
+  align-self: start;
+}
+@media (max-width: 1100px) {
+  .course-hero,
+  .case-hero {
+    grid-template-columns: 1fr;
+  }
+  .course-panel,
+  .case-hero-panel {
+    max-width: 760px;
+  }
+}
+@media (max-width: 640px) {
+  .course-hero,
+  .case-hero {
+    padding: 22px;
+    border-radius: 22px;
+  }
+  .course-hero h1,
+  .case-hero h1,
+  .case-hero-title {
+    font-size: clamp(32px, 10vw, 44px);
+    line-height: 1;
+  }
+}
 
-      .case-section .summary-card p{
-        color:#64748B;
-      }
+/* PARTE 6 - Infograficos e fluxos */
+.flow-steps,
+.manual-flow-steps,
+.process-flow,
+.steps-grid,
+.workflow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  gap: clamp(14px, 2vw, 20px);
+  min-width: 0;
+}
+.step-card,
+.flow-card,
+.process-card {
+  min-width: 0;
+  overflow: hidden;
+}
+@media (max-width: 900px) {
+  .flow-arrow,
+  .step-arrow,
+  .process-arrow {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .flow-steps,
+  .manual-flow-steps,
+  .process-flow,
+  .steps-grid,
+  .workflow {
+    grid-template-columns: 1fr;
+  }
+}
 
-      .case-next-nav{
-        padding:56px 0;
-        border-top:1px solid var(--border);
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-        gap:16px;
-      }
+/* PHASE 6 - Acessibilidade Estrutural e Movimento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
 
-      .case-next-card{
-        border:1px solid var(--border);
-        border-radius:24px;
-        background:rgba(255,255,255,.04);
-        padding:24px;
-        min-height:120px;
-        display:flex;
-        flex-direction:column;
-        justify-content:space-between;
-        transition:.2s ease;
-      }
+/* PHASE ANIMATION STANDARDIZATION */
+@keyframes softEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+.reveal {
+  opacity: 0;
+  animation: softEnter .9s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+.reveal-delay-1, .delay-1 { animation-delay: .15s; }
+.reveal-delay-2, .delay-2 { animation-delay: .3s; }
+.reveal-delay-3, .delay-3 { animation-delay: .45s; }
+.reveal-delay-4, .delay-4 { animation-delay: .6s; }
 
-      .case-next-card:hover{
-        border-color:rgba(96,165,250,.35);
-        transform:translateY(-2px);
-      }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .reveal, .delay-1, .delay-2, .delay-3, .delay-4,
+  .reveal-delay-1, .reveal-delay-2, .reveal-delay-3, .reveal-delay-4 {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+}
 
-      .case-next-card span{
-        color:var(--muted);
-        font-size:13px;
-        font-weight:800;
-        text-transform:uppercase;
-        letter-spacing:.08em;
-      }
+/* SITE SCALE AUDIT — FIOCRUZ
+   A course-hero segue como abertura; boards e módulos internos ganham escala de leitura. */
+.module,
+.case-executive,
+.case-summary,
+.reflection {
+  padding-block: clamp(28px, 3vw, 38px);
+  padding-inline: clamp(24px, 3vw, 38px);
+  margin-top: 40px;
+}
 
-      .case-next-card strong{
-        color:white;
-        font-size:22px;
-        letter-spacing:-.02em;
-      }
+.module h2,
+.case-executive h2,
+.case-summary h2,
+.reflection h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -.042em;
+}
 
-      .case-section .case-next-card{
-        background:#FFFFFF;
-        border:1px solid rgba(11,15,26,.08);
-        box-shadow:0 14px 34px rgba(15,23,42,.05);
-      }
+.module .module-head {
+  display: block;
+  max-width: 1040px;
+  margin-bottom: 24px;
+}
 
-      .case-section .case-next-card strong{
-        color:#0F172A;
-      }
+.module .module-head > div {
+  max-width: 980px;
+}
 
-      .case-section .case-next-card span{
-        color:#64748B;
-      }
+.module .module-head p {
+  max-width: 820px;
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.65;
+}
 
-      .contact-footer{
-        padding:56px 0 34px;
-        border-top:1px solid var(--border);
-        display:grid;
-        grid-template-columns:1fr 1.2fr;
-        gap:32px;
-        align-items:start;
-      }
+.card-grid,
+.grid-4,
+.research-grid,
+.impact-grid,
+.persona-grid,
+.csd-grid,
+.addie-layers {
+  gap: 16px;
+  margin-top: 22px;
+  align-items: start;
+}
 
-      .contact-footer h2{
-        font-size:clamp(30px,4vw,46px);
-        margin:0 0 12px;
-      }
+.info-card,
+.impact-card,
+.research-card,
+.research-method-card,
+.persona-card,
+.csd-card,
+.addie-layer-card,
+.tab-panel-item {
+  padding: 22px;
+}
 
-      .contact-footer p{
-        font-size:16px;
-        max-width:480px;
-      }
+.info-card h3,
+.method-card h3,
+.comparison-card h3,
+.addie-layer-card h3,
+.persona-name {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
 
-      .contact-links{
-        display:grid;
-        gap:12px;
-        justify-content:end;
-      }
+.info-card p,
+.impact-card p,
+.research-card p,
+.research-method-card p,
+.persona-card p,
+.csd-card li,
+.addie-layer-card p,
+.tab-panel-item p {
+  font-size: 13px;
+  line-height: 1.58;
+}
 
-      .contact-link{
-        display:flex;
-        align-items:center;
-        gap:12px;
-        min-height:48px;
-        padding:12px 16px;
-        border-radius:999px;
-        border:1px solid var(--border);
-        background:rgba(255,255,255,.04);
-        color:#D4D4D8;
-        font-size:14px;
-        font-weight:700;
-        transition:.2s ease;
-      }
+.research-stats {
+  gap: 16px;
+  margin-top: 22px;
+}
 
-      .contact-link:hover{
-        border-color:rgba(96,165,250,.35);
-        color:white;
-        transform:translateY(-1px);
-      }
+.research-stat {
+  padding: 20px;
+}
 
-      .contact-icon{
-        width:28px;
-        height:28px;
-        border-radius:999px;
-        display:grid;
-        place-items:center;
-        background:linear-gradient(135deg,var(--blue),var(--purple));
-        color:white;
-        font-size:13px;
-        flex:0 0 28px;
-      }
+.research-stat strong {
+  font-size: clamp(22px, 2.4vw, 32px);
+}
 
-      .case-section .contact-footer{
-        border-top:1px solid rgba(11,15,26,.08);
-      }
+.tabs-shell,
+.blueprint-board {
+  max-width: 100%;
+  margin-top: 24px;
+  border-radius: 20px;
+}
 
-      .case-section .contact-link{
-        background:#FFFFFF;
-        border:1px solid rgba(11,15,26,.08);
-        color:#334155;
-        box-shadow:0 14px 34px rgba(15,23,42,.05);
-      }
+.tab-panel {
+  padding: 22px;
+}
 
-      .case-section .contact-link:hover{
-        color:#0F172A;
-        border-color:rgba(37,99,235,.25);
-      }
+.blueprint-scroll {
+  overflow-x: auto;
+}
 
-      footer{
-        padding:24px 0 44px;
-        color:var(--muted);
-        display:flex;
-        justify-content:space-between;
-        border-top:1px solid rgba(255,255,255,.04);
-      }
+.blueprint-cell,
+.blueprint-head {
+  padding: 14px;
+  font-size: 13px;
+  line-height: 1.55;
+}
 
-      .case-section + .page footer,
-      .case-section footer{
-        color:#64748B;
-        border-top:1px solid rgba(11,15,26,.08);
-      }
+.accordion {
+  gap: 10px;
+  margin-top: 22px;
+}
 
-      @media(max-width:980px){
-        .case-summary{
-          grid-template-columns:1fr;
-          padding:28px 0 56px;
-        }
+.accordion summary {
+  min-height: 52px;
+  padding: 16px 20px;
+  font-size: 16px;
+}
 
-        .case-next-nav{
-          grid-template-columns:1fr;
-          padding:48px 0;
-        }
+.accordion-body {
+  gap: 12px;
+  padding: 16px;
+}
 
-        .contact-footer{
-          grid-template-columns:1fr;
-        }
+.accordion-cell {
+  padding: 16px;
+}
 
-        .contact-links{
-          justify-content:stretch;
-        }
+.accordion-cell p {
+  font-size: 13px;
+  line-height: 1.58;
+}
 
-        footer{
-          flex-direction:column;
-          gap:10px;
-        }
-      }
+.reflection {
+  padding: clamp(30px, 3vw, 40px);
+}
 
-      @media(max-width:520px){
-        .page{
-          width:calc(100% - 28px);
-        }
+.reflection h2 {
+  max-width: 920px;
+  font-size: clamp(30px, 3vw, 42px);
+}
 
-        .nav{
-          height:72px;
-          padding-left:20px;
-          padding-right:20px;
-        }
+.reflection .module-copy {
+  max-width: 860px;
+  gap: 14px;
+}
 
-        .brand{
-          font-size:16px;
-        }
+.reflection p {
+  font-size: 15px;
+  line-height: 1.65;
+}
 
-        .nav-links{
-          gap:14px;
-          font-size:13px;
-        }
+@media (max-width: 900px) {
+  .module,
+  .case-executive,
+  .case-summary,
+  .reflection {
+    padding: 24px;
+    border-radius: 22px;
+  }
 
-        .back-nav{
-          margin:18px 0 4px;
-        }
+  .module h2,
+  .case-executive h2,
+  .case-summary h2,
+  .reflection h2 {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+}
 
-        .summary-card{
-          padding:20px;
-          min-height:auto;
-        }
+/* TEXT FLOW COMPOSITION — FIOCRUZ */
+.text-flow-wide {
+  max-width: none;
+}
 
-        .case-next-nav{
-          padding:44px 0;
-        }
+.module-copy {
+  max-width: 980px;
+}
 
-        .case-next-card{
-          min-height:100px;
-          padding:20px;
-        }
+.module-copy p {
+  max-width: 760px;
+}
 
-        .case-next-card strong{
-          font-size:19px;
-        }
+.case-executive:not(.case-executive--compact) .executive-copy,
+.reflection .module-copy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 32px;
+  max-width: 1120px;
+}
 
-        .contact-footer{
-          padding:44px 0 28px;
-        }
+.case-executive .executive-copy p,
+.reflection .module-copy p {
+  max-width: none;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.68;
+}
 
-        .contact-link{
-          border-radius:18px;
-          align-items:flex-start;
-        }
-      }
-  </style>
+.reflection h2 {
+  max-width: 980px;
+}
+
+.module.is-highlight .module-copy {
+  max-width: 1120px;
+}
+
+.module.is-highlight .module-copy p {
+  max-width: none;
+}
+
+.context-summary,
+.problem-summary,
+.research-synthesis,
+.highlight-phrase {
+  max-width: 100%;
+}
+
+.card p,
+.info-card p,
+.impact-card p,
+.metric-card p,
+.comparison-card p,
+.method-card p,
+.executive-copy p,
+.module-copy p,
+.reflection p,
+.context-summary,
+.problem-summary,
+.research-synthesis,
+.highlight-phrase {
+  max-width: none;
+}
+
+@media (max-width: 820px) {
+  .case-executive:not(.case-executive--compact) .executive-copy,
+  .reflection .module-copy {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+
+
 </head>
+
 <body>
-  <div class="page">
-    <nav class="nav">
-      <a href="index.html" class="brand">CRUZ</a>
-      <div class="nav-links">
-        <a href="index.html">Início</a>
-        <a href="index.html#cases">Cases</a>
-        <a href="sobre.html">Sobre</a>
+  <a class="skip-link" href="#main-content">Pular para conteúdo principal</a>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <a href="dashboard.html" aria-label="CRUZ Learning Environment">
+        <img class="brand-logo" src="assets/logo-cruz-L_E.svg" alt="CRUZ Learning Environment">
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="primary-nav" aria-expanded="false">
+        <svg class="icon icon--action" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h16" />
+          <path d="M4 12h16" />
+          <path d="M4 17h16" />
+        </svg>
+        Menu
+      </button>
+      <nav class="nav" id="primary-nav" aria-label="Navegação principal">
+        <a href="dashboard.html">
+          <span class="icon icon--nav nav-icon nav-icon--dashboard" aria-hidden="true"></span>
+          Dashboard
+        </a>
+        <a href="dashboard.html#disciplinas" class="active" aria-current="page">
+          <span class="icon icon--nav nav-icon nav-icon--disciplines" aria-hidden="true"></span>
+          Disciplinas
+        </a>
+        <a href="sobre.html">
+          <svg class="icon icon--nav" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M5.5 20c1.2-4.2 4-6 6.5-6s5.3 1.8 6.5 6" />
+          </svg>
+          Sobre
+        </a>
+        <a href="dashboard.html#contato">
+          <svg class="icon icon--nav" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.5 6.5h15v11h-15z" />
+            <path d="m5 7 7 6 7-6" />
+            <path d="m9.5 12-4.5 5" />
+            <path d="m14.5 12 4.5 5" />
+          </svg>
+          Contato
+        </a>
+      </nav>
+      <div class="sidebar-note">
+        <b>Fiocruz · ADDIE-UX</b>
+        UX aplicado à operação EAD: pesquisa, blueprint e base estratégica para redesenhar a esteira.
+        <img class="signature" src="assets/assinatura-thalisson-cruz.svg" alt="Assinatura Thalisson Cruz">
       </div>
-    </nav>
+    </aside>
 
-    <div class="back-nav">
-      <a href="index.html#cases">← Voltar para cases</a>
-    </div>
-    <header class="hero">
-      <div><span class="eyebrow">Case 02 · Design Estratégico · Fiocruz Brasília</span><h1>ADDIE-UX: redesenhando a esteira de produção EAD como sistema</h1><p class="lead">Um projeto em evolução para mapear, estruturar e redesenhar o ecossistema de produção de cursos EAD do NEAD, conectando UX, DesignOps, Design Instrucional e IA aplicada.</p><div class="tags"><span class="tag">Design Estratégico</span><span class="tag">Service Design</span><span class="tag">DesignOps</span><span class="tag">UX Research</span><span class="tag">IA aplicada</span></div></div>
-      <div class="hero-visual">
-        <div class="system-diagram">
-          <div class="system-core">ADDIE-UX</div>
+    <main class="main" id="main-content">
+      <div class="container">
+        <a class="case-back-link reveal reveal-delay-1" href="dashboard.html#disciplinas">← Voltar para disciplinas</a>
 
-          <div class="system-diagram-grid">
-            <div class="system-info-card">
-              <strong>Fluxo macro</strong>
-              <span>Do diagnóstico à avaliação do curso</span>
-            </div>
-
-            <div class="system-info-card">
-              <strong>Microfluxos</strong>
-              <span>Inscrição, AVA, suporte, BI, multimídia e certificação</span>
-            </div>
-
-            <div class="system-info-card">
-              <strong>Camada operacional</strong>
-              <span>Briefings, validações, rituais e documentação viva</span>
+        <header class="course-hero reveal reveal-delay-2">
+          <div>
+            <span class="kicker">Case de UX aplicado a processos</span>
+            <h1>Fiocruz · ADDIE-UX: organizando a produção EAD por dentro</h1>
+            <p class="course-subtitle">Como usei UX Research e Design de Serviço para mapear a esteira de produção do NEAD/Fiocruz Brasília — seus gargalos, papéis, dependências e pontos de retrabalho.</p>
+            <div class="hero-actions" aria-label="Competências aplicadas">
+              <span class="tag">UX Research</span>
+              <span class="tag">Service Design</span>
+              <span class="tag">DesignOps</span>
+              <span class="tag">Design Instrucional</span>
+              <span class="tag">Process Mapping</span>
+              <span class="tag">Educação Digital</span>
             </div>
           </div>
-        </div>
-      </div>
-    </header>
 
-    <section class="case-summary">
-      <div class="summary-card">
-        <span>Problema</span>
-        <p>Esteira de produção EAD descentralizada, com processos opacos, comunicação fragmentada e retrabalho.</p>
-      </div>
-      <div class="summary-card">
-        <span>Solução</span>
-        <p>Mapeei a cadeia de valor e defini um framework sistêmico conectando DesignOps, Design Instrucional e UX.</p>
-      </div>
-      <div class="summary-card">
-        <span>Impacto</span>
-        <p>Base tática para operação com IA, redução de fricção entre áreas e visibilidade fim-a-fim.</p>
-      </div>
-    </section>
-    <section><div class="section-head"><div><span class="eyebrow">01 · Contexto</span><h2>A produção EAD como operação complexa</h2></div><p>A produção de cursos EAD no NEAD envolve equipes multidisciplinares, múltiplas etapas, validações sucessivas e demandas paralelas. O desafio não está apenas em produzir cursos, mas em coordenar um sistema de trabalho vivo.</p></div><div class="grid-4"><div class="card"><strong>Complexidade</strong><h3>Múltiplos atores</h3><p>DI, multimídia, TI, oferta, suporte, coordenação e conteudistas.</p></div><div class="card"><strong>Dependência</strong><h3>Validações em cadeia</h3><p>Cada entrega pode acionar novas rodadas de revisão e ajuste.</p></div><div class="card"><strong>Escala</strong><h3>Demandas paralelas</h3><p>Inscrições, AVA, BI, certificação, suporte e eventos.</p></div><div class="card"><strong>Experiência</strong><h3>Usuário interno</h3><p>O colaborador passa a ser entendido como usuário central do processo.</p></div></div></section>
-    <section><div class="section-head"><div><span class="eyebrow">02 · Problema</span><h2>O problema não estava nas tarefas. Estava no sistema.</h2></div><p>O diagnóstico revelou que a esteira de produção não poderia ser tratada como fluxo único e linear. Havia macroprocesso visível e diversos microcosmos internos.</p></div><div class="grid-3"><div class="card"><strong>Gargalo</strong><h3>Informação descentralizada</h3><p>Parte do esforço era gasto reconstruindo contexto e decisões.</p></div><div class="card"><strong>Risco</strong><h3>Retrabalho estrutural</h3><p>Validações tardias e briefings incompletos geravam ciclos de ajuste.</p></div><div class="card"><strong>Consequência</strong><h3>Baixa visibilidade</h3><p>A equipe nem sempre tinha clareza de prioridades e dependências.</p></div></div></section>
-    <section><div class="section-head"><div><span class="eyebrow">03 · Diagnóstico</span><h2>UX aplicado ao processo, não apenas ao produto final</h2></div><p>A pesquisa partiu da premissa de que a esteira de produção deveria ser analisada como um serviço, olhando para a experiência dos colaboradores que operam o processo.</p></div><div class="process-map"><div class="macro-flow"><div class="flow-step"><span>01</span><h4>Demanda</h4><p>Análise inicial, viabilidade e escopo.</p></div><div class="flow-step"><span>02</span><h4>Desenho</h4><p>Oficina, cronograma, roteiros e estrutura pedagógica.</p></div><div class="flow-step"><span>03</span><h4>Produção</h4><p>Storyboards, multimídia e materiais.</p></div><div class="flow-step"><span>04</span><h4>Implementação</h4><p>Configuração do AVA, atividades e testes.</p></div><div class="flow-step"><span>05</span><h4>Oferta</h4><p>Suporte, BI, avaliação e relatório.</p></div></div><div class="parallel-flows"><div>Inscrição e matrícula</div><div>Configuração do AVA</div><div>Suporte técnico</div><div>Relatórios e BI</div><div>Certificação</div><div>Multimídia</div><div>Acessibilidade</div><div>Eventos</div></div></div></section>
-    <section><div class="section-head"><div><span class="eyebrow">04 · Jornada do colaborador</span><h2>Onde o sistema realmente quebra</h2></div><p>A jornada evidencia que o esforço da equipe está na tentativa constante de entender o sistema, reconstruir contexto e lidar com dependências invisíveis.</p></div><div class="journey-grid"><div class="card"><strong>01 · Entrada</strong><h3>Receber demanda</h3><p>Demanda chega com múltiplos formatos e níveis de clareza.</p></div><div class="card"><strong>02 · Interpretação</strong><h3>Entender o escopo</h3><p>Equipe alinha expectativas, objetivos e limitações.</p></div><div class="card"><strong>03 · Planejamento</strong><h3>Estruturar o fluxo</h3><p>Definição de etapas, responsáveis e dependências.</p></div><div class="card"><strong>04 · Produção</strong><h3>Executar entregas</h3><p>Conteúdo, multimídia e validações acontecem em paralelo.</p></div><div class="card"><strong>05 · Validação</strong><h3>Revisar e ajustar</h3><p>Ciclos de feedback podem gerar retrabalho.</p></div><div class="card"><strong>06 · Entrega</strong><h3>Finalizar e acompanhar</h3><p>Dificuldade de visualizar progresso e fechamento completo.</p></div></div></section>
-    <section><div class="section-head"><div><span class="eyebrow">05 · Service Blueprint</span><h2>O que acontece por trás do fluxo</h2></div><p>O blueprint conecta ações visíveis com processos internos e revela gargalos estruturais da operação.</p></div><div class="blueprint"><div class="bp-row"><strong>Frontstage</strong><div class="bp-items"><span>Receber demanda</span><span>Alinhar briefing</span><span>Produzir conteúdo</span><span>Validar entregas</span><span>Finalizar curso</span></div></div><div class="bp-row"><strong>Backstage</strong><div class="bp-items"><span>Reuniões internas</span><span>Trocas entre áreas</span><span>Revisões técnicas</span><span>Ajustes recorrentes</span><span>Reprocessamento</span></div></div><div class="bp-row"><strong>Sistemas</strong><div class="bp-items"><span>AVA</span><span>Planilhas</span><span>BI</span><span>Documentos</span><span>Comunicação</span></div></div><div class="bp-row highlight"><strong>Gargalos</strong><div class="bp-items"><span>Falta de contexto</span><span>Retrabalho</span><span>Dependências</span><span>Baixa visibilidade</span><span>Desalinhamento</span></div></div></div></section>
-    <section><div class="section-head"><div><span class="eyebrow">06 · Insight central</span><h2>A IA não foi ponto de partida. Foi consequência.</h2></div><p>O primeiro movimento foi mapear o processo, entender suas camadas e revelar onde a experiência da equipe se fragmentava.</p></div><div class="quote"><h2>O valor não está em automatizar o caos. Está em estruturar o sistema para que a automação faça sentido.</h2><p>Antes de qualquer agente de IA, era preciso compreender o fluxo, seus atores, seus pontos de decisão e seus microprocessos.</p></div></section>
-    <section><div class="section-head"><div><span class="eyebrow">07 · Sistema</span><h2>ADDIE-UX: estruturando um sistema complexo</h2></div><p>O framework atua como camada organizadora do processo existente, conectando estrutura, experiência e operação.</p></div><div class="addie-system"><div class="layers"><div class="layer"><span>ADDIE · Estrutura base</span><small>Análise, Desenho, Desenvolvimento, Implementação e Avaliação</small></div><div class="layer"><span>UX · Experiência do fluxo</span><small>Clareza, visibilidade e redução de carga cognitiva</small></div><div class="layer"><span>DesignOps · Operação</span><small>Briefings, rituais, checklists e documentação viva</small></div><div class="layer"><span>IA · Amplificação</span><small>Organização, análise e apoio a tarefas repetitivas</small></div></div><div class="addie-flow"><div>Análise</div><div>Desenho</div><div>Desenvolvimento</div><div>Implementação</div><div>Avaliação</div></div><div class="components"><div class="component-card"><strong>Briefing estruturado</strong><br><span>Reduz desalinhamento inicial.</span></div><div class="component-card"><strong>Checkpoints</strong><br><span>Evita validações tardias.</span></div><div class="component-card"><strong>Rituais</strong><br><span>Cria cadência entre áreas.</span></div><div class="component-card"><strong>Documentação viva</strong><br><span>Mantém contexto acessível.</span></div><div class="component-card"><strong>Agentes de IA</strong><br><span>Amplificam tarefas estruturadas.</span></div></div></div></section>
-    <section><div class="section-head"><div><span class="eyebrow">08 · Agentes de IA</span><h2>IA como camada de apoio ao sistema</h2></div><p>Os agentes surgem como experimentações práticas para reduzir esforço, organizar informação e apoiar etapas específicas.</p></div><div class="agent-grid"><div class="agent"><h3>A.L.F.A</h3><p>Apoia leitura, análise e estruturação de documentos.</p></div><div class="agent"><h3>FioVoz</h3><p>Transforma conteúdo textual em áudio.</p></div><div class="agent"><h3>Audiodescrição</h3><p>Apoia descrição de elementos visuais com foco em acessibilidade.</p></div><div class="agent"><h3>D.I Digital</h3><p>Auxilia documentação e padronização instrucional.</p></div><div class="agent"><h3>Lattes Assistant</h3><p>Organiza informações acadêmicas.</p></div></div></section>
-    <section><div class="quote"><span class="eyebrow">Aprendizado-chave</span><h2>Em sistemas complexos, design não é só melhorar a interface. É tornar o trabalho possível, visível e sustentável.</h2><p>O ADDIE-UX nasce dessa leitura: antes de escalar soluções, é preciso estruturar o sistema que sustenta a produção.</p></div></section>
-    <section class="case-next-nav" style="padding: 40px 0;">
-      <a class="case-next-card" href="ava.html">
-        <span>Anterior</span>
-        <strong>← Como redesenhei a experiência do AVA</strong>
-      </a>
-      <a class="case-next-card" href="d2l.html" style="border-color:rgba(96,165,250,.35);">
-        <span>Próximo case</span>
-        <strong>Como automatizei a operação com IA →</strong>
-      </a>
-    </section>
+          <aside class="course-panel" aria-label="Resumo do case">
+            <div class="course-meta">
+              <div>
+                <small>Meu papel</small>
+                <strong>UX/UI Designer e pesquisador</strong>
+                <p>Diagnóstico da experiência interna, mapeamento da esteira, estruturação de achados e proposta de framework ADDIE-UX.</p>
+              </div>
+              <div>
+                <small>Contexto</small>
+                <strong>NEAD / Fiocruz Brasília</strong>
+                <p>Produção de cursos EAD para capacitação contínua de profissionais, especialmente no contexto do SUS.</p>
+              </div>
+              <div>
+                <small>Foco</small>
+                <strong>Usuário interno</strong>
+                <p>Colaboradores da esteira de produção tratados como usuários do processo.</p>
+              </div>
+              <div>
+                <small>Resultado</small>
+                <strong>Base estratégica de redesign</strong>
+                <p>Mapeamento de fluxo, gargalos, oportunidades e fundamentos para otimização da operação.</p>
+              </div>
+            </div>
+          </aside>
+        </header>
 
-    <section class="contact-footer" id="contato">
-      <div>
-        <span class="eyebrow">Contato</span>
-        <h2>Disponível para oportunidades em UX/Product Design e sistemas com IA.</h2>
-        <p>Atuo em produtos digitais, educação e automação de processos complexos.</p>
+        <section class="case-executive reveal reveal-delay-3">
+          <span class="module-label">Resumo executivo</span>
+          <h2 class="module-title">Visão geral do projeto</h2>
+          <div class="executive-copy">
+            <p>A produção de cursos EAD no NEAD/Fiocruz Brasília envolve concepção pedagógica, materiais, multimídia,
+              configuração no AVA, suporte, avaliação e publicação.</p>
+            <p>O projeto investigou a experiência dos colaboradores que operam essa produção. O objetivo era entender
+              onde decisões, validações e registros se perdiam entre áreas.</p>
+            <p>A entrega foi um diagnóstico da esteira e uma base para o framework ADDIE-UX, tratando o processo interno
+              como serviço e os colaboradores como usuários.</p>
+          </div>
+          <div class="executive-pills" aria-label="Síntese do projeto">
+            <span>Problema: processo pouco visível</span>
+            <span>Usuário: colaborador interno</span>
+            <span>Pesquisa: 17 participantes</span>
+            <span>Abordagem: UX Research + Service Design</span>
+            <span>Entrega: diagnóstico da esteira</span>
+            <span>Resultado: base para ADDIE-UX</span>
+          </div>
+        </section>
+
+        <section class="case-reading-guide reveal reveal-delay-3" aria-labelledby="case-reading-guide-title">
+          <div class="case-reading-guide-copy">
+            <span class="module-label">Guia de leitura</span>
+            <h2 id="case-reading-guide-title">Como ler este case</h2>
+            <p>Este case mostra como organizei a leitura da produção EAD na Fiocruz Brasília, olhando para o trabalho
+              dos colaboradores que operam a esteira.</p>
+          </div>
+          <ol class="case-reading-steps">
+            <li><span>01</span> Como a produção EAD estava estruturada</li>
+            <li><span>02</span> Onde o trabalho perdia clareza entre etapas</li>
+            <li><span>03</span> Como a pesquisa revelou padrões internos</li>
+            <li><span>04</span> Como o ADDIE-UX ajudou a organizar decisões</li>
+          </ol>
+        </section>
+
+        <nav class="course-nav" aria-label="Módulos da disciplina">
+          <a class="active" href="#contexto" aria-current="true">Contexto</a>
+          <a href="#problema">Problema</a>
+          <a href="#insight">Insight</a>
+          <a href="#pesquisa">Pesquisa</a>
+          <a href="#dados-pesquisa">Dados</a>
+          <a href="#personas">Personas</a>
+          <a href="#esteira">Esteira</a>
+          <a href="#jornada-colaborador">Jornada</a>
+          <a href="#blueprint">Blueprint</a>
+          <a href="#csd">CSD</a>
+          <a href="#addie-ux">ADDIE-UX</a>
+          <a href="#sistema-addie">Sistema</a>
+          <a href="#ia-apoio">IA apoio</a>
+          <a href="#impacto">Impacto</a>
+        </nav>
+
+        <section class="module is-narrative reveal reveal-delay-3" id="contexto">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Contexto</span>
+              <h2>A produção EAD como operação complexa</h2>
+            </div>
+            <p>No NEAD/Fiocruz Brasília, a produção de cursos passa por equipes, documentos, materiais, AVA, suporte e
+              avaliação. O trabalho depende de alinhamento entre áreas e de registros claros em cada passagem.</p>
+          </div>
+          <div class="grid-4">
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" /><path d="M17 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" /><path d="M3.5 19c.7-3 2.8-5 5.5-5s4.8 2 5.5 5" /><path d="M13 15c.8-.7 1.8-1 3-1 2.6 0 4.6 2 5.2 5" /></svg></div>
+              <h3>Múltiplos atores</h3>
+              <p>Design Instrucional, multimídia, TI, suporte, coordenação, conteudistas e áreas demandantes.</p>
+            </article>
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6h4v4H5z" /><path d="M15 14h4v4h-4z" /><path d="M9 8h4.5c2.5 0 4.5 2 4.5 4.5V14" /><path d="m16 12 2 2 2-2" /></svg></div>
+              <h3>Etapas encadeadas</h3>
+              <p>Análise, desenho, desenvolvimento, implementação, oferta, avaliação e ajustes.</p>
+            </article>
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5h14v4H5z" /><path d="M5 10h14v4H5z" /><path d="M5 15h14v4H5z" /><path d="M8 7h.01" /><path d="M8 12h.01" /><path d="M8 17h.01" /></svg></div>
+              <h3>Ferramentas dispersas</h3>
+              <p>Documentos, planilhas, Moodle, BI, canais de comunicação e registros operacionais.</p>
+            </article>
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7h10v10H7z" /><path d="m9 12 2 2 4-5" /><path d="M4 4h4" /><path d="M16 4h4" /><path d="M4 20h4" /><path d="M16 20h4" /></svg></div>
+              <h3>Validações sucessivas</h3>
+              <p>Cada entrega podia abrir nova rodada de revisão, alinhamento ou correção.</p>
+            </article>
+          </div>
+          <p class="context-summary">O desafio era entender como o trabalho atravessava áreas, ferramentas e decisões.</p>
+        </section>
+
+        <section class="module is-narrative reveal reveal-delay-3" id="problema">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Problema</span>
+              <h2>O problema não era uma tarefa isolada. Era o modo como o trabalho passava de uma etapa para outra.</h2>
+            </div>
+            <p>A esteira reunia macroetapas visíveis e microprocessos internos. Entre uma etapa e outra, decisões,
+              responsáveis, prazos e registros nem sempre estavam claros para todos.</p>
+          </div>
+          <div class="problem-chips" aria-label="Características do problema">
+            <span>Contexto disperso</span>
+            <span>Retrabalho</span>
+            <span>Baixa visibilidade</span>
+            <span>Usuário interno</span>
+            <span>Passagem entre áreas</span>
+          </div>
+          <div class="grid-4">
+            <article class="info-card">
+              <h3>Informação descentralizada</h3>
+              <p>Parte do esforço era gasto reconstruindo histórico, decisões e arquivos.</p>
+            </article>
+            <article class="info-card">
+              <h3>Papéis pouco visíveis</h3>
+              <p>Nem sempre ficava claro quem decidia, validava ou executava cada passagem.</p>
+            </article>
+            <article class="info-card">
+              <h3>Retrabalho recorrente</h3>
+              <p>Ajustes voltavam para etapas anteriores quando faltava alinhamento.</p>
+            </article>
+            <article class="info-card">
+              <h3>Acompanhamento difícil</h3>
+              <p>O andamento do curso dependia de registros espalhados em diferentes ferramentas.</p>
+            </article>
+          </div>
+          <p class="problem-summary">O projeto precisava tornar o processo mais legível para quem participa dele.</p>
+        </section>
+
+        <section class="module is-highlight reveal reveal-delay-4" id="insight">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Insight central</span>
+              <h2>Quem opera o processo também vive uma experiência — com ruídos, decisões, esperas e retrabalho.</h2>
+            </div>
+            <div class="module-copy">
+              <p>Antes de otimizar a produção EAD, era preciso compreender a experiência de quem sustenta essa produção. O colaborador não era apenas executor de tarefas; ele era usuário de um serviço interno, atravessado por fluxos, ferramentas, dependências, decisões e ruídos de comunicação.</p>
+              <p>O redesign da esteira começava pelo diagnóstico da experiência interna.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="module is-narrative reveal reveal-delay-3" id="pesquisa">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Pesquisa e diagnóstico</span>
+              <h2>UX aplicado ao processo, não apenas ao produto final</h2>
+            </div>
+            <p>A pesquisa partiu da premissa de que a esteira de produção deveria ser analisada como um serviço. O objetivo era mapear o fluxo atual, identificar pontos de atrito e gerar uma base clara, baseada em evidências, para futuras otimizações.</p>
+          </div>
+          <article class="research-context">
+            <h3>Formato da investigação</h3>
+            <p>A investigação combinou pesquisa qualitativa aplicada a 17 colaboradores, análise documental, mapeamento de jornada, Service Blueprint e Matriz CSD para organizar certezas, hipóteses e dúvidas sobre o funcionamento da esteira.</p>
+          </article>
+          <div class="research-grid">
+            <article class="research-method-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 8h10" /><path d="M7 12h7" /><path d="M7 16h5" /><path d="M5 4.5h14v15H5z" /></svg></div>
+              <strong>Pesquisa qualitativa</strong>
+              <p>Formulário aplicado a 17 membros da equipe multidisciplinar do NEAD.</p>
+            </article>
+            <article class="research-method-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" /><path d="M18 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" /><path d="M12 20a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" /><path d="M8.5 9 11 14" /><path d="M15.5 9 13 14" /></svg></div>
+              <strong>Perfis participantes</strong>
+              <p>Design Instrucional, Design Visual/UX/UI, Desenvolvimento, Multimídia, Gestão/Coordenação, Suporte Técnico e Administração do AVA.</p>
+            </article>
+            <article class="research-method-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18c4-8 9-3 16-12" /><path d="M5 19h4" /><path d="M10 13h4" /><path d="M15 8h4" /></svg></div>
+              <strong>Mapeamento de jornada</strong>
+              <p>Representação do fluxo sob a ótica da persona Paula, usuária interna da esteira.</p>
+            </article>
+            <article class="research-method-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16" /><path d="M4 12h16" /><path d="M4 18h16" /><path d="M8 4v16" /><path d="M16 4v16" /></svg></div>
+              <strong>Service Blueprint</strong>
+              <p>Mapeamento de ações visíveis, bastidores, sistemas de suporte e gargalos estruturais.</p>
+            </article>
+            <article class="research-method-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 5h12v14H6z" /><path d="M9 9h6" /><path d="M9 12h6" /><path d="M9 15h3" /></svg></div>
+              <strong>Matriz CSD</strong>
+              <p>Organização de certezas, suposições e dúvidas para orientar próximos passos.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="module is-artifact reveal reveal-delay-4" id="dados-pesquisa">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Dados da pesquisa</span>
+              <h2>O que os dados revelaram</h2>
+            </div>
+            <p>A pesquisa qualitativa com 17 colaboradores do NEAD/Fiocruz Brasília permitiu priorizar os desafios mais recorrentes da esteira de produção. O achado principal foi que problemas no início do fluxo geravam efeito cascata sobre planejamento, prototipação, revisão e retrabalho.</p>
+          </div>
+          <div class="research-stats">
+            <aside class="sample-highlight">
+              <strong>17</strong>
+              <span>colaboradores ouvidos</span>
+              <p>Perfis de Design Instrucional, Design Visual/UX/UI, Desenvolvimento, Produção Multimídia, Gestão/Coordenação, Suporte Técnico e Administração do AVA.</p>
+            </aside>
+            <div class="bar-chart" aria-label="Frequência dos principais desafios no processo de produção, N=17">
+              <div class="bar-row">
+                <div class="bar-value">14</div>
+                <div>
+                  <div class="bar-label"><span>Demandas vagas e falta de briefing estruturado</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
+                </div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-value">12</div>
+                <div>
+                  <div class="bar-label"><span>Retrabalho e mudanças de escopo tardias</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width: 86%;"></div></div>
+                </div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-value">9</div>
+                <div>
+                  <div class="bar-label"><span>Fragmentação do processo e falta de visão sistêmica</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width: 64%;"></div></div>
+                </div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-value">8</div>
+                <div>
+                  <div class="bar-label"><span>Comunicação e alinhamento entre equipes</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width: 57%;"></div></div>
+                </div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-value">7</div>
+                <div>
+                  <div class="bar-label"><span>Gestão de tempo e prazos</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width: 50%;"></div></div>
+                </div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-value">5</div>
+                <div>
+                  <div class="bar-label"><span>Ferramentas e sistemas inadequados</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width: 36%;"></div></div>
+                </div>
+              </div>
+              <p class="chart-caption">Frequência dos principais desafios no processo de produção — N=17.</p>
+              <p class="research-synthesis">A dor mais citada aparece no início do fluxo — e cria efeito cascata sobre as etapas seguintes.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="module is-narrative reveal reveal-delay-3" id="personas">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Personas internas</span>
+              <h2>Quem vive a esteira por dentro</h2>
+            </div>
+            <p>As personas sintetizam perfis envolvidos na produção EAD e ajudam a visualizar como diferentes papéis experimentam o mesmo processo de formas distintas.</p>
+          </div>
+          <div class="persona-grid">
+            <article class="persona-card">
+              <figure class="persona-image">
+                <img src="assets/personas/persona-paula.png" alt="Ilustração da persona Paula, designer instrucional e visual no NEAD, em ambiente de trabalho." loading="lazy" decoding="async">
+              </figure>
+              <div class="persona-top">
+                <div>
+                  <h3>Paula</h3>
+                  <span class="persona-role">Executora interna</span>
+                </div>
+              </div>
+              <p class="persona-meta">38 anos • Designer Instrucional e Visual no NEAD</p>
+              <div class="persona-section"><strong>Objetivos</strong><p>Criar cursos eficazes e engajadores; ter um fluxo de trabalho previsível; colaborar de forma fluida com os colegas.</p></div>
+              <div class="persona-section"><strong>Dor principal</strong><p>As demandas chegam muito abertas. Ela passa mais tempo tentando decifrar o que precisa ser feito do que criando de fato.</p></div>
+              <div class="persona-section"><strong>Necessidade</strong><p>Contexto, critérios e validações antes da produção avançar.</p></div>
+              <blockquote class="persona-quote">“Eu amo o que eu faço, só gostaria de ter um processo que me ajudasse a fazer melhor.”</blockquote>
+            </article>
+            <article class="persona-card">
+              <figure class="persona-image">
+                <img src="assets/personas/persona-roberto.png" alt="Ilustração da persona Dr. Roberto, coordenador de área e demandante estratégico." loading="lazy" decoding="async">
+              </figure>
+              <div class="persona-top">
+                <div>
+                  <h3>Dr. Roberto</h3>
+                  <span class="persona-role">Demandante estratégico</span>
+                </div>
+              </div>
+              <p class="persona-meta">55 anos • Coordenador de área e especialista técnico</p>
+              <div class="persona-section"><strong>Objetivos</strong><p>Capacitar rapidamente profissionais de saúde; garantir precisão técnica do conteúdo.</p></div>
+              <div class="persona-section"><strong>Dor principal</strong><p>Sabe o conteúdo, mas nem sempre sabe como traduzir isso para um curso online.</p></div>
+              <div class="persona-section"><strong>Necessidade</strong><p>Orientação para estruturar escopo, objetivos, formato e expectativas.</p></div>
+              <blockquote class="persona-quote">“Minha urgência é o conteúdo. Os detalhes de formato eu confio na equipe para resolver.”</blockquote>
+            </article>
+            <article class="persona-card">
+              <figure class="persona-image">
+                <img src="assets/personas/persona-carlos.png" alt="Ilustração da persona Carlos, profissional de saúde e usuário final impactado pela experiência dos cursos." loading="lazy" decoding="async">
+              </figure>
+              <div class="persona-top">
+                <div>
+                  <h3>Carlos</h3>
+                  <span class="persona-role">Usuário final impactado</span>
+                </div>
+              </div>
+              <p class="persona-meta">45 anos • Enfermeiro no SUS</p>
+              <div class="persona-section"><strong>Objetivos</strong><p>Aprender algo aplicável à prática profissional; concluir o curso sem dificuldades técnicas.</p></div>
+              <div class="persona-section"><strong>Dor principal</strong><p>Sente os efeitos indiretos de atrasos, inconsistências e baixa padronização.</p></div>
+              <div class="persona-section"><strong>Necessidade</strong><p>Cursos claros, objetivos, consistentes e bem estruturados.</p></div>
+              <blockquote class="persona-quote">“O curso é bom, mas precisa ser mais direto ao ponto.”</blockquote>
+            </article>
+          </div>
+        </section>
+
+        <section class="module is-artifact reveal reveal-delay-4" id="esteira">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Mapa da esteira</span>
+              <h2>A esteira não era linear. Era um ecossistema de dependências.</h2>
+            </div>
+            <p>O primeiro passo foi tornar visível o que antes estava disperso: etapas, atores, ferramentas, validações e microprocessos que sustentavam a produção de cursos EAD.</p>
+          </div>
+          <figure class="pipeline-artifact">
+            <img src="assets/fiocruz/mapa-esteira-ead.png"
+              data-full="assets/fiocruz/mapa-esteira-ead.png"
+              alt="Infográfico do mapa da esteira EAD do NEAD Fiocruz Brasília, mostrando macroetapas do fluxo principal e fluxos paralelos de apoio ao processo."
+              loading="lazy" decoding="async">
+            <figcaption>Visão sistêmica da produção EAD, conectando macroetapas, dependências e fluxos paralelos que sustentam a operação.</figcaption>
+          </figure>
+        </section>
+
+        <section class="module is-decision reveal reveal-delay-4" id="jornada-colaborador">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Jornada do colaborador</span>
+              <h2>Onde o sistema realmente quebra</h2>
+            </div>
+            <p>A jornada evidencia que o esforço da equipe não estava apenas em executar tarefas, mas em entender o sistema, reconstruir contexto e lidar com dependências invisíveis.</p>
+          </div>
+          <div class="tabs-shell" data-tabs="journey">
+            <div class="tab-list" role="tablist" aria-label="Jornada do colaborador">
+              <button class="tab-button is-active" type="button" role="tab" aria-selected="true" aria-controls="tab-demanda" id="tab-demanda-button" data-tab="demanda">Recebimento da Demanda</button>
+              <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tab-planejamento" id="tab-planejamento-button" data-tab="planejamento">Planejamento</button>
+              <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tab-design" id="tab-design-button" data-tab="design">Design e Prototipação</button>
+              <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tab-desenvolvimento" id="tab-desenvolvimento-button" data-tab="desenvolvimento">Desenvolvimento</button>
+              <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tab-revisao" id="tab-revisao-button" data-tab="revisao">Revisão e Aprovação</button>
+              <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tab-publicacao" id="tab-publicacao-button" data-tab="publicacao">Publicação</button>
+            </div>
+            <div class="tab-panel" id="tab-demanda" role="tabpanel" aria-labelledby="tab-demanda-button" data-panel="demanda">
+              <div class="tab-panel-grid">
+                <div class="tab-panel-item"><strong>O que acontece</strong><p>Demanda chega vaga, sem briefing estruturado.</p></div>
+                <div class="tab-panel-item"><strong>Dor</strong><p>Início do ciclo de incertezas.</p></div>
+                <div class="tab-panel-item"><strong>Oportunidade</strong><p>Criar briefing estruturado e critérios mínimos de entrada.</p></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="tab-planejamento" role="tabpanel" aria-labelledby="tab-planejamento-button" data-panel="planejamento" hidden>
+              <div class="tab-panel-grid">
+                <div class="tab-panel-item"><strong>O que acontece</strong><p>Tentativa de estruturar o projeto com informações incompletas.</p></div>
+                <div class="tab-panel-item"><strong>Dor</strong><p>A equipe precisa tomar decisões com base em contexto instável.</p></div>
+                <div class="tab-panel-item"><strong>Oportunidade</strong><p>Centralizar contexto, objetivos, responsáveis e restrições.</p></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="tab-design" role="tabpanel" aria-labelledby="tab-design-button" data-panel="design" hidden>
+              <div class="tab-panel-grid">
+                <div class="tab-panel-item"><strong>O que acontece</strong><p>Criação sobre escopo ainda instável.</p></div>
+                <div class="tab-panel-item"><strong>Dor</strong><p>Insegurança e retrabalho potencial.</p></div>
+                <div class="tab-panel-item"><strong>Oportunidade</strong><p>Inserir validações intermediárias antes de avançar.</p></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="tab-desenvolvimento" role="tabpanel" aria-labelledby="tab-desenvolvimento-button" data-panel="desenvolvimento" hidden>
+              <div class="tab-panel-grid">
+                <div class="tab-panel-item"><strong>O que acontece</strong><p>Execução técnica com base nos protótipos aprovados.</p></div>
+                <div class="tab-panel-item"><strong>Dor</strong><p>Ajustes tardios podem impactar produção e implementação.</p></div>
+                <div class="tab-panel-item"><strong>Oportunidade</strong><p>Conectar melhor design, desenvolvimento e critérios de aceite.</p></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="tab-revisao" role="tabpanel" aria-labelledby="tab-revisao-button" data-panel="revisao" hidden>
+              <div class="tab-panel-grid">
+                <div class="tab-panel-item"><strong>O que acontece</strong><p>Ciclos de revisão e aprovação.</p></div>
+                <div class="tab-panel-item"><strong>Dor</strong><p>Revisões lentas, mudanças de escopo tardias e alto custo de alteração.</p></div>
+                <div class="tab-panel-item"><strong>Oportunidade</strong><p>Padronizar critérios de validação e antecipar feedbacks.</p></div>
+              </div>
+            </div>
+            <div class="tab-panel" id="tab-publicacao" role="tabpanel" aria-labelledby="tab-publicacao-button" data-panel="publicacao" hidden>
+              <div class="tab-panel-grid">
+                <div class="tab-panel-item"><strong>O que acontece</strong><p>Curso finalizado e publicado no AVA Moodle.</p></div>
+                <div class="tab-panel-item"><strong>Dor</strong><p>Aprendizados do processo nem sempre retroalimentam ciclos futuros.</p></div>
+                <div class="tab-panel-item"><strong>Oportunidade</strong><p>Criar documentação viva e retrospectiva da esteira.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="module is-artifact reveal reveal-delay-4" id="blueprint">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Service Blueprint</span>
+              <h2>O que acontece por trás do fluxo</h2>
+            </div>
+            <p>O blueprint conecta ações visíveis, processos internos, sistemas utilizados e gargalos estruturais da operação.</p>
+          </div>
+          <div class="blueprint-scroll">
+            <div class="blueprint-board" role="table" aria-label="Service Blueprint da produção EAD">
+              <div class="blueprint-row" role="row">
+                <div class="blueprint-head" role="columnheader">Camada</div>
+                <div class="blueprint-head" role="columnheader">Receber demanda</div>
+                <div class="blueprint-head" role="columnheader">Alinhar briefing</div>
+                <div class="blueprint-head" role="columnheader">Produzir conteúdo</div>
+                <div class="blueprint-head" role="columnheader">Validar entregas</div>
+                <div class="blueprint-head" role="columnheader">Finalizar curso</div>
+              </div>
+              <div class="blueprint-row" role="row">
+                <div class="blueprint-cell blueprint-row-label" role="rowheader">Frontstage</div>
+                <div class="blueprint-cell">Entrada da demanda e primeiras conversas.</div>
+                <div class="blueprint-cell">Reuniões e alinhamentos com demandante.</div>
+                <div class="blueprint-cell">Apresentações de protótipos e entregas.</div>
+                <div class="blueprint-cell">Rodadas de revisão e aprovação.</div>
+                <div class="blueprint-cell">Publicação e comunicação de entrega.</div>
+              </div>
+              <div class="blueprint-row" role="row">
+                <div class="blueprint-cell blueprint-row-label" role="rowheader">Backstage</div>
+                <div class="blueprint-cell">Triagem, interpretação inicial e busca de contexto.</div>
+                <div class="blueprint-cell">Design Instrucional e definição de escopo.</div>
+                <div class="blueprint-cell">Design Visual, Desenvolvimento, Multimídia e ajustes.</div>
+                <div class="blueprint-cell">Revisão técnica, retrabalho e validações recorrentes.</div>
+                <div class="blueprint-cell">Fechamento operacional e registros finais.</div>
+              </div>
+              <div class="blueprint-row" role="row">
+                <div class="blueprint-cell blueprint-row-label" role="rowheader">Sistemas</div>
+                <div class="blueprint-cell">Documentos e canais de comunicação.</div>
+                <div class="blueprint-cell">Planilhas, registros e ferramentas de gestão.</div>
+                <div class="blueprint-cell">Moodle, ferramentas de design e desenvolvimento.</div>
+                <div class="blueprint-cell">Arquivos, comentários e documentos de revisão.</div>
+                <div class="blueprint-cell">AVA Moodle, BI, suporte e certificação.</div>
+              </div>
+              <div class="blueprint-row" role="row">
+                <div class="blueprint-cell blueprint-row-label" role="rowheader">Gargalos</div>
+                <div class="blueprint-cell">Falta de contexto.</div>
+                <div class="blueprint-cell">Briefing incompleto.</div>
+                <div class="blueprint-cell">Escopo instável.</div>
+                <div class="blueprint-cell">Mudanças tardias.</div>
+                <div class="blueprint-cell">Aprendizados pouco sistematizados.</div>
+              </div>
+            </div>
+          </div>
+          <div class="blueprint-findings">
+            <ul>
+              <li>A ausência de um suporte formal para briefing na fase inicial gera contato pouco estruturado.</li>
+              <li>O Design Instrucional trabalha com base em suposições.</li>
+              <li>O Design Visual prototipa sobre escopo instável.</li>
+              <li>O demandante retorna em fases tardias, quando o custo da mudança é mais alto.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="module is-decision reveal reveal-delay-4" id="csd">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Matriz CSD</span>
+              <h2>Separando o que foi validado, o que é hipótese e o que ainda precisa ser investigado.</h2>
+            </div>
+            <p>A Matriz CSD ajudou a organizar os achados da pesquisa em certezas, suposições e dúvidas, evitando que hipóteses fossem tratadas como fatos e apontando próximos passos de investigação.</p>
+          </div>
+          <div class="csd-grid">
+            <article class="csd-card">
+              <h3>Certezas</h3>
+              <ul class="csd-list">
+                <li>A falta de briefing estruturado é o problema mais citado.</li>
+                <li>O retrabalho é consequência direta de demandas mal especificadas.</li>
+                <li>A equipe possui alta dedicação e comprometimento com a missão da Fiocruz.</li>
+                <li>O processo carece de pontos de validação intermediários com o demandante.</li>
+                <li>A fragmentação dificulta a visão sistêmica.</li>
+              </ul>
+            </article>
+            <article class="csd-card">
+              <h3>Suposições</h3>
+              <ul class="csd-list">
+                <li>Um formulário de briefing padronizado reduziria o retrabalho.</li>
+                <li>Workshops de co-criação no início melhorariam o alinhamento.</li>
+                <li>Checkpoints de validação antecipariam problemas.</li>
+                <li>A fixidez funcional pode estar impedindo a equipe de otimizar processos.</li>
+                <li>Maior visibilidade do processo para o demandante reduziria mudanças tardias.</li>
+              </ul>
+            </article>
+            <article class="csd-card">
+              <h3>Dúvidas</h3>
+              <ul class="csd-list">
+                <li>Qual o impacto financeiro real do retrabalho?</li>
+                <li>Como equilibrar estruturação com flexibilidade criativa?</li>
+                <li>Quais ferramentas seriam mais adequadas para gestão do fluxo?</li>
+                <li>Como engajar demandantes em um processo mais colaborativo?</li>
+                <li>Qual o tempo médio perdido em cada ciclo de retrabalho?</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="module is-decision reveal reveal-delay-4" id="addie-ux">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Do diagnóstico ao framework</span>
+              <h2>Do diagnóstico ao ADDIE-UX</h2>
+            </div>
+            <p>O framework ADDIE-UX nasce como uma camada organizadora sobre o processo existente. Ele não substitui o ADDIE tradicional; amplia sua leitura com foco em experiência, operação, visibilidade e melhoria contínua.</p>
+          </div>
+          <div class="accordion">
+            <details open>
+              <summary>Análise</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Problema observado</strong><p>Demandas chegam com níveis diferentes de clareza e documentação.</p></div>
+                <div class="accordion-cell"><strong>Decisão ADDIE-UX</strong><p>Briefing estruturado e critérios mínimos de entrada.</p></div>
+                <div class="accordion-cell"><strong>Efeito esperado</strong><p>Menos desalinhamento no início do projeto.</p></div>
+              </div>
+            </details>
+            <details>
+              <summary>Desenho</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Problema observado</strong><p>Escopo, objetivos e fluxo pedagógico nem sempre ficam visíveis para todos.</p></div>
+                <div class="accordion-cell"><strong>Decisão ADDIE-UX</strong><p>Mapas de decisão, cronograma e alinhamento entre áreas.</p></div>
+                <div class="accordion-cell"><strong>Efeito esperado</strong><p>Mais clareza de responsabilidades e dependências.</p></div>
+              </div>
+            </details>
+            <details>
+              <summary>Desenvolvimento</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Problema observado</strong><p>Produções paralelas geram ruído e retrabalho.</p></div>
+                <div class="accordion-cell"><strong>Decisão ADDIE-UX</strong><p>Checkpoints intermediários e documentação viva.</p></div>
+                <div class="accordion-cell"><strong>Efeito esperado</strong><p>Menos validações tardias e mais previsibilidade.</p></div>
+              </div>
+            </details>
+            <details>
+              <summary>Implementação</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Problema observado</strong><p>Configuração no AVA, testes e suporte dependem de múltiplos microfluxos.</p></div>
+                <div class="accordion-cell"><strong>Decisão ADDIE-UX</strong><p>Checklist operacional e padronização de etapas críticas.</p></div>
+                <div class="accordion-cell"><strong>Efeito esperado</strong><p>Menos falhas de passagem entre produção e oferta.</p></div>
+              </div>
+            </details>
+            <details>
+              <summary>Avaliação</summary>
+              <div class="accordion-body">
+                <div class="accordion-cell"><strong>Problema observado</strong><p>Aprendizados do curso nem sempre retroalimentam o processo.</p></div>
+                <div class="accordion-cell"><strong>Decisão ADDIE-UX</strong><p>Rituais de retrospectiva e documentação de melhoria contínua.</p></div>
+                <div class="accordion-cell"><strong>Efeito esperado</strong><p>A esteira aprende a cada ciclo.</p></div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="module is-narrative reveal reveal-delay-3" id="sistema-addie">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Sistema ADDIE-UX</span>
+              <h2>Um sistema para tornar o trabalho visível, sustentável e escalável</h2>
+            </div>
+            <p>O ADDIE-UX organiza a esteira em camadas. A proposta não é criar mais uma metodologia isolada, mas tornar visíveis os pontos de decisão, os rituais, os critérios e as oportunidades de melhoria dentro do processo existente.</p>
+          </div>
+          <div class="grid-4">
+            <article class="addie-layer-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6h14" /><path d="M5 12h14" /><path d="M5 18h14" /></svg></div>
+              <h3>ADDIE</h3>
+              <p>Estrutura base: análise, desenho, desenvolvimento, implementação e avaliação.</p>
+            </article>
+            <article class="addie-layer-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5a7 7 0 0 0-7 7" /><path d="M19 12a7 7 0 0 1-7 7" /><path d="M8 12h8" /><path d="M12 8v8" /></svg></div>
+              <h3>UX</h3>
+              <p>Experiência do fluxo: clareza, visibilidade, redução de carga cognitiva.</p>
+            </article>
+            <article class="addie-layer-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z" /><path d="M9 3v3" /><path d="M15 3v3" /><path d="M9 18v3" /><path d="M15 18v3" /></svg></div>
+              <h3>DesignOps</h3>
+              <p>Operação: briefings, rituais, checklists e documentação viva.</p>
+            </article>
+            <article class="addie-layer-card">
+              <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v16" /><path d="M4 12h16" /><path d="M7 7h10v10H7z" /></svg></div>
+              <h3>IA aplicada</h3>
+              <p>Amplificação futura: organização, análise e apoio a tarefas repetitivas.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="module is-narrative reveal reveal-delay-3" id="ia-apoio">
+          <div class="module-head">
+            <div>
+              <span class="module-label">IA como apoio</span>
+              <h2>A IA só entra bem quando o processo já está claro.</h2>
+            </div>
+            <p>Depois do mapeamento, ficou possível enxergar onde agentes de IA poderiam apoiar: leitura de documentos, descrição de imagens, organização de requisitos, checklists e padronização de entregas. Mas a automação só faz sentido quando o processo já foi compreendido.</p>
+          </div>
+          <div class="grid-4">
+            <article class="info-card">
+              <h3>Acessibilidade</h3>
+              <p>Apoio à descrição de imagens e adequação de materiais legados.</p>
+            </article>
+            <article class="info-card">
+              <h3>Documentação instrucional</h3>
+              <p>Organização de diretrizes, padrões e entregáveis.</p>
+            </article>
+            <article class="info-card">
+              <h3>Leitura de documentos</h3>
+              <p>Apoio à síntese de materiais extensos e requisitos de curso.</p>
+            </article>
+            <article class="info-card">
+              <h3>Padronização operacional</h3>
+              <p>Apoio a checklists, fluxos e registros de decisão.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="module is-narrative reveal reveal-delay-3" id="impacto">
+          <div class="module-head">
+            <div>
+              <span class="module-label">Impacto esperado</span>
+              <h2>Menos opacidade. Mais coordenação.</h2>
+            </div>
+            <p>Como este case se estrutura como diagnóstico e base estratégica, o impacto é apresentado como esperado: uma operação mais visível, menos dependente de reconstrução de contexto e mais preparada para melhoria contínua.</p>
+          </div>
+          <div class="impact-grid">
+            <article class="impact-card">
+              <strong>Visibilidade fim-a-fim</strong>
+              <p>A equipe passa a enxergar etapas, dependências e pontos de decisão.</p>
+            </article>
+            <article class="impact-card">
+              <strong>Menos retrabalho</strong>
+              <p>Briefings, checkpoints e critérios de validação reduzem ciclos desnecessários.</p>
+            </article>
+            <article class="impact-card">
+              <strong>Melhor experiência interna</strong>
+              <p>Colaboradores deixam de operar apenas por reconstrução de contexto.</p>
+            </article>
+            <article class="impact-card">
+              <strong>Base para automação</strong>
+              <p>Processos estruturados tornam agentes de IA mais úteis e seguros.</p>
+            </article>
+            <article class="impact-card">
+              <strong>Mais previsibilidade</strong>
+              <p>A operação ganha cadência, documentação e critérios compartilhados.</p>
+            </article>
+            <article class="impact-card">
+              <strong>Melhoria contínua</strong>
+              <p>A avaliação passa a retroalimentar a esteira, não apenas o produto final.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="reflection" id="reflexao">
+          <span class="module-label">Reflexão final</span>
+          <h2>Na Fiocruz, o design entrou antes da tela: no briefing, nas validações e nos pontos onde o trabalho travava.</h2>
+          <div class="module-copy">
+            <p>O ADDIE-UX nasce dessa leitura: antes de escalar soluções, é preciso estruturar o sistema que sustenta a produção.</p>
+            <p>Este case mostra UX como ferramenta estratégica para diagnosticar processos, revelar dependências invisíveis e criar bases mais consistentes para operação, colaboração e automação futura.</p>
+          </div>
+        </section>
+
+        <nav class="end-nav" aria-label="Navegação final da disciplina">
+          <a href="ava.html">← Disciplina anterior: AVA</a>
+          <a href="dashboard.html#disciplinas">Ver todas as disciplinas</a>
+          <a href="d2l.html">Próxima disciplina: D2L →</a>
+        </nav>
       </div>
-
-      <div class="contact-links">
-        <a class="contact-link" href="https://www.linkedin.com/in/thalisxcruz" target="_blank" rel="noopener noreferrer">
-          <span class="contact-icon">in</span>
-          LinkedIn · thalisxcruz
-        </a>
-
-        <a class="contact-link" href="tel:+5561983226212">
-          <span class="contact-icon">☎</span>
-          +55 61 9 8322-6212
-        </a>
-
-        <a class="contact-link" href="mailto:thalisxcruz@gmail.com">
-          <span class="contact-icon">@</span>
-          thalisxcruz@gmail.com
-        </a>
-      </div>
-    </section>
-
-    <footer>
-      <span>Thalisson Cruz · UX/Product Designer</span>
-      <span>© 2026</span>
-    </footer>
+    </main>
   </div>
+
+  <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Imagem ampliada do artefato" aria-hidden="true">
+    <button class="image-modal-close" type="button" aria-label="Fechar imagem ampliada">×</button>
+    <img class="image-modal-img" id="imageModalImg" src="" alt="">
+  </div>
+
+  <script>
+    const sidebar = document.querySelector(".sidebar");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const primaryNav = document.getElementById("primary-nav");
+
+    function closeMenu({ restoreFocus = false } = {}) {
+      if (!sidebar || !menuToggle) return;
+      sidebar.classList.remove("is-open");
+      document.body.classList.remove("nav-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Abrir menu");
+      if (restoreFocus) menuToggle.focus();
+    }
+
+    function openMenu() {
+      if (!sidebar || !menuToggle) return;
+      sidebar.classList.add("is-open");
+      document.body.classList.add("nav-open");
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "Fechar menu");
+    }
+
+    menuToggle?.addEventListener("click", () => {
+      const isOpen = sidebar?.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    primaryNav?.addEventListener("click", (event) => {
+      if (event.target.closest("a")) closeMenu();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && sidebar?.classList.contains("is-open")) {
+        closeMenu({ restoreFocus: true });
+      }
+
+      if (event.key === "Escape" && modal?.classList.contains("is-open")) {
+        event.preventDefault();
+        closeImageModal();
+      }
+
+      if (event.key === "Tab" && modal?.classList.contains("is-open")) {
+        const focusable = Array.from(modal.querySelectorAll("button, [tabindex]:not([tabindex='-1'])")).filter((element) => !element.disabled);
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("imageModalImg");
+    const modalClose = document.querySelector(".image-modal-close");
+    let lastFocusedElement = null;
+
+    function openImageModal(img) {
+      lastFocusedElement = document.activeElement;
+      modalImg.src = img.dataset.full || img.src;
+      modalImg.alt = img.alt || "";
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      modalClose.focus();
+    }
+
+    function closeImageModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      modalImg.src = "";
+      document.body.style.overflow = "";
+      lastFocusedElement?.focus?.();
+      lastFocusedElement = null;
+    }
+
+    document.querySelectorAll(".pipeline-artifact img").forEach((img) => {
+      img.setAttribute("role", "button");
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("aria-label", `${img.alt || "Imagem do artefato"} — ampliar imagem`);
+      img.addEventListener("click", () => openImageModal(img));
+      img.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openImageModal(img);
+        }
+      });
+    });
+
+    modalClose?.addEventListener("click", closeImageModal);
+
+    modal?.addEventListener("click", (event) => {
+      if (event.target === modal) closeImageModal();
+    });
+
+    const sections = Array.from(document.querySelectorAll("section[id]")).filter(section => document.querySelector(`.course-nav a[href="#${section.id}"]`));
+    const links = Array.from(document.querySelectorAll(".course-nav a"));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(link => {
+            const isActive = link.getAttribute("href") === `#${entry.target.id}`;
+            link.classList.toggle("active", isActive);
+            if (isActive) link.setAttribute("aria-current", "true");
+            else link.removeAttribute("aria-current");
+          });
+        }
+      });
+    }, {
+      rootMargin: "-35% 0px -55% 0px",
+      threshold: 0
+    });
+
+    sections.forEach(section => observer.observe(section));
+
+    document.querySelectorAll("[data-tabs]").forEach((tabsRoot) => {
+      const tabButtons = Array.from(tabsRoot.querySelectorAll("[role='tab']"));
+      const tabPanels = Array.from(tabsRoot.querySelectorAll("[role='tabpanel']"));
+
+      function activateTab(button, moveFocus = true) {
+        const target = button.dataset.tab;
+
+        tabButtons.forEach((tab) => {
+          const isActive = tab === button;
+          tab.classList.toggle("is-active", isActive);
+          tab.setAttribute("aria-selected", String(isActive));
+          tab.tabIndex = isActive ? 0 : -1;
+        });
+
+        tabPanels.forEach((panel) => {
+          panel.hidden = panel.dataset.panel !== target;
+        });
+
+        if (moveFocus) button.focus();
+      }
+
+      tabButtons.forEach((button, index) => {
+        button.tabIndex = button.classList.contains("is-active") ? 0 : -1;
+
+        button.addEventListener("click", () => activateTab(button, false));
+
+        button.addEventListener("keydown", (event) => {
+          let nextIndex = index;
+
+          if (event.key === "ArrowRight") nextIndex = (index + 1) % tabButtons.length;
+          else if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+          else if (event.key === "Home") nextIndex = 0;
+          else if (event.key === "End") nextIndex = tabButtons.length - 1;
+          else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            activateTab(button);
+            return;
+          } else {
+            return;
+          }
+
+          event.preventDefault();
+          activateTab(tabButtons[nextIndex]);
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>
